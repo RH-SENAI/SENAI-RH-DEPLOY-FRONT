@@ -53,4 +53,4 @@ jobs:
           app-name: 'SESI-SENAI-WORKS'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_07DF6F51F99442DCB45477CB9705BAC2 }}
-          package: .
+          package: 'build'

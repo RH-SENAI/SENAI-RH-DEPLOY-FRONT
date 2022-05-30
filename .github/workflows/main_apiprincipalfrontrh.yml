@@ -53,4 +53,4 @@ jobs:
           app-name: 'ApiPrincipalFrontRH'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3AD5C76236054A2385A9F93DC4D394A3 }}
-          package: .
+          package: 'build'
