@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+.G1_usuario_card{
+    display: flex;
+    /* padding: 0 20px 0 20px; */
+    /* justify-content: space-between; */
+    align-items: center;
+    height: 60px;
+    max-width: 1440px;
+    width: 100%;
+    border: 3px solid #dfdfdf;
+    margin-bottom: 2.5vh;
+    border-radius: 10px;
+}
+.G3_organizar_main {
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 4rem;
+    /* background-color: #08b810;     */
+}
+
+.G1_container_card{
+    margin: 0 10% 0 10%;
+}
+.G3_titulo_atividades {
+    /* text-transform: uppercase; */
+    font-size: 3.1em;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    color: #2A2E32;
+    margin-bottom: 3rem;
+}
+
+.G1_nome_usuario{
+    width: 16vw;
+}
+
+.G1_organizar_trofeus{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 5%;
+    margin-right: 10%;
+}
+.g3_fotoRanking{
+    height: 4vh;
+    border-radius: 10px;
+}
+
+/* .g3_boxOrganizadoraRanking{
+    margin-top: 4rem;
+}
+.g3_boldRanking{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.1em;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.g3_navRanking{
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    background-color: transparent;
+    border: 1px solid #b3b3b3;
+    border-radius: 15px;
+
+    margin: 4rem 0 2rem;
+}
+.g3_spanNavRanking{
+    font-size: 1.250em;
+}
+.g3_cardsRanking{
+    height: 8.5vh;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    justify-content: space-between;
+    background-color: transparent;
+    border-radius: 15px;
+    border: 1px solid #b3b3b3;
+    margin-bottom: 2rem;
+}
+@media screen and (max-width: 980px) {
+    .g3_boxOrganizadoraRanking{
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+    .g3_boldRanking{
+        font-size: 2.1em;
+        text-align: center;
+    }
+    .g3_navRanking{
+        padding: 1rem;
+        margin-bottom: 3rem;
+        
+    }
+    .g3_spanNavRanking{
+        font-size: 1em;
+    }
+    .g3_cardsRanking{
+        padding: 1rem;
+        margin-bottom: 3rem;
+    }
+} */

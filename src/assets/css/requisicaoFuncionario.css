@@ -1,0 +1,67 @@
+.title_caixa_requisicaoFuncionario_g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    height: 15vh;
+}
+
+.h1_requisicaoFuncionario_g2 {
+    font-size: 3em;
+    color: #000000;
+    font-weight: bold;
+}
+
+
+
+.container_table_g2 {
+    /* border: 3px solid #b3b3b3 ; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7.5rem;
+    padding: 25px 250px 250px 250px;
+}
+
+.table_funcionariosPendentes_g2 {
+    border: 10px;
+}
+
+/* .table_funcionariosPendentes_g2 th{
+    border: 3px solid #b3b3b3 ;
+} */
+/* .table_funcionariosPendentes_g2 td{
+    border: 3px solid #b3b3b3 ;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+} */
+.table_funcionariosPendentes_g2, td, th {
+    border: 2px solid #b3b3b3;
+    width: 100vw;
+    height: 5vh;
+    padding: 1rem;
+    /* border-radius: 10px; */
+}
+
+
+
+.table_funcionariosPendentes_g2 {
+    border-radius: 10px !important;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.img_carimbo_g2 {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    width: 8vw  !important;
+    height: 8vh !important;
+}
+.img_carimbo_g2 img{
+    width: 4vw;
+    height: 4vh;
+    cursor: pointer;
+}

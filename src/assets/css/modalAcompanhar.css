@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+}
+
+
+:root {
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+}
+
+input[type='range'] {
+	-webkit-appearance: none;
+	height: 7px;
+	background: grey;
+	border-radius: 5px;
+	background-image: linear-gradient(#c20004, #c20004);
+	background-repeat: no-repeat;
+}
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background: #c20004;
+	cursor: pointer;
+	box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: #d46a6a50 0px 0px 0px 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    box-shadow: #d46a6a50 0px 0px 0px 11px;
+    transition: box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, left 350ms cubic-
+    bezier(0.4, 0, 0.2, 1) 0ms, bottom 350ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+
+.button {
+    background-color: #f2f2f2;
+    padding: 1em 2em;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    /* background: #dbdbdb; */
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.35)); */
+    box-shadow: 2px 2px 7px rgba(166, 171, 189, 1), 0px 0px 15px rgba(242, 242, 242, 1);
+}
+
+.G1_modal_window {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    height: 50vh;
+    width: 50vw;
+}
+
+.G1_close_modal {
+    z-index: 998;
+    background-color: rgb(87, 87, 87);
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ReactModal__Overlay {
+    background: rgba(201, 201, 201, 0.4) !important;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ReactModal__Content {
+    margin: 1% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+
+.modal-content {
+    margin: 1% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+
+/* .divona{
+    padding: 0px;
+} */
+
+.background_modal{
+    position: fixed;
+    z-index: 998;
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    height: 100vh;
+    width: 100vw;
+}
+
+.g3_modal-body {    
+    display: flex;
+    right: 0;
+    left: 25%;
+    bottom: 0;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    top: 12%;
+    border-radius: 5px;
+    height:75vh;
+    width: 43vw;
+    padding: 4rem;
+    /* padding: 10px 90px; */
+    background: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+
+
+.close {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.btn_atualizar_modal {
+    background-color: #C20004;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.btn_fechar_modal {
+    background-color: #2a2e32;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.btn_avaliar_modal {
+    background-color: #00A32D;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.g3_infoModal{
+    display: flex;
+    margin-bottom: 2rem;
+
+}
+.g3_perfilModal{
+    display: flex;
+    flex-direction: column;
+}
+.g3_fotoPerfilModal{
+    height: 10vh;
+    width: 10vh;
+    border-radius: 10px;
+    margin-right: 2rem;
+}
+.g3_spanInfoModal{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+.g3_containerOrganizacaoModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.g3_organizarBtn{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.g3_graficosModal{
+    display: flex;
+}
+.g3_graficoSatisfacaoModal{
+    width: 35%;
+}
+.g3_graficoProdutividadeModal{
+    width: 40%;
+}
+.g3_organizadorGraficosModal{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+.g3_spanGraficos{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+.g3_formModal{
+    display: flex;
+    flex-direction: column;
+}
+.g3_inputCadastroModal{
+    box-sizing: border-box;
+    padding:  0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+}

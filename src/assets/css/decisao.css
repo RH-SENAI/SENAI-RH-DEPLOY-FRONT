@@ -1,0 +1,35 @@
+@media screen and (max-width: 980px) {
+    .g3_bannerDemocratizacao{
+        display: none;
+    }
+    .container {
+        padding: 0 1.9rem;
+      }
+      .g3_boldDecisao{
+        font-size: 2.1em;
+        margin-bottom: 0;
+        text-align: center;
+      }
+      .g3_nonBoldDecisao{
+        font-size: 1.9em;
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+      .g3_tituloDecisao{
+          font-size: 1em;
+      }
+      .g3_organizadorDecisao{
+          width: 100%;
+      }
+      .g3_boxDecisaoLista{
+          width: 70vw;
+          padding: 0 10px;
+          height: 100%;
+      }
+      .g3_containerDecisao{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 2rem;
+      }
+}

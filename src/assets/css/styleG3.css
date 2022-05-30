@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #f2f2f2;
+}
+
+
+/* ==============================   CAROMETRO   ===============================================    */
+
+.containerCarometro{
+    margin: 100px 0;
+}
+.sidebarCarometro{
+    width: 450px;
+    height: 900px;
+    background-color: #f2f2f2;
+    box-shadow: 12px 12px 15px rgba(166, 171, 189, 1), -12px -12px 15px rgba(255, 255, 255, 1);
+}
+
+
+
+
+
+/* ==============================   CAROMETRO   ===============================================    */
+

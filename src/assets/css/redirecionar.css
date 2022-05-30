@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap'); 
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.G1_btn_Cadastrar {
+    min-width: 250px;
+    width: 25vw;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #c20004;
+    padding: 15 25;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
+.G1_Redirect_Body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #e4e4e4;
+    height: 100vh;
+}
+
+.header_redirect{
+    background-color: #e4e4e4;
+}
+
+.G1_Redirect_containerHeader{
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.G1_Redirect_Logo{
+    width: 250px;
+}
+
+.G1_box_titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin-bottom: 5vh;
+    text-transform: uppercase;
+}
+
+
+.G1_titulo_redirecionamento{ 
+    color: #2A2E32;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    margin: 0;
+}
+
+.G1_titulo2_redirecionamento{
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 350px;
+    font-weight: 300;
+    font-size: 40px; 
+}
+
+.G1_containerContentMain{
+    display: flex;
+    justify-content: center;
+}
+
+.G1_containerRedirects{
+    display: flex;
+    justify-content: space-between;
+    width: 70vw;
+}
+
+.G1_box_Article{
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 350px;
+    height: 420px;
+    margin-bottom: 4%;
+    border: 3px solid #b3b3b3;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+
+.G1_box_Article p{
+    width: 80%;
+
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.G1_box_Article h3{
+
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.G1_box_Article button{
+    min-width: 100px;
+    width: 100px !important;
+    height: 52px;
+    cursor: pointer;
+}
+
+.G1_ArticleText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 55%;
+    margin-left: 20px;
+}

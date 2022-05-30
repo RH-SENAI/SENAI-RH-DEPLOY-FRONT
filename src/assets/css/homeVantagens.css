@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #F2F2F2;
+}
+
+.container_principal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text_principal{
+    width: 25vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1{
+    font-size: 48px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+h2{
+    font-size: 45px;
+    text-transform: uppercase; 
+}
+
+.container_empresas{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.box_empresas{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+    justify-content: space-between;
+}
+
+.imgSetaEsq{
+    width: 40px;
+    height: 40px;
+    margin-right: 5vw;
+}
+
+.barraDivisao{
+    height: 6vh;
+}
+
+.imgSetaDir{
+    width: 40px;
+    height: 40px;
+    margin-left: 5vw;
+}

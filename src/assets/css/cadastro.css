@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+}
+
+
+body{
+    background-color: #f2f2f2;
+}
+
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(../img/SetaSelectLight.png) no-repeat ;
+}
+input[type="file"] {
+
+    display: none;
+}
+
+/* ==============================   CADASTRO   ===============================================    */
+
+.g3_backgroundCadastro{
+    background: linear-gradient(
+        90deg,
+    #f2f2f2 50%,
+    #ffffff 50%
+    ) !important; 
+
+}
+
+.g3_containerFotoCadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    
+
+}
+
+.g3_boxFotoCadastro{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: #B3B3B3;
+    margin: 0.5rem;
+}
+
+.g3_labelCadastroFoto{
+    cursor: pointer;
+}
+
+.g3_boxCadastro{
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.g3_formCadastro{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    
+}
+.g3_nonBoldCadastrar{
+    font-size: 2.5em;
+    font-style: normal;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_boldCadastrar{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.1em;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_bodyCadastro{
+    display: flex;  
+}
+.g3_bodyCadastroLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2em;
+}
+.g3_bodyCadastroRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.g3_inputCadastro{
+    box-sizing: border-box;
+    padding:  0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+    /* box-shadow: 0 3px 15px rgba(166, 171, 189, 1); */
+}
+.g3_inputCadastroData{
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+
+}
+
+.g3_inputCadastroSelect{
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+    background-position: 350px;
+}
+
+
+.g3_inputCadastroData::-webkit-calendar-picker-indicator{
+    background-image: url(../img/IconCalendario.png);
+    
+    background-size: cover;
+    width: 26px;
+    height: 26px;
+    padding-right: 15px;
+    
+}
+.g3_inputCadastro::placeholder{
+    color: #B3B3B3;
+    font-family: 'Quicksand', sans-serif;
+
+
+}
+.g3_labelCadastro{
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+
+}
+.g3_boxImg{ 
+    display: flex;
+    align-items: center;
+}
+.g3_imgCadastro{
+    height: 55vh;
+
+}
+.g3_botaoCadastro{
+    width: 13.5vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+
+
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-left: 9.375rem;
+}
+.g3_botaoCadastro:hover {
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+@media screen and (max-width: 1774px) {
+    .container{
+        margin: 1rem 1.9rem;
+    }
+    .g3_boldCadastrar{
+        font-size: 2.1em;
+        text-align: center;
+    }
+    .g3_nonBoldCadastrar{
+        font-size: 1.9em;
+        text-align: center;
+    }
+    .g3_backgroundCadastro{
+        background: #f2f2f2 !important;
+    }
+    .g3_boxImg{
+        display: none;
+    }
+    .g3_boxCadastro{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .g3_formCadastro{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .g3_bodyCadastroLeft{
+        margin-right: 0;
+    }
+    .g3_inputCadastro{
+        width: 80%;
+    }
+    .g3_inputCadastroSelect{
+        width: 80%;
+    }
+    .g3_inputCadastroData{
+        width: 80%;
+    }
+    .g3_botaoCadastro{
+        margin: 0;
+        width: 35vw;
+        font-size: 0.8em;
+    }
+
+
+}
+
+/* ==============================   CADASTRO   ===============================================    */

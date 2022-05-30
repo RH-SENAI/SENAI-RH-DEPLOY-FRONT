@@ -1,0 +1,114 @@
+.container_forms_cadastroEmpresa_g2 {
+    display: flex;
+    justify-content: space-between;
+    /* margin-right: 2.5rem; */
+    margin-top: 5rem;
+}
+
+.container_empresa_g2{
+    width: 100%;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box_img_cadastroEmpresa_g2 {
+    margin-top: 1.875rem;
+}
+
+.box_img_cadastroEmpresa_g2 img {
+    margin-top: 1.875rem;
+}
+
+.box_forms_cadastroEmpresa_g2 input {
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+    background-position: 180px;
+}
+
+.box_forms_cadastroEmpresa_g2 {
+    height: 75vh;
+}
+
+.title_cadastroEmpresa_g2 {
+    display: flex;
+    justify-content: center;
+}
+
+.title_cadastroEmpresa_g2 h1 {
+    font-size: 3.1em;
+    margin-bottom: 2rem;
+}
+
+.box_inputs_cadastroEmpresa_g2 {
+    display: flex;
+    justify-content: center;
+}
+
+.container_cadastroEmpresa_inputs_g2 {
+    margin-right: 2rem;
+}
+
+.img_file_cadastro_empresa_g2{
+    background-color: #636466;
+    margin-right: 1rem;
+}
+
+.label_arquivo_cadastroEmpresa_g2 {
+    width: 13.5vw;
+    height: 6vh;
+    margin-top: 1.3rem;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: white;
+    border-radius: 15px;
+    background-color: #636466;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-bottom: 2em !important;
+}
+
+.input_file_cadastroEmpresa_g2 {
+    display: none;
+}
+
+.btn_cadastroEmpresa_g2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+
+.botaoCadastroEmpresa_g2{
+    width: 13.5vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+    cursor: pointer;
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.botaoCadastroEmpresa_g2:hover {
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,49 @@
+.title_caixa_meusFavoritos_g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    height: 15vh;
+}
+
+.h1_meusFavoritos_g2 {
+    font-size: 3em;
+    /* margin-left:  99px; */
+    color: #000000;
+    font-weight: bold;
+}
+
+.title_estrelas_g2{
+    margin-left: 1rem;
+}
+
+.caixa_meusFavoritos_g2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.caixa_meusFavoritos_g2 input {
+    /* border: none; */
+    width: 20vw;
+    height: 5vh;
+    /* font-size: 2rem; */
+    border: 2px solid #B3B3B3;
+    /* display: block; */
+    text-align: center;
+    outline: none;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.caixa_meusFavoritos_g2 input::placeholder {
+    font-size: 1.2em;
+    color: #000000;
+    border: none;
+    font-weight: bold;
+}
+
+.caixa_meusFavoritos_g2::-webkit-calendar-picker-indicator {
+    color: #000000;
+}
+

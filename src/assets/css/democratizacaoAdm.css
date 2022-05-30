@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #f2f2f2;
+
+}
+
+
+.g3_containerOrganizador{
+    display: flex;
+    flex-direction: column;
+}
+.g3_containerOrganizadorDecisao{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.g3_boxDecisao{
+    background-color: transparent;
+    border: #b3b3b3 1px solid;
+
+    height: 8vh;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    padding: 20px;
+    
+    
+}
+
+
+.g3_inputCadastroFeedback{
+    width: 30.2vw;
+    height: 8.5vh;
+    background-color: transparent;
+    
+    border-radius: 15px;
+    
+    display: flex;
+    align-items: center;
+    
+    padding-left: 20px;
+    margin-bottom: 1rem;
+    
+    border: 1px solid #b3b3b3;
+    outline: 0;
+    
+
+}
+
+.g3_inputCadastroFeedback::-webkit-calendar-picker-indicator{
+    background-image: url(../img/IconCalendario.png);
+    
+    background-size: cover;
+    width: 26px;
+    height: 26px;
+    padding-right: 15px;
+    
+}
+.g3_inputCadastroFeedback::placeholder{
+    color: #b3b3b3;
+    font-weight: 600;
+}
+.g3_formCadastroDecisao{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.g3_btnCadastroFeedback{
+    width: 13.5vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+    margin-top: 1rem;
+
+
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+
+}
+.g3_btnCadastroFeedback:hover{
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_boxFeedback{
+    background-color: transparent;
+
+}
+.g3_nonBoldDecisao{
+    font-size: 2.5em;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_boldDecisao{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.1em;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_tituloDecisao{
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.g3_paragrafoDecisao{
+    font-weight: 500;
+    margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
+}
+.g3_containerDecisao{
+    display: flex;
+}
+.g3_organizadorDecisao{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 4rem;
+}
+.g3_imgDemocratizacao{
+    height: 55vh;
+}
+.g3_imgDemocratizacao{
+    height: 40vh;
+}
+.g3_bannerDemocratizacao{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 40%;
+}
+.g3_containerFeedback{
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 70px 0 ;
+}
+.g3_boxCardsDecisao{
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.g3_fotoPerfilFeedback{
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    
+}
+.g3_imgFotoFeedback{
+    height: 80px;
+    height: 80px;
+    background-color: transparent;    
+    border-radius: 15px;
+
+}
+.g3_boxFeedback{
+    background-color: transparent;    
+    border-radius: 15px;
+    border: 1px solid #b3b3b3;
+    width: 100%;
+    height: 140px;
+
+    display: flex;
+    padding: 40px;
+    justify-content: center;
+    flex-direction: column;
+}
+.g3_boxDecisaoLista{
+    background-color: transparent;
+    border: 1px solid #b3b3b3;
+   
+    border-radius: 15px;
+    width: 32vw;
+    height: 140px;
+    display: flex;
+    padding: 40px;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+    color: #000
+    ;
+}
+.g3_feedback{
+    display: flex;
+    margin-bottom: 50px;
+}
+.g3_boldFeedback{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+}
+.g3_btnRedirectDecisao{
+    text-decoration: none;
+}
+@media screen and (max-width: 980px) {
+    .g3_inputCadastroFeedback{
+        width: 100%;
+
+    }
+    .g3_btnCadastroFeedback{
+        width: 35vw;
+        font-size: 0.8em;
+        margin: 0;
+        margin-bottom: 3rem;
+    }
+    .g3_boldFeedback{
+        font-size: 2.1em
+    }
+    .g3_boxFeedback{
+        width: 70vw;
+        padding: 1rem 1rem;
+        height: 100%;
+    }
+    .g3_feedback{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .g3_fotoPerfilFeedback{
+        margin-right: 1rem;
+        width: 10vw;
+    }
+    .g3_containerFeedback{
+        margin-bottom: 2rem;
+    }
+}

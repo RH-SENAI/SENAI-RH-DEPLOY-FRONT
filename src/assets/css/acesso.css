@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-wrap: normal;
+   
+}
+.container{
+    max-width :1440px;
+    width: 100%;
+    margin: 0 auto; 
+
+}
+
+.g3_nonBold{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 3.1em;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.g3_bold{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.7em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.g3_todosOsTextos{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.g3_primeiroTexto{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.3em;
+    line-height: 37px;
+    font-family: 'Quicksand', sans-serif;
+ 
+}
+
+.g3_primeiroTextoResponsivo{
+    display: none;
+}
+.g3_segundoTextoResponsivo{
+    display: none;
+}
+
+.g3_btnRedLogin{
+    width: 8.3vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+    margin-bottom: 100px;
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 20%;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.g3_btnRedLogin:hover {
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_conteudoAcesso{
+    width: 48vw;
+    display: flex;
+    align-items: center;
+}
+.g3_imgAcesso{
+    width: 48vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+.g3_imagemAcesso{
+    height: 55vh;
+    animation-name: fadeInUp;
+    
+}
+.g3_containerOrganizacao{
+    display: flex;
+    height: 74.6vh;
+    justify-content: center;
+    margin-bottom: 5.5rem;  
+}
+
+.g3_spans{
+margin-top: 50px;
+display: flex;
+flex-direction: column;
+}
+
+.g3_textoEBotao{
+    display: flex;
+    justify-content: end;
+    align-items: flex-start; 
+    flex-direction: column;
+    margin-top: 15rem;
+    font-family: 'Quicksand', sans-serif;
+}
+/* .g3_imagemAcessoResponsiva{
+    display: none;
+} */
+@media screen and (max-width: 960px) {
+    .container {
+      margin: 1rem 1.9rem;
+    }
+    .g3_spans{
+        display: flex;
+        flex-direction: row;
+    }
+    .g3_bold{
+        font-size: 2.1em;
+        margin-bottom: 4rem;
+        text-align: center;
+    }
+    .g3_nonBold{
+        display: none;
+        
+    }
+    .g3_imagemAcesso{
+        display: none;
+        margin-bottom: 4rem;
+    }
+    .g3_imagemAcessoResponsiva{
+        display: block;
+        width: 60vw;
+        margin-bottom: 4rem;
+    }
+    .g3_containerOrganizacao{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .g3_primeiroTexto{
+        display: none;
+    }
+    .g3_primeiroTextoResponsivo{
+        display: block;
+        font-size: 1.25em;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 2rem;
+        
+    }
+    .g3_segundoTextoResponsivo{
+        display: block;
+        font-size: 1.25em;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    .g3_btnRedLogin{
+        width: 35vw;
+        font-size: 0.8em;
+        margin-bottom: 180px;
+        margin-top: 0;
+    }
+    .g3_textoEBotao{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .g3_conteudoAcesso{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  } 

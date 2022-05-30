@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    max-width :1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container_main_G1{
+    display: flex;
+    height: 100vh;
+}
+
+.G1_Left{
+    background-color: #F2F2F2;
+    width: 50vw;
+    height: 100vh;
+}
+.G1_Right{
+    background-color: #FFFFFF;
+    width: 50vw;
+}
+
+.G1_banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10vw;
+    height: 100%;
+}
+
+.G1_logo{
+    width: 15vw;
+    
+}
+
+.G1_bannerLogin{
+    width: 35vw;
+    
+}
+
+.G1_banner p{
+    color: #636466
+}
+
+.G1_Right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.G1_textLogin{
+    margin-bottom: 5vh;
+}
+
+.G1_textLogin h1{
+    text-transform: uppercase;
+    color: #2A2E32;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 60;
+    margin: 0;
+}
+
+.G1_textLogin p{
+color: #000;
+font-family:'Quicksand', sans-serif;;
+max-width: 350px;
+}
+
+.G1_form_Login{
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.G1_inputLabel {
+position: relative;
+padding-top: 13px;
+}
+
+.G1_inputLabel input {
+border: 1px solid lightgrey;
+border-radius:15px;
+outline: none;
+min-width: 250px;
+width: 25vw;
+height: 52px;
+padding: 15px 20px;
+font-size: 16px;
+transition: all .1s linear;
+-webkit-transition: all .1s linear;
+-moz-transition: all .1s linear;
+-webkit-appearance: none;
+}
+
+
+
+.G1_inputLabel input::placeholder {
+color: transparent;
+}
+
+.G1_inputLabel label {
+pointer-events: none;
+position: absolute;
+top: calc(50% - 8px);
+left: 15px;
+transition: all .1s linear;
+-webkit-transition: all .1s linear;
+-moz-transition: all .1s linear;
+background-color: white;
+padding: 5px;
+box-sizing: border-box;
+}
+
+.G1_inputLabel input:required:invalid+label {
+color: red;
+}
+
+.G1_inputLabel input:focus:required:invalid {
+border: 2px solid red;
+}
+
+.G1_inputLabel input:required:invalid+label:before {
+content: '*';
+}
+
+.G1_inputLabel input:focus+label,
+.G1_inputLabel input:not(:placeholder-shown)+label {
+font-size: 13px;
+top: 0;
+
+}
+
+.G1_form_Login button{
+    min-width: 250px;
+    width: 25vw;
+    height: 52px;
+    border-radius: 15px;
+    background-color: #C20004;
+    padding: 15 25;
+    cursor: pointer;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
+.G1_buttonsLogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 15vh;
+}
+.G1_buttonsLogin a{
+    width: fit-content;
+    text-decoration: none;
+    color: #C20004;
+}

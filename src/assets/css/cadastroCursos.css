@@ -1,0 +1,218 @@
+.container_lista_curso {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.geral_g2 {
+    background-color: #f2f2f2;
+}
+
+.container_forms_cadastroCursos_g2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 9rem;
+}
+
+.box_img_cadastroCurso_g2 {
+    margin-top: 1.875rem;
+}
+
+.box_img_cadastroCurso_g2 img {
+    margin-top: 1.875rem;
+}
+
+.box_forms_cadastroCurso_g2 {
+    height: 70vh;
+}
+
+.box_forms_cadastroCurso_g2 input {
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+}
+
+.box_forms_cadastroCurso_g2 input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url("../img/iconeCalendario.svg");
+}
+
+.input_g2_cadastro {
+    position: relative;
+    padding-top: 13px;
+    margin-right: 1rem;
+}
+
+.input_g2_cadastro input {
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    outline: none;
+    /* min-width: 250px; */
+    width: 13.5vw;
+    height: 6vh;
+    padding: 15px 20px;
+    /* font-size: 16px; */
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+
+
+
+.input_g2_cadastro input::placeholder {
+    color: transparent;
+}
+
+.input_g2_cadastro label {
+    pointer-events: none;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 15px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background-color: #f2f2f2;
+    /* padding-left: 1px;
+    padding-bottom: 5px; */
+    box-sizing: border-box;
+}
+
+.input_g2_cadastro input:required:invalid+label {
+    color: red;
+}
+
+.input_g2_cadastro input:focus:required:invalid {
+    border: 2px solid red;
+}
+
+.input_g2_cadastro input:required:invalid+label:before {
+    content: '*';
+}
+
+.input_g2_cadastro input:focus+label,
+.input_g2_cadastro input:not(:placeholder-shown)+label {
+    font-size: 13px;
+    top: 0;
+
+}
+
+.title_cadastroCurso_g2 {
+    display: flex;
+    justify-content: center;
+}
+
+.title_cadastroCurso_g2 h1 {
+    font-size: 3.1em;
+    margin-bottom: 2rem;
+}
+
+.box_inputs_cadastroCurso_g2 {
+    display: flex;
+    justify-content: center;
+}
+
+.container_cadastroCurso_inputs_g2 {
+    margin-right: 2rem;
+}
+
+
+.input_file_cadastroCurso_g2 {
+    display: none;
+}
+
+
+.inputCadastro_cursos_g2::placeholder {
+    width: 6, 753458096013019vw;
+    height: 3, 8442622950819674vh;
+    font-weight: bold;
+}
+
+.box_forms_cadastroCurso_g2 label {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.label_arquivo_cadastroCurso_g2 {
+    width: 13.5vw;
+    height: 6vh;
+    color: white;
+    border-radius: 15px;
+    background-color: #636466;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.img_file_cadastro_curso_g2 {
+    background-color: #636466;
+    margin-right: 1rem;
+}
+
+.label_arquivo_cadastroCurso_g2 {
+    width: 13.5vw;
+    height: 6vh;
+    color: white;
+    border-radius: 15px;
+    background-color: #636466;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.input_file_cadastroCurso_g2 {
+    display: none;
+}
+
+.inputCadastroCursoSelect_g2 {
+    box-sizing: border-box;
+    padding: 0 20px;
+    width: 13.5vw;
+    height: 6vh;
+    background-color: transparent;
+    outline: 0;
+    border: 1px #B3B3B3 solid;
+    border-radius: 15px;
+    margin-bottom: 2em;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    font-weight: bold;
+}
+
+.btn_cadastroCurso_g2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.botaoCadastroCurso_g2 {
+    width: 13.5vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+    cursor: pointer;
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.botaoCadastroCurso_g2:hover {
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color: #C20004;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}

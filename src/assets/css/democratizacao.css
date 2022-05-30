@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: #f2f2f2;
+
+}
+
+.g3_containerOrganizador{
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+}
+.g3_formCadastroFeedback{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+.g3_inputCadastroFeedback{
+width: 30.2vw;
+height: 8.5vh;
+background-color: transparent;
+
+border-radius: 15px;
+
+display: flex;
+align-items: center;
+
+padding-left: 20px;
+margin-bottom: 1rem;
+
+border: 1px solid #b3b3b3;
+outline: 0;
+
+
+}
+.g3_inputCadastroFeedback::placeholder{
+    color: #000;
+    font-weight: 600;
+}
+
+.g3_btnCadastroFeedback{
+    width: 13.5vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #C20004;
+    border: none;
+    margin-top: 1rem;
+
+
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.g3_btnCadastroFeedback:hover{
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_boxFeedback{
+    background-color: transparent;
+}
+.g3_nonBoldDecisao{
+    font-size: 2.5em;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.g3_boldDecisao{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.1em;
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_tituloDecisao{
+    font-weight: 700;
+    font-size: 24px;
+
+}
+.g3_paragrafoDecisao{
+    font-weight: 500;
+    margin-top: 10px;
+}
+.g3_containerDecisao{
+    display: flex;
+    margin-bottom: 4rem;
+}
+.g3_organizadorDecisao{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.g3_imgDemocratizacao{
+    width: 100%;
+}
+.g3_bannerDemocratizacao{
+    display: flex;
+    margin-top: 4rem;
+}
+.g3_containerFeedback{
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 70px 0 ;
+}
+.g3_fotoPerfilFeedback{
+    width: 140px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    
+}
+.g3_imgFotoFeedback{
+    height: 80px;
+    background-color: transparent;    
+    border-radius: 15px;
+
+
+}
+.g3_boxFeedback{
+    background-color: transparent;    
+    border-radius: 15px;
+    border: 1px solid #b3b3b3;
+    width: 100%;
+    height: 140px;
+
+    display: flex;
+    padding: 40px;
+    justify-content: center;
+    flex-direction: column;
+}
+.g3_feedback{
+    display: flex;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+.g3_boxDecisao{
+    background-color: transparent;    
+    border-radius: 15px;
+    border: 1px solid #b3b3b3;
+    width: 80%;
+    height: 14vh;
+    margin-bottom: 1rem;
+
+    display: flex;
+    padding: 40px;
+    justify-content: center;
+    flex-direction: column;
+}
+.decisao{
+    display: flex;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.g3_boldFeedback{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+
+}

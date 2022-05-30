@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+}   
+.container{
+    max-width :1440px;
+    width: 100%;
+    margin: 0 auto; 
+
+}
+.g3_organizadorDashboard{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.g3_boxTituloDashboard{
+    margin-top: 4rem;
+}
+.g3_tituloDashboard{
+    font-size: 3.1em;
+    font-weight: 600;
+
+    font-family: 'Montserrat', sans-serif;
+}
+.g3_containerGraficos{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}
+.g3_boxGraficosLeft{
+    display: flex;
+    flex-direction: column;
+    margin-right: 4rem;
+
+}
+.g3_graficoProdutividade{
+    border: 2px solid #b3b3b3;
+    height: 27.7vh;
+    width: 27vw;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    margin-right: 3rem;
+}
+.g3_spanGraficoP{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.g3_spanGraficoF{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.g3_containerProdutividade{
+    display: flex;
+}
+.g3_graficoProdutividadeUni{
+    border: 2px solid #b3b3b3;
+    background-color: #ffffff;
+    height: 27.7vh;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    width: 27vw;
+}
+.g3_boxGraficosBaixo{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+.g3_containerGraficoLeft{
+    width: 30%;
+    margin-right: 3rem;
+}
+.g3_containerGraficoRight{
+    width: 30%;
+    margin-right: 3rem;
+}
+.containerGraficoPizza{
+    width: 30%;
+}
+.g3_graficoSatisfacaoPessoal{
+    width: 100%;
+    border: #b3b3b3 2px solid;
+    height: 22.7vh;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+
+}
+.g3_graficoProdutividadeUnidade{
+    width: 100%;
+    
+    border: #b3b3b3 2px solid;
+    height: 22.7vh;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.g3_graficoDireita{
+    height: 79.4%;
+    width: 100%;
+}
+.g3_graficoFuncionarios{
+    height: 100%;
+    border: 2px solid #b3b3b3;
+    border-radius: 10px;
+}

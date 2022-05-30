@@ -1,0 +1,867 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+
+* {
+    box-sizing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==============================   Cadastrar Atividades   ===============================================    */
+
+.div_container{
+    overflow-x: hidden;
+}
+
+.container_ {
+    display: flex;
+    height: 100vh;
+}
+
+.G1_Left_CadastroAtividade {
+    background-color: #F2F2F2;
+    width: 50vw;
+    height: 100vh;
+}
+
+.G1_Right_CadastroAtividade {
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.G1_banner_CadastroAtividade {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 10vw;
+    height: 100%;
+}
+
+.G1_logo_CadastroAtividade {
+    width: 15vw;
+
+}
+
+.G1_bannerCadastroAtividade {
+    width: 35vw;
+
+}
+
+.G1_banner_text {
+    color: #636466
+}
+
+
+.G1_textCadastrar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 33vw;
+    margin-bottom: 5vh;
+}
+
+.G1_textCadastrar h1 {
+    text-transform: uppercase;
+    color: #2A2E32;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    margin: 0;
+}
+
+.G1_textCadastrar h2 {
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 350px;
+    font-weight: 300;
+    font-size: 40px;
+}
+
+.G1_form_Cadastrar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+    width: 33vw;
+}
+
+.G1_organizar_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.G1_organizar_inputs {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.G1_btn_modal {
+    min-width: 250px;
+    width: 16vw;
+    height: 5vh;
+    margin-top: 2vh;
+    border-radius: 15px;
+    background-color: #636466;
+    padding: 15 25;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: white;
+}
+
+.G1_inputLabel_Cadastrar {
+    position: relative;
+    padding-top: 13px;
+}
+
+.G1_inputLabel_Cadastrar input {
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    background-color: #f2f2f2;
+    outline: none;
+    /* min-width: 250px; */
+    width: 16vw;
+    height: 6vh;
+    padding: 15px 20px;
+    font-size: 16px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance: none;
+}
+
+.G1_inputLabel_Cadastrar input::placeholder {
+    color: transparent;
+}
+
+.G1_inputLabel_Cadastrar label {
+    pointer-events: none;
+    position: absolute;
+    top: calc(50% - 8px);
+    left: 15px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background-color: #f2f2f2;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+
+.G1_inputLabel_Cadastrar input:required:invalid+label {
+    color: red;
+}
+
+
+.G1_inputLabel_Cadastrar input:focus:required:invalid {
+    border: 2px solid red;
+}
+
+.G1_inputLabel_Cadastrar input:required:invalid+label:before {
+    content: '*';
+}
+
+.G1_inputLabel_Cadastrar input:focus+label,
+.G1_inputLabel_Cadastrar input:not(:placeholder-shown)+label {
+    font-size: 13px;
+    top: 0;
+
+}
+
+.G1_div_ToggleValidar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.G1_label_precisaValidar {
+    width: 100%;
+}
+
+.G1_btn_Cadastrar {
+    min-width: 250px;
+    width: 25vw;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #c20004;
+    padding: 15 25;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+
+
+/* ==============================   Todas Atividades   ===============================================    */
+
+
+.G1_tela_atividades_container {
+    background-color: #f2f2f2;
+    /* height: 100vh; */
+
+}
+
+.container_atividades {
+    display: flex;
+    justify-content: center;
+    /* height: 100vh; */
+
+}
+
+.container_ranking {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.container_validatividades {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.G1_organizar_main {
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    width: 75vw;
+    /* background-color: #08b810;     */
+}
+
+.G1_container_ranking{
+    height: 100%;
+}
+
+.G1_titulo_atividades {
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    color: #2A2E32;
+    margin: 4rem     0;
+}
+
+.G1_container_atividades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-height: 28vh;
+}
+
+.G1_atividade_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 33vh;
+    width: 30vw;
+    background-color: #FFFFFF;
+    margin-bottom: 4vh;
+    border: 1px solid #B3B3B3;
+    border-radius: 10px;
+}
+
+.G1_header_atividade {
+    background-color: #2A2E32;
+    width: 100%;
+    height: 3.5vh;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.G1_box_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.G1_organizar_spams {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.G1_titulo_atividade_box {
+    font-family: 'Quicksand', sans-serif;
+    ;
+    color: #2A2E32;
+    font-size: 1.563rem;
+    font-weight: 600;
+}
+
+.G1_recompensa_box {
+    font-family: 'Quicksand', sans-serif;
+    ;
+    color: #2A2E32;
+    font-size: 1.563rem;
+    font-weight: 600;
+}
+
+.G1_descricao_atividade {
+    width: 100%;
+}
+
+.G1_organizar_btn {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+.G1_btn_vizualizar {
+    background-color: #C20004;
+    color: #ffffff;
+    width: 7vw;
+    height: 4vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.container_card_atividades {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #f2f2f2;
+    width: 1300px;
+    border-radius: 20px;
+    box-shadow: 12px 12px 15px rgba(166, 171, 189, 1), -12px -12px 15px rgba(255, 255, 255, 1);
+    margin: 60px 0;
+    padding: 30px 0 75px 0;
+}
+
+.div_map {
+    width: 100%;
+}
+
+.box_atividade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    margin: 30px 0;
+}
+
+.checkbox_usuario {
+    width: 20px;
+    height: 20px;
+}
+
+.organizar_atividade {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.titulo_atividade {
+    font-size: 33px;
+    font-weight: 500;
+    color: #0E0E0E;
+}
+
+.descricao_atividade {
+    font-size: 23px;
+    font-weight: 400;
+    color: #0E0E0E;
+    margin-top: 8px;
+}
+
+.img_olho {
+    height: 59;
+    width: 72px;
+}
+
+.linha_atividade {
+    width: 100%;
+    border: 2px solid #D9D9D9;
+}
+
+/* ==============================   Switch Button   ===============================================    */
+
+.checkbox_switch {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.label_switch {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 40px;
+    height: 26px;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    /* margin-bottom: 19px; */
+}
+
+.label_switch:after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.active {
+    background: #CB334B;
+}
+
+.active:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+.text_switch {
+    margin-top: 5px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    font-size: 10px;
+    text-align: center;
+    /* margin-left: 6px; */
+}
+
+.G1_organizar_switchBtn {
+    /* background-color: #08b810; */
+    /* height: 100%; */
+    width: 44%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+/* .label_switch:active:after {
+	width: 130px;
+} */
+
+/* ==============================   Ranking Usuarios   ===============================================    */
+
+.G1_usuario_card{
+    display: flex;
+    /* padding: 0 20px 0 20px; */
+    /* justify-content: space-between; */
+    align-items: center;
+    height: 60px;
+    max-width: 1440px;
+    width: 100%;
+    border: 3px solid #dfdfdf;
+    margin-bottom: 2.5vh;
+    border-radius: 10px;
+}
+
+.G1_container_card{
+    margin: 0 10% 0 10%;
+}
+
+.G1_posicao{
+
+}
+
+.G1_nome_usuario{
+    width: 16vw;
+}
+
+.G1_organizar_trofeus{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 5%;
+    margin-right: 10%;
+}
+
+.G1_num_trofeu{
+
+}
+
+
+/* ==============================   Modals   ===============================================    */
+
+:root {
+    --modal-duration: 1s;
+    --modal-color: #428bca;
+}
+
+.button {
+    background-color: #f2f2f2;
+    padding: 1em 2em;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    /* background: #dbdbdb; */
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.35)); */
+    box-shadow: 2px 2px 7px rgba(166, 171, 189, 1), 0px 0px 15px rgba(242, 242, 242, 1);
+}
+
+.G1_modal_window {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    height: 50vh;
+    width: 50vw;
+}
+
+.G1_close_modal {
+    z-index: 998;
+    background-color: rgb(87, 87, 87);
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ReactModal__Overlay {
+    background: rgba(201, 201, 201, 0.4) !important;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.ReactModal__Content {
+    margin: 1% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+
+.modal-content {
+    margin: 1% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+}
+
+/* .divona{
+    padding: 0px;
+} */
+
+.background_modal{
+    position: fixed;
+    z-index: 998;
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    height: 100vh;
+    width: 100vw;
+}
+
+
+
+.modal-body {    
+    display: flex;
+    right: 0;
+    left: 25%;
+    bottom: 0;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    top: 12%;
+    border-radius: 5px;
+    height: 70vh;
+    width: 50vw;
+    /* padding: 10px 90px; */
+    background: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.modal_body_usuarios {    
+    display: flex;
+    right: 0;
+    left: 12%;
+    bottom: 0;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    top: 12%;
+    border-radius: 5px;
+    height: 81vh;
+    width: 75vw;
+    /* padding: 10px 90px; */
+    background: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+.modal_body_validar {
+    display: flex;
+    right: 0;
+    left: 25%;
+    bottom: 0;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+    top: 12%;
+    border-radius: 5px;
+    height: 70vh;
+    width: 50vw;
+    /* padding: 10px 90px; */
+    background: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.G1_organizar_modal_titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #B83F52; */
+    width: 100%;
+    height: 15vh;
+}
+
+.close {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalopen {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.titulo_atividade_modal {
+    font-size: 45px;
+    font-weight: 500;
+    color: #0E0E0E;
+    margin: 20px 0;
+}
+
+.organizar_sessao_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 29vh;
+}
+
+.organizar_sessao_modalUser{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center ;
+    overflow-y: scroll;
+    padding: 0 1vw;
+    width: 65%;
+
+    /* height: 29vh; */
+}
+
+
+
+.label_modal {
+    font-size: 25px;
+    font-weight: 500;
+    color: #0E0E0E;
+    /* margin: 20px 0; */
+}
+
+.descricao_atividade_modal {
+    /* width: 100%; */
+    margin: 20px 0;
+    font-size: 30px;
+}
+
+.organizar_btn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.btn_fechar_modal {
+    background-color: #2a2e32;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin: 3vh 0;
+    cursor: pointer;
+}
+
+.btn_validar_atividades{
+    background-color: #17d320;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    /* margin-bottom: 5vh; */
+    cursor: pointer;
+}
+
+.btn_recusar_atividades{
+    background-color: #d31717;
+    color: #ffffff;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    /* margin-bottom: 5vh; */
+    cursor: pointer;
+}
+
+.organiza_select_todos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.anexo_validar{
+    width: 13vw;
+    object-fit: cover;
+}
+
+.text_modal_validar{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .btn_fechar_modal:hover { */
+    /* background-color: #f1f1f1; */
+    /* box-shadow: inset 2px 2px 7px rgba(166, 171, 189, 1), 0px 0px 15px rgba(242, 242, 242, 1); */
+    /* } */
+    
+    
+    /* 
+    .btn_validar_modal {
+        font-size: medium;
+        font-weight: 600;
+        color: #08b810;
+        height: 60px;
+        width: 120px;
+        margin: 60px 0 30px 0;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 12px 12px 15px rgba(166, 171, 189, 1), -12px -12px 15px rgba(255, 255, 255, 1);
+        background-color: #fff;
+    }
+    
+    .btn_validar_modal:hover {
+        background-color: #f1f1f1;
+        box-shadow: inset 2px 2px 7px rgba(166, 171, 189, 1), 0px 0px 15px rgba(242, 242, 242, 1);
+    } */
+
+
+
+/* /////////////////////// ScrollBar Modal ///////////////////// */
+
+.style-gp1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.style-gp1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.style-gp1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+/* /////////////////////////////////////   Responsivo Cadastrar   ///////////////////////////////////// */
+
+
