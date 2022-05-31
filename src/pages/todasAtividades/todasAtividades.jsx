@@ -60,7 +60,10 @@ export default function TodasAtividades() {
                                         <div className="G1_box_container">
                                             <div className="G1_organizar_spams">
                                                 <span className="G1_titulo_atividade_box">{atividade.nomeAtividade}</span>
-                                                <span className="G1_recompensa_box">{atividade.recompensaMoeda} CashS <img src={moedas} alt="moedas" /></span>
+                                                <div className="organiza_coins_text">
+                                                    <span className="G1_recompensa_box">{atividade.recompensaMoeda} CashS</span>
+                                                    <img className="img_coins" src={moedas} alt="moedas" />
+                                                </div>
                                             </div>
                                             <p className="G1_descricao_atividade">{atividade.descricaoAtividade}</p>
                                             <div className="G1_organizar_btn">
@@ -74,7 +77,7 @@ export default function TodasAtividades() {
                     </div>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </div>
     );
 

@@ -304,9 +304,9 @@
 
 .G1_titulo_atividade_box {
     font-family: 'Quicksand', sans-serif;
-    ;
     color: #2A2E32;
-    font-size: 1.563rem;
+    font-size: 1.463rem;
+    align-items: center;
     font-weight: 600;
 }
 
@@ -314,9 +314,20 @@
     font-family: 'Quicksand', sans-serif;
     ;
     color: #2A2E32;
-    font-size: 1.563rem;
+    font-size: 1.363rem;
     font-weight: 600;
 }
+
+.organiza_coins_text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img_coins{
+    width: 1.2vw;
+    margin-left: 1rem;
+ }
 
 .G1_descricao_atividade {
     width: 100%;
