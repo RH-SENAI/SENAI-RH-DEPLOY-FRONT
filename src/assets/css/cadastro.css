@@ -200,9 +200,10 @@ input[type="file"] {
     transition: 0.3s;
     font-family: 'Montserrat', sans-serif;
 }
-@media screen and (max-width: 1774px) {
+@media screen and (max-width: 480px) {
     .container{
         margin: 1rem 1.9rem;
+        overflow-x: none;
     }
     .g3_boldCadastrar{
         font-size: 2.1em;
@@ -211,6 +212,7 @@ input[type="file"] {
     .g3_nonBoldCadastrar{
         font-size: 1.9em;
         text-align: center;
+        margin-bottom: 2rem;
     }
     .g3_backgroundCadastro{
         background: #f2f2f2 !important;

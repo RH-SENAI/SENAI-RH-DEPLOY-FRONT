@@ -131,8 +131,8 @@
 }
 
 @media screen and (max-width: 980px) {
-    .container {
-        padding: 0 1.9rem;
+    .container{
+        margin: 1rem 1.9rem;
     }
     .g3_whiteBackgroundCarometro {
         background-color: white;
@@ -140,7 +140,10 @@
         box-shadow: 0 0 50px -10px #f8f8f8;
     
     }
-
+    .g3_headerCarometro{
+        display: flex;
+        justify-content: center;
+    }
     .g3_tituloCarometro {
         font-size: 2.1em;
     }
@@ -150,7 +153,7 @@
     }
 
     .g3_cardUsuario {
-        width: 30vw;
+        width: 35vw;
         height: 30vh;
         padding-left: 1rem;
     }
@@ -168,5 +171,8 @@
     .g3_spanCarometro{
         font-size: 1em;
         text-align: start;
+    }
+    .g3_inputPesquisaCarometro{
+        width: 100%;
     }
 }

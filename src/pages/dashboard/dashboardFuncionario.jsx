@@ -7,7 +7,7 @@ import estrela from "../../assets/img/star.png"
 import iconPerfil from "../../assets/img/telaPerfil.png"
 import axios from "axios";
 import {
-    VictoryBar, VictoryPie, VictoryChart, VictoryAxis, VictoryLabel,
+    VictoryBar, VictoryPie, VictoryChart, VictoryLabel,
     VictoryTheme
 } from 'victory';
 import ImgDashboard from '../../assets/img/telaDeAcessoLight.svg'
@@ -15,6 +15,9 @@ import {
     parseJwt
     // usuarioAutenticado
 } from '../../services/auth';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
     const [idUsuario, setIdUsuario] = useState(0);
@@ -25,6 +28,22 @@ export default function Dashboard() {
     const [notaProdutividade, setNotaProdutividade] = useState(0);
     const [sampleData, setSampleData] = useState([])
 
+    const data = {
+        labels: ['Positivo'],
+        datasets: [
+          {
+            label: '# of Votes',
+            data: [listaUsuarios[0].medSatisfacaoGeral * 100],
+            backgroundColor: [
+              '#07bc0c'
+            ],
+            borderColor: [
+                '#07bc0c'
+            ],
+            borderWidth: 2,
+          },
+        ],
+      };
 
     function ListarUsuario() {
 
@@ -153,7 +172,7 @@ export default function Dashboard() {
                                     <div className='g3_organizadorDashboard'>
                                         <div className="g3_boxGraficosLeft">
                                             <div className='g3_containerProdutividade'>
-                                                <div className="g3_graficoProdutividade">
+                                                {/* <div className="g3_graficoProdutividade"> */}
                                                     {/* {
                                                     listaAtividades.map((atividade) => {
                                                         return (
@@ -180,9 +199,9 @@ export default function Dashboard() {
                                                             </VictoryChart>
                                                         )
                                                     })} */}
-                                                    <VictoryChart
+                                                    {/* <VictoryChart
                                                         domainPadding={{ x: 30 }}
-                                                        
+
                                                     >
                                                         <VictoryBar
                                                             data={sampleData}
@@ -193,8 +212,8 @@ export default function Dashboard() {
                                                             }}
                                                             labelComponent={<VictoryLabel dy={20} />}
                                                         />
-                                                    </VictoryChart>
-                                                    <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
+                                                    </VictoryChart> */}
+                                                    {/* <span className='g3_spanGraficoP'>Tarefas Pessoais</span> */}
                                                 </div>
                                                 {/* Grafico produtividade unidade */}
                                                 {/* <div className='g3_graficoProdutividadeUni'>
@@ -214,11 +233,11 @@ export default function Dashboard() {
                                                     <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
                                                 </div> */}
 
-                                            </div>
+                                            {/* </div> */}
                                             <div className="g3_boxGraficosBaixo">
                                                 <div className="g3_containerGraficoLeft">
                                                     <div className="g3_graficoSatisfacaoPessoal">
-                                                        <VictoryPie
+                                                        {/* <VictoryPie
                                                             events={[{
                                                                 target: "data",
                                                                 eventHandlers: {
@@ -238,20 +257,15 @@ export default function Dashboard() {
                                                             }]}
                                                             innerRadius={100}
                                                             colorScale={["#c20004", "#b3b3b3"]}
-                                                            data={[
-                                                                { x: usuario.medSatisfacaoGeral * 100 + '%', y: usuario.medSatisfacaoGeral * 100 },
-                                                                { x: 100 - usuario.medSatisfacaoGeral * 100 + '%', y: 100 - usuario.medSatisfacaoGeral * 100 },
+                                                            
 
-
-                                                            ]}
-
-
-                                                        />
+                                                        /> */}
+                                                        <Doughnut data={data} />
                                                     </div>
                                                     <span>Satisfação Pessoal</span>
                                                 </div>
                                                 <div className="g3_containerGraficoRight">
-                                                    <div className="g3_graficoSatisfacaoPessoal">
+                                                    {/* <div className="g3_graficoSatisfacaoPessoal">
                                                         <VictoryPie
                                                             events={[{
                                                                 target: "data",
@@ -273,8 +287,7 @@ export default function Dashboard() {
                                                             innerRadius={100}
                                                             colorScale={["#c20004", "#b3b3b3"]}
                                                             data={[
-                                                                { x: usuario.mediaAvaliacao, y: usuario.mediaAvaliacao * 10 },
-                                                                { x: 10 - usuario.mediaAvaliacao, y: 100 - usuario.mediaAvaliacao * 10 },
+                                                                { },
 
 
                                                             ]}
@@ -282,7 +295,7 @@ export default function Dashboard() {
 
                                                         />
                                                     </div>
-                                                    <span>Avaliação Pessoal</span>
+                                                    <span>Avaliação Pessoal</span> */}
                                                 </div>
                                                 {/* Grafico quantidade Funcionarios unidade */}
                                                 {/* <div className='containerGraficoPizza'>
@@ -340,9 +353,9 @@ export default function Dashboard() {
                                             </div>
 
                                         </div> */}
-                                        <div className="g3_boxImg">
+                                        {/* <div className="g3_boxImg">
                                             <img src={ImgDashboard} className='g3_imgDashboard' />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 )
                             }

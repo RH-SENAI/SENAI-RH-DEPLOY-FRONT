@@ -70,10 +70,11 @@
     justify-content: space-between;
     margin-top: 2rem;
     margin-bottom: 4rem;
+    width: 408px;
+    height: 300px;
 }
 .g3_containerGraficoLeft{
-    width: 30%;
-    margin-right: 3rem;
+    width: 100%;
 }
 .g3_containerGraficoRight{
     width: 30%;
@@ -85,9 +86,11 @@
 .g3_graficoSatisfacaoPessoal{
     width: 100%;
     border: #b3b3b3 2px solid;
-    height: 22.7vh;
+    height: 44.7vh;
     border-radius: 10px;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
 
 }
 .g3_graficoProdutividadeUnidade{
