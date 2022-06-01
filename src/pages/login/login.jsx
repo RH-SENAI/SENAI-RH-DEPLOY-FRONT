@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseJwt } from "../../services/auth";
-
+import HeaderLogin from "../../components/header/headerLogin";
 
 export default function Login() {
     const [cpfUsuario, setCPFUsuario] = useState('71696553067');
@@ -60,16 +60,17 @@ export default function Login() {
                 pauseOnHover
             />
             <main className="container_main">
-                <div className="G1_Left">
+                <div className="G1_Left_Login">
                     <div className="G1_banner">
                         <img src={Logo} alt="Logo do senai" className="G1_logo" />
                         <img src={bannerLogin} className="G1_bannerLogin" alt="" />
                         <p className="G1_p_senai">© 2022 Sesi Senai RH</p>
                     </div>
                 </div>
-                <div className="G1_Right">
+                <div className="G1_Right_Login">
                     <div className="G1_formText"> 
-                        <div className="G1_textLogin">  
+                    <HeaderLogin />                        <div className="G1_textLoginL"> 
+
                             <h1>Login</h1>
                             <p>Acesse sua conta e veja todo seu Dashboard e o da sua equipe!</p> 
                         </div>  
