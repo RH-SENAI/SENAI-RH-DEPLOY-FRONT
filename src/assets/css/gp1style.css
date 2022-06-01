@@ -187,7 +187,32 @@
 }
 
 .G1_label_precisaValidar {
+    font-family: 'Quicksand', sans-serif;
     width: 100%;
+    display: block;
+}
+
+.G1_label_obrigatoria {
+    font-family: 'Quicksand', sans-serif;
+    width: 100%;
+}
+
+
+
+.G1_btn_modal {
+    min-width: 250px;
+    width: 100%;
+    height: 5vh;
+    margin-top: 2vh;
+    border-radius: 15px;
+    background-color: #636466;
+    padding: 15 25;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+
 }
 
 .G1_btn_Cadastrar {
@@ -873,12 +898,89 @@
 	background-color: #555;
 }
 
+.headerF{
+    display: block;
+}
+.navbarF{
+    display: none;
+}
+
+.label_descr{
+    display: block;
+}
+
+.label_resp{
+    display: none;
+}
 /* /////////////////////////////////////   Responsivo Cadastrar   ///////////////////////////////////// */
 
-@media screen and (max-width: 960px) {
-    .G1_Right{
-        background-color: #17d320;   
-        width: 100vw;
-        height: 100vh; 
+@media screen and (max-width: 480px) {
+    
+
+    .G1_organizar_toggle{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-} 
+
+    .G1_label_precisaValidar{
+        display: none;
+    }
+
+    .label_resp{
+        display: block;
+    }
+
+    .label_descr{
+        display: none;
+    }
+
+    .G1_Left_CadastroAtividade{
+        display: none;
+    }
+    .headerF{
+        display: none;
+    }
+    .navbarF{
+        display: block;
+    }
+    .G1_Right_CadastroAtividade {
+        display: flex;
+        flex-direction: column;
+        background-color: #f2f2f2;
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+    }
+    .G1_textCadastrar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* background: antiquewhite; */
+        width: 100%;
+        margin-bottom: 5vh;
+    }
+    .G1_form_Cadastrar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 50vh;
+        width: 60%;
+    }
+    .G1_inputLabel_Cadastrar input {
+        border: 1px solid lightgrey;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        outline: none;
+        /* min-width: 250px; */
+        width: 29vw;
+        height: 6vh;
+        padding: 15px 20px;
+        font-size: 16px;
+        transition: all .1s linear;
+        -webkit-transition: all .1s linear;
+        -moz-transition: all .1s linear;
+        -webkit-appearance: none;
+    }
+}

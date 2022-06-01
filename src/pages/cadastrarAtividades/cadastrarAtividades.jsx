@@ -14,6 +14,9 @@ import {
 } from '../../services/auth';
 import Header from '../../components/header/headerAdm'
 import { useHistory } from 'react-router-dom'
+import Navbar from '../../components/MenuHamburguer/Nav';
+import HeaderFuncionario from '../../components/header/headerFuncionario';
+
 
 
 
@@ -230,7 +233,12 @@ export default function CadastrarAtividades() {
     return (
         <div>
             <div className="div_container">
-                <Header />
+                <div className='navbarF'>
+                    <Navbar />
+                </div>
+                <div className='headerF'>
+                    <HeaderFuncionario />
+                </div>
                 <Modall usuarios={listaUsuarios} showModal={showModal} setShowModal={setShowModal} setProps={setListaUsuarioSelecionados} value={listaUsuarioSelecionados} />
                 <ToastContainer
                     position="top-right"
@@ -262,24 +270,36 @@ export default function CadastrarAtividades() {
                                     <div className="G1_inputLabel_Cadastrar">
                                         <input value={nomeAtividade}
                                             onChange={(campo) => setNomeAtividade(campo.target.value)} type="text" name="titulo" placeholder="Digite o título da atividade" />
-                                        <label htmlFor="titulo">Título da atividade</label>
+                                        <label className="label_descr" htmlFor="titulo">Título da atividade</label>
+                                        <div className="label_resp">
+                                            <label htmlFor="titulo">Título</label>
+                                        </div>
                                     </div>
                                     <div className="G1_inputLabel_Cadastrar">
                                         <input value={recompensaMoeda}
                                             onChange={(campo) => setRecompensaMoeda(campo.target.value)} type="number" name="moedas" placeholder="Digite a premiação em moedas" />
-                                        <label htmlFor="moedas">Prêmio em moedas</label>
+                                        <label className="label_descr" htmlFor="moedas">Prêmio em moedas</label>
+                                        <div className="label_resp">
+                                            <label htmlFor="titulo">Moedas</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='G1_organizar_inputs'>
                                     <div className="G1_inputLabel_Cadastrar">
                                         <input value={descricaoAtividade}
                                             onChange={(campo) => setDescricaoAtividade(campo.target.value)} type="text" name="titulo" placeholder="Digite seu email" />
-                                        <label htmlFor="titulo">Descrição da atividade</label>
+                                        <label className="label_descr" htmlFor="titulo">Descrição da atividade</label>
+                                        <div className="label_resp">
+                                            <label htmlFor="titulo">Descrição</label>
+                                        </div>
                                     </div>
                                     <div className="G1_inputLabel_Cadastrar">
                                         <input value={recompensaTrofeu}
                                             onChange={(campo) => setRecompensaTrofeu(campo.target.value)} type="number" name="moedas" placeholder="Digite sua senha" />
-                                        <label htmlFor="moedas">Prêmio em troféus</label>
+                                        <label className="label_descr" htmlFor="moedas">Prêmio em troféus</label>
+                                        <div className="label_resp">
+                                            <label htmlFor="titulo">Troféus</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='G1_organizar_inputs'>
@@ -288,7 +308,10 @@ export default function CadastrarAtividades() {
                             </div>
                             <div className='G1_div_ToggleValidar'>
                                 <div className="G1_organizar_toggle">
-                                    <label classname="G1_label_precisaValidar">Precisa Validar</label>
+                                    <div className="label_resp">
+                                        <label htmlFor="titulo">Validação</label>
+                                    </div>
+                                    <label className="G1_label_precisaValidar">Precisa Validar</label>
                                     <div className='G1_organizar_switchBtn'>
                                         <input className="checkbox_switch"
                                             type="checkbox"
@@ -316,7 +339,7 @@ export default function CadastrarAtividades() {
                                     </div>
                                 </div>
                                 <div className="G1_organizar_toggle">
-                                    <label classname="G1_label_precisaValidar">Obrigatória</label>
+                                    <label className="G1_label_obrigatoria">Obrigatória</label>
                                     <div className='G1_organizar_switchBtn'>
                                         <input className="checkbox_switch"
                                             type="checkbox"
@@ -345,7 +368,10 @@ export default function CadastrarAtividades() {
                                     </div>
                                 </div>
                                 <div className="G1_organizar_toggle">
-                                    <label classname="G1_label_precisaValidar">Em equipe</label>
+                                    <div className="label_resp">
+                                        <label htmlFor="titulo">Equipe</label>
+                                    </div>
+                                    <label className="G1_label_precisaValidar">Em equipe</label>
                                     <div className='G1_organizar_switchBtn'>
                                         <input className="checkbox_switch"
                                             type="checkbox"
