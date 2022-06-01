@@ -12,6 +12,7 @@ import {
     parseJwt
     // usuarioAutenticado
 } from '../../services/auth';
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 //import Modal from 'react-modal';
 
@@ -248,7 +249,8 @@ export default function Carometro() {
             /> */}
 
             <div className='g3_whiteBackgroundCarometro'>
-                <HeaderFuncionario />
+                {/* <HeaderFuncionario /> */}
+                <Navbar/>
                 <main>
 
                     <div className="container">
