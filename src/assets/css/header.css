@@ -96,6 +96,7 @@ div.select_header_g2 .hidden_header_g2::before{
     left: 48px;
     border: 10px solid;
     border-color: transparent transparent #fff transparent;
+    z-index: 99;
 }
 
 div.select_header_g2 .hidden_header_g2 {
@@ -109,21 +110,25 @@ div.select_header_g2 .hidden_header_g2 {
     padding: 30px 0 0 20px;
     border-radius:10px;
     margin-top: 20px;
+    z-index: 99;
 }
 
 .hidden_header_g2{
     display: flex;
     justify-content: center;
     flex-direction: column;
+    z-index: 99;
 }
 
 div.select_header_g2:hover .hidden_header_g2 {
     visibility: visible;
     opacity: 1;
+    z-index: 99;
 }
 
 div.select_header_g2 p:hover, div.select_header_g2:hover {
     background-color: transparent ;
+    
 }
 
 .input_motivacao_header_g2 {
@@ -155,6 +160,7 @@ div.select_header_g2 p:hover, div.select_header_g2:hover {
 table {
     border-collapse: collapse;
   }
+
   @media screen and (max-width: 480px) {
 
     .header_g2{

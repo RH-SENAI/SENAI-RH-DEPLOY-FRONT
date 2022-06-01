@@ -7,6 +7,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+.headerF{
+    display: block;
+}
+.navbarF{
+    display: none;
+}
 .G1_btn_Cadastrar {
     min-width: 250px;
     width: 25vw;
@@ -122,4 +128,29 @@
     align-items: space-between;
     height: 55%;
     margin-left: 20px;
+}
+@media screen and (max-width: 480px) {
+    .headerF{
+        display: none;
+    }
+    .navbarF{
+        display: block;
+    }
+    .G1_Redirect_Body{
+    background-color: transparent;
+    }
+    .G1_containerRedirects{
+        flex-direction: column;
+    }
+    .G1_titulo_redirecionamento{ 
+        font-size: 2.1em;
+    }
+    
+    .G1_titulo2_redirecionamento{
+        font-size: 1.9em
+    }
+    .G1_box_Article{
+        width: 270px;
+    }
+    
 }

@@ -13,6 +13,8 @@ const Nav = styled.nav`
   justify-content: space-between;
   overflow-x: hidden;
   overflow-y: hidden;
+  height: 10vh;
+    align-items: center;
   .logo_header_g2 {
     margin-right: 30vw;
     display: flex;
@@ -20,8 +22,8 @@ const Nav = styled.nav`
 }
 @media (max-width: 480px) {
     .logoHeader{
-        margin: 1rem 0 0 1rem;
-        height: 10vw
+        margin: 0 0 0 1rem;
+        height: 10vw;
     }
 }
 `

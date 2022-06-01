@@ -14,8 +14,13 @@ export default function Redirect() {
 
     return (
         <div className="G1_Redirect_Body">
-        {/* <HeaderFuncionario/> */}
-        <Navbar/>
+            {/* <HeaderFuncionario/> */}
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <main>
                 <div className="G1_box_titulo">
@@ -35,7 +40,7 @@ export default function Redirect() {
                             </div>
                         </article>
                         <article className="G1_box_Article">
-                        <img src={pig} alt="Icone de cofre em formato de porco" />
+                            <img src={pig} alt="Icone de cofre em formato de porco" />
                             <div className='G1_ArticleText'>
                                 <h3> Motivações </h3>
                                 <p> Acesse aqui para vizualizar as atividades do sistema e gerenciar seus pontos!</p>

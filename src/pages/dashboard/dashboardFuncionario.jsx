@@ -15,8 +15,11 @@ import {
     parseJwt
     // usuarioAutenticado
 } from '../../services/auth';
+import Navbar from "../../components/MenuHamburguer/Nav";
+import HeaderFuncionario from "../../components/header/headerFuncionario";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
@@ -28,22 +31,22 @@ export default function Dashboard() {
     const [notaProdutividade, setNotaProdutividade] = useState(0);
     const [sampleData, setSampleData] = useState([])
 
-    const data = {
-        labels: ['Positivo'],
-        datasets: [
-          {
-            label: '# of Votes',
-            // data: [listaUsuarios[0].medSatisfacaoGeral * 100],
-            backgroundColor: [
-              '#07bc0c'
-            ],
-            borderColor: [
-                '#07bc0c'
-            ],
-            borderWidth: 2,
-          },
-        ],
-      };
+    // const data = {
+    //     labels: ['Positivo'],
+    //     datasets: [
+    //       {
+    //         label: '# of Votes',
+    //         // data: [listaUsuarios[0].medSatisfacaoGeral * 100],
+    //         backgroundColor: [
+    //           '#07bc0c'
+    //         ],
+    //         borderColor: [
+    //             '#07bc0c'
+    //         ],
+    //         borderWidth: 2,
+    //       },
+    //     ],
+    //   };
 
     function ListarUsuario() {
 
@@ -162,7 +165,12 @@ export default function Dashboard() {
 
     return (
         <div>
-            <Header />
+            <div className='navbarF'>
+                    <Navbar />
+                </div>
+                <div className='headerF'>
+                    <HeaderFuncionario />
+                </div>
             <main>
                 <div className="container">
                     <div className="g3_boxTituloDashboard">
@@ -263,7 +271,24 @@ export default function Dashboard() {
                                                             
 
                                                         /> */}
-                                                        <Doughnut data={data} />
+                                                       <Doughnut data={{
+                                                            labels: ['Positivo'],
+                                                            datasets: [
+                                                                {
+                                                                    data: [usuario.medSatisfacaoGeral * 100, 100 - usuario.medSatisfacaoGeral  * 100],
+                                                                    backgroundColor: [
+                                                                        '#07bc0c',
+                                                                        '#f2f2f2'
+                                                                    ],
+                                                                    borderColor: [
+                                                                        '#07bc0c',
+                                                                        '#f2f2f2'
+                                                                    ],
+                                                                    borderWidth: 2,
+                                                                        
+                                                                },
+                                                            ]
+                                                        }} />
                                                     </div>
                                                     <span>Satisfação Pessoal</span>
                                                 </div>
