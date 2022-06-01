@@ -33,7 +33,7 @@ export default function Dashboard() {
         datasets: [
           {
             label: '# of Votes',
-            data: [listaUsuarios[0].medSatisfacaoGeral * 100],
+            // data: [listaUsuarios[0].medSatisfacaoGeral * 100],
             backgroundColor: [
               '#07bc0c'
             ],
@@ -143,7 +143,10 @@ export default function Dashboard() {
 
     // }
 
-    useEffect(ListarUsuario, [])
+    useEffect(() => {ListarUsuario() 
+    return(
+        setListaUsuarios([])
+    )}, []);
     // useEffect(ListarMinhasAtividades, [])
     // useEffect(ListarMinhasAtividadesExtra, [])
 

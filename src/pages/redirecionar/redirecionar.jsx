@@ -7,13 +7,15 @@ import tag from '../../assets/img/tag.png'
 import '../../assets/css/redirecionar.css'
 import { Link } from 'react-router-dom';
 import HeaderFuncionario from '../../components/header/headerFuncionario';
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 export default function Redirect() {
 
 
     return (
         <div className="G1_Redirect_Body">
-        <HeaderFuncionario/>
+        {/* <HeaderFuncionario/> */}
+        <Navbar/>
 
             <main>
                 <div className="G1_box_titulo">
