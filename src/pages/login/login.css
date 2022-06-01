@@ -55,11 +55,11 @@
     align-items: center;
 }
 
-.G1_textLogin{
+.G1_textLoginL{
     margin-bottom: 5vh;
 }
 
-.G1_textLogin h1{
+.G1_textLoginL h1{
     text-transform: uppercase;
     color: #2A2E32;
     font-family: 'Montserrat', sans-serif;
@@ -68,7 +68,7 @@
     margin: 0;
 }
 
-.G1_textLogin p{
+.G1_textLoginL p{
 color: #000;
 font-family:'Quicksand', sans-serif;;
 max-width: 350px;
@@ -167,8 +167,37 @@ top: 0;
 }
 
 /* Responsavél */
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 480px) {
     .G1_Left_Login{
+        display: none;
+    }
+
+    .G1_Right_Login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
+
+    .G1_formText {
+        display: flex;
+        height: 66vh;
+        /* background: antiquewhite; */
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .G1_textLoginL h1 {
+        text-transform: uppercase;
+        color: #2A2E32;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        text-align: center;
+        font-size: 60;
+        margin: 0;
+    }
+    .G1_textLoginL p {
         display: none;
     }
 } 
