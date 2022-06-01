@@ -983,4 +983,43 @@
         -moz-transition: all .1s linear;
         -webkit-appearance: none;
     }
+    .G1_atividade_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 33vh;
+        width: 66vw;
+        background-color: #FFFFFF;
+        margin-bottom: 4vh;
+        border: 1px solid #B3B3B3;
+        border-radius: 10px;
+    }
+    .G1_btn_vizualizar {
+        background-color: #C20004;
+        color: #ffffff;
+        width: 21vw;
+        height: 4vh;
+        border-radius: 10px;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    .img_coins {
+        width: 4.2vw;
+        margin-left: 0.3rem;
+    }
+    .G1_recompensa_box {
+        font-family: 'Quicksand', sans-serif;
+        color: #2A2E32;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+    .G1_titulo_atividade_box {
+        font-family: 'Quicksand', sans-serif;
+        color: #2A2E32;
+        font-size: 1.3em;
+        align-items: center;
+        font-weight: 600;
+    }
 }

@@ -9,8 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../../components/header/headerAdm'
 import moedas from '../../assets/img/moedinha.svg'
 import Footer from "../../components/footer"
-
-
+import Navbar from '../../components/MenuHamburguer/Nav';
+import HeaderFuncionario from '../../components/header/headerFuncionario';
 
 export default function TodasAtividades() {
     const [listaAtividades, setListaAtividades] = useState([]);
@@ -47,7 +47,12 @@ export default function TodasAtividades() {
     return (
         <div className="div_container G1_tela_atividades_container">
             <Modall atividade={listaAtividades.find(atividade => atividade.idAtividade == idAtividadeModal)} showModal={showModal} setShowModal={setShowModal} />
-            <Header />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main className="container_atividades">
                 <div className="G1_organizar_main">
                     <h1 className="G1_titulo_atividades">Todas Atividades</h1>
