@@ -16,7 +16,7 @@ const Ul = styled.ul`
   }
   @media (max-width: 480px) {
     flex-flow: column nowrap;
-    background-color: #f2f2f2;
+    background-color: #e3e3e3;
     border-left: 1px solid #000000;
     position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
@@ -49,7 +49,7 @@ const RightNav = ({ open }) => {
                 <div class='select_header_g2'>
                     <p class='input_header_g2'>Vantagens <img src={setaBaixo} /></p>
                     <input type='hidden' name='some_name_tosetaBaixosetaBaixo_form' />
-                    <div class='hidden_header_g2'>
+                    <div class='hidden_header_g2 hidden_header_g2_responsivo'>
                         <Link className="text_link_header_g2" to='/Beneficios'> <span>Vantagens</span></Link>
                         <Link className="text_link_header_g2" to='/CursosRapidos'> <span> Cursos</span></Link>
                         <Link className="text_link_header_g2" to='/meusFavoritos'> <span> Meus Favoritos</span></Link>

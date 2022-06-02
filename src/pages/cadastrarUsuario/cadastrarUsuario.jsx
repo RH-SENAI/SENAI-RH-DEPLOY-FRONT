@@ -6,6 +6,7 @@ import "../../assets/css/footer.css"
 import "../../assets/css/styleG3.css"
 import Footer from "../../components/footer";
 import HeaderFuncionario from "../../components/header/headerFuncionario";
+import Navbar from "../../components/MenuHamburguer/Nav";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -28,7 +29,7 @@ export default function Cadastro() {
     const [dataNascimento, setDataNascimento] = useState(new Date())
     const [fotoPerfil, setFotoPerfil] = useState('')
     const [senha] = useState('SesiSenai@2022')
-    
+
     const notify_cadastrar = () => toast.success("Usuario Cadastrado!");
 
     const notify_erroCadastrar = () => toast.error("Preencha todos os campos!");
@@ -36,24 +37,23 @@ export default function Cadastro() {
 
 
 
-    function CadastrarLotacao()
-    {
+    function CadastrarLotacao() {
         let lotacao = {
 
-            idGrupo : idGrupo,
-            cpf : CPF
+            idGrupo: idGrupo,
+            cpf: CPF
         }
 
-        axios.post('https://apigrupo3.azurewebsites.net/api/Lotacoes/Cadastrar', lotacao , {
+        axios.post('https://apigrupo3.azurewebsites.net/api/Lotacoes/Cadastrar', lotacao, {
             headers: {
 
                 Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
             }
         }
         )
-        .then(console.log("Deu certo"))
+            .then(console.log("Deu certo"))
 
-        .catch(erro => console.log(erro))
+            .catch(erro => console.log(erro))
     }
 
     function BuscarCargos() {
@@ -94,8 +94,7 @@ export default function Cadastro() {
             .catch(erro => console.log(erro))
     }
 
-    function BuscarGrupos()
-    {
+    function BuscarGrupos() {
         axios.get('https://apigrupo3.azurewebsites.net/api/Grupos/Listar', {
             headers: {
 
@@ -170,14 +169,13 @@ export default function Cadastro() {
         })
             .then(async function (response) {
 
-                if(response.status == 201)
-                {
+                if (response.status == 201) {
                     notify_cadastrar();
                     CadastrarLotacao();
                 }
             })
             .catch(erro => { notify_erroCadastrar(); console.log(erro) })
-            
+
     }
     // function CadastrarUsuario(usuario) {
     //     usuario.preventDefault()
@@ -239,7 +237,12 @@ export default function Cadastro() {
                 draggable
                 pauseOnHover
             />
-            <HeaderFuncionario />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main>
                 <div className="container ">
                     <div className="g3_boxCadastro">
@@ -363,7 +366,7 @@ export default function Cadastro() {
 
                                         </select>
                                         {/* <label className="labelCadastro">Data de nascimento</label> */}
-                                       
+
                                     </div>
 
                                 </div>

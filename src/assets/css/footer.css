@@ -28,7 +28,6 @@ footer{
 }
 @media screen and (max-width: 480px) {
     footer {
-        
         height: 5vh;
         bottom: 0;
     }

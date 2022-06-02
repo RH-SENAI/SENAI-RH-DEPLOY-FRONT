@@ -11,6 +11,7 @@ import imgPadrao from '../../assets/img/imgPadrao.png'
 import ImgDemocratizacaoAdm from '../../assets/img/ImgDemocratizacao.svg'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../../components/MenuHamburguer/Nav'
 
 export default function Democratizacao() {
 
@@ -99,7 +100,7 @@ export default function Democratizacao() {
                 draggable
                 pauseOnHover
             />
-            <Header />
+            <Navbar />
             <main>
                 <div className='container g3_containerOrganizador'>
                     <div className='g3_containerDecisao'>

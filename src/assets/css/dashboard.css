@@ -74,7 +74,8 @@
     height: 300px;
 }
 .g3_containerGraficoLeft{
-    width: 100%;
+    width: 50%;
+    height: 100%;
 }
 .g3_containerGraficoRight{
     width: 30%;
@@ -86,7 +87,7 @@
 .g3_graficoSatisfacaoPessoal{
     width: 100%;
     border: #b3b3b3 2px solid;
-    height: 44.7vh;
+    /* height: 44.7vh; */
     border-radius: 10px;
     margin-bottom: 1rem;
     display: flex;

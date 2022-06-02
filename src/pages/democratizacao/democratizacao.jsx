@@ -11,6 +11,7 @@ import moment from 'moment';
 import { parseJwt } from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../../components/MenuHamburguer/Nav'
 
 
 export default function Democratizacao(props) {
@@ -123,7 +124,7 @@ export default function Democratizacao(props) {
                 draggable
                 pauseOnHover
             />
-            <Header />
+            <Navbar />
             <main>
                 <div className='container g3_containerOrganizador'>
                     <div className='g3_containerDecisao'>

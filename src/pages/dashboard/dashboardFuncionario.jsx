@@ -7,7 +7,7 @@ import estrela from "../../assets/img/star.png"
 import iconPerfil from "../../assets/img/telaPerfil.png"
 import axios from "axios";
 import {
-    VictoryBar, VictoryPie, VictoryChart, VictoryLabel,
+    VictoryBar, VictoryPie, VictoryChart, VictoryLabel, VictoryLine,
     VictoryTheme
 } from 'victory';
 import ImgDashboard from '../../assets/img/telaDeAcessoLight.svg'
@@ -73,53 +73,53 @@ export default function Dashboard() {
             .catch(erro => console.log(erro))
 
     }
-    // function ListarMinhasAtividades() {
+    function ListarMinhasAtividades() {
 
-    //     axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${parseJwt().jti}`, {
+        axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${parseJwt().jti}`, {
 
-    //         headers: {
+            headers: {
 
-    //             Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
-    //         }
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
+            }
 
-    //     })
+        })
 
-    //         .then((resposta) => {
+            .then((resposta) => {
 
-    //             if (resposta.status === 200) {
-    //                 setListaAtividades(resposta.data)
+                if (resposta.status === 200) {
+                    setListaAtividades(resposta.data)
 
-    //                 console.log(resposta)
+                    console.log(resposta)
 
-    //                 const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
-    //                     .map((p) => {
+                    const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
+                        .map((p) => {
 
-    //                         return parseInt(p.dataConclusao.split('-')[2]);
-    //                     });
+                            return parseInt(p.dataConclusao.split('-')[2]);
+                        });
 
-    //                 const d1_5 = dataFinalizacao.filter(d => d <= 5).length
-    //                 // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
-    //                 // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
-    //                 // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
-    //                 // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
-    //                 // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
-    //                 setSampleData(
-    //                     [
-    //                         { x: 1, y: d1_5 },
-    //                         { x: 2, y: 2 },
-    //                         { x: 3, y: 4 },
-    //                         { x: 4, y: 5 },
-    //                         { x: 5, y: 10 },
-    //                         { x: 6, y: 11 }
-    //                     ])
+                    const d1_5 = dataFinalizacao.filter(d => d <= 5).length
+                    // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
+                    // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
+                    // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
+                    // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
+                    // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
+                    setSampleData(
+                        [
+                            { x: 1, y: d1_5 },
+                            { x: 2, y: 2 },
+                            { x: 3, y: 4 },
+                            { x: 4, y: 5 },
+                            { x: 5, y: 10 },
+                            { x: 6, y: 11 }
+                        ])
 
 
-    //             }
-    //         })
+                }
+            })
 
-    //         .catch(erro => console.log(erro))
+            .catch(erro => console.log(erro))
 
-    // }
+    }
     // function ListarMinhasAtividadesExtra() {
 
     //     axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividadeExtra/${idUsuario}`, {
@@ -146,10 +146,12 @@ export default function Dashboard() {
 
     // }
 
-    useEffect(() => {ListarUsuario() 
-    return(
-        setListaUsuarios([])
-    )}, []);
+    useEffect(() => {
+        ListarUsuario()
+        return (
+            setListaUsuarios([])
+        )
+    }, []);
     // useEffect(ListarMinhasAtividades, [])
     // useEffect(ListarMinhasAtividadesExtra, [])
 
@@ -166,11 +168,11 @@ export default function Dashboard() {
     return (
         <div>
             <div className='navbarF'>
-                    <Navbar />
-                </div>
-                <div className='headerF'>
-                    <HeaderFuncionario />
-                </div>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main>
                 <div className="container">
                     <div className="g3_boxTituloDashboard">
@@ -183,7 +185,7 @@ export default function Dashboard() {
                                     <div className='g3_organizadorDashboard'>
                                         <div className="g3_boxGraficosLeft">
                                             <div className='g3_containerProdutividade'>
-                                                {/* <div className="g3_graficoProdutividade"> */}
+                                                <div className="g3_graficoProdutividade">
                                                     {/* {
                                                     listaAtividades.map((atividade) => {
                                                         return (
@@ -210,7 +212,7 @@ export default function Dashboard() {
                                                             </VictoryChart>
                                                         )
                                                     })} */}
-                                                    {/* <VictoryChart
+                                                    <VictoryChart
                                                         domainPadding={{ x: 30 }}
 
                                                     >
@@ -223,8 +225,8 @@ export default function Dashboard() {
                                                             }}
                                                             labelComponent={<VictoryLabel dy={20} />}
                                                         />
-                                                    </VictoryChart> */}
-                                                    {/* <span className='g3_spanGraficoP'>Tarefas Pessoais</span> */}
+                                                    </VictoryChart>
+                                                    <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
                                                 </div>
                                                 {/* Grafico produtividade unidade */}
                                                 {/* <div className='g3_graficoProdutividadeUni'>
@@ -244,56 +246,10 @@ export default function Dashboard() {
                                                     <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
                                                 </div> */}
 
-                                            {/* </div> */}
+                                            </div>
                                             <div className="g3_boxGraficosBaixo">
                                                 <div className="g3_containerGraficoLeft">
                                                     <div className="g3_graficoSatisfacaoPessoal">
-                                                        {/* <VictoryPie
-                                                            events={[{
-                                                                target: "data",
-                                                                eventHandlers: {
-                                                                    onClick: () => {
-                                                                        return [
-                                                                            {
-                                                                                target: "data",
-                                                                                mutation: ({ style }) => {
-                                                                                    return style.fill === "#000000" ? null : { style: { fill: "#000000" } };
-                                                                                }
-                                                                            }, {
-                                                                                target: "labels",
-                                                                            }
-                                                                        ];
-                                                                    }
-                                                                }
-                                                            }]}
-                                                            innerRadius={100}
-                                                            colorScale={["#c20004", "#b3b3b3"]}
-                                                            
-
-                                                        /> */}
-                                                       <Doughnut data={{
-                                                            labels: ['Positivo'],
-                                                            datasets: [
-                                                                {
-                                                                    data: [usuario.medSatisfacaoGeral * 100, 100 - usuario.medSatisfacaoGeral  * 100],
-                                                                    backgroundColor: [
-                                                                        '#07bc0c',
-                                                                        '#f2f2f2'
-                                                                    ],
-                                                                    borderColor: [
-                                                                        '#07bc0c',
-                                                                        '#f2f2f2'
-                                                                    ],
-                                                                    borderWidth: 2,
-                                                                        
-                                                                },
-                                                            ]
-                                                        }} />
-                                                    </div>
-                                                    <span>Satisfação Pessoal</span>
-                                                </div>
-                                                <div className="g3_containerGraficoRight">
-                                                    {/* <div className="g3_graficoSatisfacaoPessoal">
                                                         <VictoryPie
                                                             events={[{
                                                                 target: "data",
@@ -315,7 +271,63 @@ export default function Dashboard() {
                                                             innerRadius={100}
                                                             colorScale={["#c20004", "#b3b3b3"]}
                                                             data={[
-                                                                { },
+                                                                { x: usuario.medSatisfacaoGeral * 100 + '%', y: usuario.medSatisfacaoGeral * 100 },
+                                                                { x: 100 - usuario.medSatisfacaoGeral * 100 + '%', y: 100 - usuario.medSatisfacaoGeral * 100 },
+
+
+                                                            ]}
+
+
+                                                        />
+
+                                                        {/* GRAFICO SATISFACAO NOVO */}
+
+                                                        {/* <Doughnut data={{
+                                                            labels: ['Positivo'],
+                                                            datasets: [
+                                                                {
+                                                                    data: [usuario.medSatisfacaoGeral * 100, 100 - usuario.medSatisfacaoGeral  * 100],
+                                                                    backgroundColor: [
+                                                                        '#07bc0c',
+                                                                        '#f2f2f2'
+                                                                    ],
+                                                                    borderColor: [
+                                                                        '#07bc0c',
+                                                                        '#f2f2f2'
+                                                                    ],
+                                                                    borderWidth: 2,
+
+                                                                },
+                                                            ]
+                                                        }} /> */}
+                                                    </div>
+                                                    <span>Satisfação Pessoal</span>
+                                                </div>
+                                                <div className="g3_containerGraficoRight">
+                                                    <div className="g3_graficoSatisfacaoPessoal">
+                                                        <VictoryPie
+                                                            events={[{
+                                                                target: "data",
+                                                                eventHandlers: {
+                                                                    onClick: () => {
+                                                                        return [
+                                                                            {
+                                                                                target: "data",
+                                                                                mutation: ({ style }) => {
+                                                                                    return style.fill === "#000000" ? null : { style: { fill: "#000000" } };
+                                                                                }
+                                                                            }, {
+                                                                                target: "labels",
+                                                                            }
+                                                                        ];
+                                                                    }
+                                                                }
+                                                            }]}
+                                                            innerRadius={100}
+                                                            colorScale={["#c20004", "#b3b3b3"]}
+                                                            data={[
+                                                                { x: usuario.mediaAvaliacao, y: usuario.mediaAvaliacao * 10 },
+                                                                { x: 10 - usuario.mediaAvaliacao, y: 100 - usuario.mediaAvaliacao * 10 },
 
 
                                                             ]}
@@ -323,7 +335,7 @@ export default function Dashboard() {
 
                                                         />
                                                     </div>
-                                                    <span>Avaliação Pessoal</span> */}
+                                                    <span>Avaliação Pessoal</span>
                                                 </div>
                                                 {/* Grafico quantidade Funcionarios unidade */}
                                                 {/* <div className='containerGraficoPizza'>
@@ -381,9 +393,9 @@ export default function Dashboard() {
                                             </div>
 
                                         </div> */}
-                                        {/* <div className="g3_boxImg">
+                                        <div className="g3_boxImg">
                                             <img src={ImgDashboard} className='g3_imgDashboard' />
-                                        </div> */}
+                                        </div>
                                     </div>
                                 )
                             }

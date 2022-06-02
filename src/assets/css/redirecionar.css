@@ -141,6 +141,9 @@
     }
     .G1_containerRedirects{
         flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .G1_titulo_redirecionamento{ 
         font-size: 2.1em;

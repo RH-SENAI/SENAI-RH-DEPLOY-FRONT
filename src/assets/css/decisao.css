@@ -1,4 +1,4 @@
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 480px) {
     .g3_bannerDemocratizacao{
         display: none;
     }
@@ -24,7 +24,7 @@
       .g3_boxDecisaoLista{
           width: 70vw;
           padding: 0 10px;
-          height: 100%;
+          height: 10vh;
       }
       .g3_containerDecisao{
           display: flex;

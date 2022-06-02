@@ -167,10 +167,12 @@
     .g3_fotoCarometro {
         height: 11vh;
         max-width: 25vw;
+        margin-bottom: 2rem;
     }
     .g3_spanCarometro{
         font-size: 1em;
         text-align: start;
+        margin-bottom: 1rem;
     }
     .g3_inputPesquisaCarometro{
         width: 100%;

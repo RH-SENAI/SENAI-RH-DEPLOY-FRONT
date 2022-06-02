@@ -11,6 +11,7 @@ import FotoPerfil from '../../assets/img/perfilVazio.svg'
 import imgPadrao from '../../assets/img/imgPadrao.png'
 import Header from '../../components/header/headerFuncionario'
 import ImgDemocratizacaoAdm from '../../assets/img/imgDecisao.svg'
+import Navbar from '../../components/MenuHamburguer/Nav'
 
 export default function Decisao() {
 
@@ -46,7 +47,7 @@ export default function Decisao() {
 
     return (
         <body>
-            <Header />
+            <Navbar />
             <main>
                 <div className='container g3_containerOrganizadorDecisao'>
                     <div className='g3_containerDecisao'>

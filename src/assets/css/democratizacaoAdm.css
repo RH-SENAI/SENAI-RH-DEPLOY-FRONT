@@ -211,7 +211,7 @@ body{
 .g3_btnRedirectDecisao{
     text-decoration: none;
 }
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 480px) {
     .g3_inputCadastroFeedback{
         width: 100%;
 
@@ -221,6 +221,9 @@ body{
         font-size: 0.8em;
         margin: 0;
         margin-bottom: 3rem;
+    }
+    .g3_imgFotoFeedback{
+        height: 60px;
     }
     .g3_boldFeedback{
         font-size: 2.1em
@@ -234,7 +237,7 @@ body{
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: center;
     }
     .g3_fotoPerfilFeedback{
         margin-right: 1rem;
@@ -242,5 +245,8 @@ body{
     }
     .g3_containerFeedback{
         margin-bottom: 2rem;
+    }
+    .g3_boxDecisao{
+        height: fit-content;
     }
 }

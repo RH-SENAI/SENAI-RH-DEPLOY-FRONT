@@ -76,7 +76,7 @@ export default function Carometro() {
         console.log(id)
 
         let idGestor = parseJwt().jti;
-        axios("http://apirhsenaigp1.azurewebsites.net/api/Usuarios/Funcionarios/" + idGestor, {
+        axios("https://apigrupo3.azurewebsites.net/api/Usuarios/Listar/Lotacao/" + idGestor, {
             // axios.get('https://apigrupo3.azurewebsites.net/api/Usuarios/Listar', {
 
             headers: {
@@ -93,6 +93,7 @@ export default function Carometro() {
                     setListaFuncionarios(resposta.data)
                     console.log(resposta)
                     console.log(idCargo)
+
 
 
                 }
@@ -310,9 +311,9 @@ export default function Carometro() {
                                             return (
                                                 <button className='g3_abrirModal' onClick={() => { OpenModal(); ListarMinhasAtividades(); }} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
                                                     <div className='g3_cardUsuario'>
-                                                        <img className='g3_fotoCarometro' src={imgPadrao} alt="fotoPerfilCarometro" />
+                                                        <img className='g3_fotoCarometro' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + usuario.caminhoFotoPerfil} alt="fotoPerfilCarometro" />
                                                         <span className="g3_spanCarometro">{usuario.nome}</span>
-                                                        {/* <span className="g3_spanCarometro">{usuario.idCargoNavigation.nomeCargo}</span> */}
+                                                        <span className="g3_spanCarometro">{usuario.idCargoNavigation.nomeCargo}</span>
                                                     </div>
                                                 </button>
                                             )
@@ -325,9 +326,9 @@ export default function Carometro() {
                                             return (
                                                 <button className='g3_abrirModal' onClick={() => { OpenModal(); ListarMinhasAtividades(); }} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
                                                     <div className='g3_cardUsuario'>
-                                                        <img className='g3_fotoCarometro' src={imgPadrao} alt="fotoPerfilCarometro" />
+                                                        <img className='g3_fotoCarometro' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + usuario.caminhoFotoPerfil} alt="fotoPerfilCarometro" />
                                                         <span className="g3_spanCarometro">{usuario.nome}</span>
-                                                        {/* <span className="g3_spanCarometro">{usuario.idCargoNavigation.nomeCargo}</span> */}
+                                                        <span className="g3_spanCarometro">{usuario.idCargoNavigation.nomeCargo}</span>
                                                     </div>
                                                 </button>
 
