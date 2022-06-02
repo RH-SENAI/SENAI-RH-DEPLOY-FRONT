@@ -839,8 +839,9 @@
 }
 
 .anexo_validar{
-    width: 13vw;
-    object-fit: cover;
+    text-decoration: none;
+    color: #000;
+    font-weight:600;
 }
 
 .text_modal_validar{

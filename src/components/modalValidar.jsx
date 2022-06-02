@@ -121,7 +121,8 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
                                 <label className='label_modal'>Descrição</label>
                                 <p className="descricao_atividade_modal">{atividade.descricaoAtividade}</p>
                             </div>
-                            <img className="anexo_validar" src={"https://armazenamentogrupo3.blob.core.windows.net/amazenamento-simples-grp1/" + atividade.anotacoes} alt="" />
+                            {/* <img className="anexo_validar" src={"https://armazenamentogrupo3.blob.core.windows.net/amazenamento-simples-grp1/" + atividade.anotacoes} alt="" /> */}
+                            <a className="anexo_validar" href={"https://armazenamentogrupo3.blob.core.windows.net/amazenamento-simples-grp1/" + atividade.anotacoes}>Clique aqui para baixar o arquivo &#8681;</a>
                         </div>
                         {/* <p className="descricao_atividade_modal">{atividade.descricaoAtividade}</p>
                 <p className="descricao_atividade_modal">{atividade.descricaoAtividade}</p> */}
