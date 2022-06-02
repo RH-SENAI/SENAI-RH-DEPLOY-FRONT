@@ -194,6 +194,17 @@
     font-weight: 600;
 }
 
+.botaoCadastroComentarioBeneficio_desable_g2 {
+    width: 8vw;
+    height: 6vh;
+    border-radius: 15px;
+    background-color: #B3B3B3;
+    border: none;
+    color: #f2f2f2;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
 .botaoCadastroComentarioBeneficio_g2:hover {
     background-color: transparent;
     border: #C20004 1px solid;

@@ -4,7 +4,6 @@ import api from "../../services/api"
 import { parseJwt } from "../../services/auth";
 import Footer from '../../components/footer'
 import { ModallCursoFavorito } from '../../components/modalListaCursoFavoritos/modalListaCursoFavoritos'
-import coracao from '../../assets/img/coracao.svg'
 import relogio from '../../assets/img/relogio.svg'
 import local from '../../assets/img/local.svg'
 import coin from '../../assets/img/coin 1.png'
@@ -12,13 +11,31 @@ import { useEffect, useState } from 'react';
 import { ModallBeneficioFavoritos } from "../../components/modalListaBeneficiosFavoritos/modalListaBeneficiosFavoritos";
 import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
-import { set } from 'react-hook-form';
+import axios from 'axios';
 
 export default function MeusFavoritos() {
 
-    const [idDescontoModal, setIdDescontoModal] = useState()
-    const [listaComentarioBeneficio, setListaComentarioBeneficio] = useState([])
+    //Listar Usuario logado
+    const [listaUsuario, setListaUsuario] = useState([]);
 
+    function listarUsuario() {
+        axios('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/BuscarUsuario/' + parseJwt().jti, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login'),
+            },
+        })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    setListaUsuario(resposta.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+    useEffect(listarUsuario, [])
+
+
+
+    //Pesquisar curso ou desconto
 
     // const [searchInput, setSearchInput] = useState([]);
     // const [filteredResults, setFilteredResults] = useState([]);
@@ -37,30 +54,165 @@ export default function MeusFavoritos() {
     // }
 
 
+    //DESCONTOS/VANTAGENS/BENEFICIOS
+    const [idDescontoModal, setIdDescontoModal] = useState()
+    const [listaComentarioBeneficio, setListaComentarioBeneficio] = useState([])
+    const [listaFavoritosDesconto, setListaFavoritosDesconto] = useState([]);
 
+    function listarFavoritosDescontos() {
+        api('/FavoritosDescontos/Favorito/' + parseJwt().jti)
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    setListaFavoritosDesconto(resposta.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    useEffect(listarFavoritosDescontos, []);
+
+    function listarComentarioBeneficio() {
+        api('/ComentarioDescontos/Comentario/' + idDescontoModal)
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    setListaComentarioBeneficio(resposta.data)
+                }
+            })
+            .catch(erro => console.log(erro))
+    }
+
+    //VefificarSaldoDesconto
+    const [btnCompra, setBtnCompra] = useState(false)
+
+    function verifySaldoDesconto(saldoUser, saldoMoeda) {
+        if (saldoUser > saldoMoeda) {
+            setBtnCompra(true)
+        }
+    }
+
+
+    //Verificar beneficio
+    const [cupom, setCupom] = useState(false);
+
+    function setarCupom() {
+        setCupom(true)
+    }
+
+    async function verifySituacaoDesconto(cupom, id) {
+        try {
+            debugger;
+            const respostaBuscar = await api(`/Registrodescontos/RegistroDescontos/IdUsuario/${parseJwt().jti}`);
+            var tamanhoJsonRegistro = Object.keys(respostaBuscar.data).length;
+            let stringRegistros = JSON.stringify(respostaBuscar.data);
+            var objRegistros = JSON.parse(stringRegistros);
+            var k = 0;
+            do {
+                if (objRegistros != 0) {
+                    var registroId = objRegistros[k]['idDesconto'];
+                    if (registroId == id) {
+                        setarCupom()
+                    }
+                }
+                else {
+                    console.log("Está vazio!")
+                }
+                k++
+            } while (k < tamanhoJsonRegistro);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Desfavoritar Desconto
+    const [active, setActive] = useState(true)
+
+    function desfavoritarDesconto(idDesconto) {
+        api.delete('/FavoritosDescontos/deletar/' + idDesconto)
+            .then(resposta => {
+                if (resposta.status === 204) {
+                    listarFavoritosDescontos()
+                }
+            })
+            .catch(erro => {
+                console.log(erro)
+            })
+    }
+
+    //Modal desconto
+    const OpenModalDesconto = () => {        
+        setShowModalDesconto(prev => !prev);
+        verifySaldoDesconto(idDescontoModal)
+        verifySituacaoDesconto(idDescontoModal)
+    }
+
+    //DESCONTOS/VANTAGENS/BENEFICIOS
+    //----------------------------------------------------------
+
+
+    //----------------------------------------------------------
+    //CURSOS
+
+    //VefificarSaldoCurso
+    const [btnInscricao, setBtnInscricao] = useState(false)
+
+    function verifySaldoCurso(saldoUser, saldoMoeda) {
+        if (saldoUser > saldoMoeda) {
+            setBtnInscricao(true)
+        }
+    }
+
+    //Verificar curso inscrito
+    const [inscricao, setInscricao] = useState(false);
+
+    function setarInscricao() {
+        setInscricao(true)
+    }
+
+    async function verifySituacao(id) {
+        try {
+            const respostaBuscar = await api(`/Registroscursos/RegistroCursos/IdUsuario/${parseJwt().jti}`);
+            var tamanhoJsonRegistro = Object.keys(respostaBuscar.data).length;
+            let stringRegistros = JSON.stringify(respostaBuscar.data);
+            var objRegistros = JSON.parse(stringRegistros);
+
+            var k = 0;
+            do {
+
+                if (objRegistros != 0) {
+                    var registroId = objRegistros[k]['idCurso'];
+                    if (registroId == id) {
+                        setarInscricao()
+                    }
+                }
+                else {
+                    console.log("Está vazio!")
+                }
+                k++
+            } while (k < tamanhoJsonRegistro);
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    //comentrio de cursos
     function listarComentarioCurso() {
-        console.log(idCursoModal)
         api('/ComentarioCursos/Comentario/' + idCursoModal)
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log('Lista comentario')
-                    console.log(resposta)
                     setListaComentarioCurso(resposta.data)
                 }
             })
             .catch(erro => console.log(erro))
     }
 
-    useEffect(listarComentarioCurso, []);
-
+    //Modal curso
     const OpenModal = () => {
         setShowModal(prev => !prev);
     }
-    const OpenModalDesconto = () => {
-        setShowModalDesconto(prev => !prev);
-    }
-
-    const [listaCursos, setListaCursos] = useState([]);
 
     const [listaComentarioCurso, setListaComentarioCurso] = useState([])
     const [showModal, setShowModal] = useState(false);
@@ -72,8 +224,6 @@ export default function MeusFavoritos() {
         api('/FavoritosCursos/Favorito/' + parseJwt().jti)
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log('Lista de favoritos Curso')
-                    console.log(resposta)
                     setListaFavoritosCurso(resposta.data)
                 }
             })
@@ -82,68 +232,12 @@ export default function MeusFavoritos() {
 
     useEffect(listarFavoritosCurso, []);
 
-    const [listaFavoritosDesconto, setListaFavoritosDesconto] = useState([]);
-
-    function listarFavoritosDescontos() {
-        api('/FavoritosDescontos/Favorito/' + parseJwt().jti)
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('Lista de favoritos descontos')
-                    console.log(resposta)
-                    setListaFavoritosDesconto(resposta.data)
-                }
-            })
-            .catch(erro => console.log(erro))
-    }
-
-    useEffect(listarFavoritosDescontos, []);
-
-    function listarComentarioBeneficio() {
-        console.log(idDescontoModal)
-        api('/ComentarioDescontos/Comentario/' + idDescontoModal)
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('Lista comentario')
-                    console.log(resposta)
-                    setListaComentarioBeneficio(resposta.data)
-                }
-            })
-            .catch(erro => console.log(erro))
-    }
-
-    useEffect(listarComentarioBeneficio, []);
-
-    
-    //Desfavoritar Desconto
-    const [favoritoDesconto, setFavoritoDesconto] = useState([])
-    const [active, setActive] = useState(true)
-
-
-    function desfavoritarDesconto(idDesconto) {
-        api.delete('/FavoritosDescontos/deletar/' + idDesconto)
-
-            .then(resposta => {
-                if (resposta.status === 204) {
-                    console.log('Desfavoritado!')
-                    listarFavoritosDescontos()
-                }
-            })
-            .catch(erro => {
-                console.log(erro)
-            })
-    }
-
     //Desfavoritar curso
-    const [favoritoCurso, setFavoritoCurso] = useState([])
-    // const [active, setActive] = useState(true)
-
-
     function desfavoritarCurso(idCurso) {
         api.delete('/FavoritosCursos/deletar/' + idCurso)
 
             .then(resposta => {
                 if (resposta.status === 204) {
-                    console.log('Desfavoritado!')
                     listarFavoritosCurso()
                 }
             })
@@ -152,11 +246,16 @@ export default function MeusFavoritos() {
             })
     }
 
+    //CURSOS
+    //----------------------------------------------------------
+
     return (
 
         <div className="geral_g2">
-            <ModallCursoFavorito comentarios={listaComentarioCurso} cursos={listaFavoritosCurso.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
-            <ModallBeneficioFavoritos comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
+            {/* curso */}
+            <ModallCursoFavorito setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} cursos={listaFavoritosCurso.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
+            {/* desconto */}
+            <ModallBeneficioFavoritos setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
 
             <HeaderFuncionario />
 
@@ -173,6 +272,10 @@ export default function MeusFavoritos() {
                         // onChange={(e) => searchItems(e.target.value)}
                         />
                     </div>
+
+                    <div className=' moeda_cima_g2'>
+                        <p>Minhas moedas:</p> <img className='coin_beneficio_cima_g2' src={coin} alt="coin" /> <p>{listaUsuario.saldoMoeda}</p>
+                    </div>
                 </div>
 
 
@@ -188,23 +291,26 @@ export default function MeusFavoritos() {
                                     <div className='espacamento_curso_g2'>
                                         <section alt={curso.idCurso} key={curso.idCurso} id='imagem' className='box_curso_g2'>
                                             <div className='banner_img_curso_g2'>
-                                                {<img onClick={() => { OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.idCursoNavigation.caminhoImagemCurso} alt="imagem do curso" />}
+                                                {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.idCursoNavigation.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.idCursoNavigation.caminhoImagemCurso} alt="imagem do curso" />}
                                             </div>
 
                                             <div className='dados_curso_gp2'>
 
-                                                {<span onClick={() => { OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.idCursoNavigation.nomeCurso}</span>}
+                                                {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.idCursoNavigation.nomeCurso}</span>}
 
 
-
-                                                {/* <ReactStars
-                                                    count={5}
-                                                    // onChange={ratingChanged}
-                                                    size={20}
-                                                    edit={false}
-                                                    value={curso.idCursoNavigation.mediaAvaliacaoCurso}
-                                                    activeColor="#C20004"
-                                                /> */}
+                                                <div className='estrelas_cursos_g2'>
+                                                    <div>
+                                                        <ReactStars
+                                                            count={5}
+                                                            // onChange={ratingChanged}
+                                                            size={20}
+                                                            edit={false}
+                                                            value={curso.idCursoNavigation.mediaAvaliacaoCurso}
+                                                            activeColor="#C20004"
+                                                        />
+                                                    </div>
+                                                </div>
 
 
                                                 {<p><img className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.idCursoNavigation.cargaHoraria} Horas </p>}
@@ -234,17 +340,16 @@ export default function MeusFavoritos() {
 
                         {
                             listaFavoritosDesconto.map((beneficio) => {
-                                return (
-                                    <div className='espacamento_beneficio_g2'>
+                                return (    
+                                    <div key={beneficio.idDesconto} className='espacamento_beneficio_g2'>
                                         <section alt={beneficio.idDescontoFavorito} key={beneficio.idDescontoFavorito} id='imagem' className='box_beneficio_g2'>
                                             <div className='banner_img_beneficio_g2'>
-                                                {<img onClick={() => { OpenModalDesconto(); listarComentarioBeneficio() }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className='beneficio_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + beneficio.idDescontoNavigation.caminhoImagemDesconto} alt="imagem do desconto" />}
+                                                {<img onClick={() => { verifySituacaoDesconto(cupom, beneficio.idDesconto); OpenModalDesconto(); listarComentarioBeneficio(); verifySaldoDesconto(listaUsuario.saldoMoeda, beneficio.idDescontoNavigation.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className='beneficio_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + beneficio.idDescontoNavigation.caminhoImagemDesconto} alt="imagem do desconto" />}
                                             </div>
 
                                             <div className="dados_beneficio_gp2">
-
                                                 <div className='title_estrelas_g2'>
-                                                    {<span onClick={() => { OpenModalDesconto(); listarComentarioBeneficio() }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className="title_beneficios_g2" > {beneficio.idDescontoNavigation.nomeDesconto}</span>}
+                                                    {<span onClick={() => { verifySituacaoDesconto(cupom, beneficio.idDesconto); OpenModalDesconto(); listarComentarioBeneficio(); verifySaldoDesconto(listaUsuario.saldoMoeda, beneficio.idDescontoNavigation.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className="title_beneficios_g2" > {beneficio.idDescontoNavigation.nomeDesconto}</span>}
 
                                                     <ReactStars
                                                         count={5}
@@ -261,7 +366,6 @@ export default function MeusFavoritos() {
                                                         <img className='coin_beneficio_g2' src={coin} alt="coin" />  {beneficio.idDescontoNavigation.valorDesconto}
                                                     </div>}
                                                     <div>
-                                                        {/* <img src={coracao} alt="favorito" /> */}
                                                         <div className="favoritar_beneficio_g2">
                                                             <Heart isActive={active} onClick={() => desfavoritarDesconto(beneficio.idDescontoFavorito)} />
                                                         </div>

@@ -10,7 +10,7 @@ import { parseJwt } from "../../services/auth";
 import HeaderLogin from "../../components/header/headerLogin";
 
 export default function Login() {
-    const [cpfUsuario, setCPFUsuario] = useState('71696553067');
+    const [cpfUsuario, setCPFUsuario] = useState('00000000011');
     const [senhaUsuario, setSenhaUsuario] = useState('Sesisenai@2022');
     const notify_Logar_Failed = () => toast.error("Email ou Senha inválidos!")
 //   nathalia novais guedes silva

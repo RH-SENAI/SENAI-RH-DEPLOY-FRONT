@@ -17,15 +17,18 @@ import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 
 
-export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => {
+export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, listarComentarioCurso, inscricao, setInscricao, btnInscricao, setBtnInscricao }) => {
 
     const notify_Logar_Failed = () => toast.error("Você esqueceu de algum campo, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Parabens! Em breve você recebera mais informações em seu e-mail.")
-    const [listaComentarioCurso, setListaComentarioCurso] = useState(comentarios)
-    const [idCurso, setIdCurso] = useState(0)
     const [comentarioCurso1, setComentarioCurso1] = useState('')
-    const [valorAvalicao, setValorAvalicao] = useState(1)
+    const [valorAvalicao, setValorAvalicao] = useState(0)
 
+    //Estrela
+
+    const avaliacao1 = () => {
+        setValorAvalicao(1)
+    }
     const avaliacao2 = () => {
         setValorAvalicao(2)
     }
@@ -40,11 +43,11 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
     }
 
 
+    //Fechar modal
     const closeModal = e => {
-        // console.log('showModal antes:' + showModal)
+        setBtnInscricao(false);
+        setInscricao(false);
         setShowModal(false);
-
-        // console.log('showModal depois:' + showModal)
     };
 
     const keyPress = useCallback(
@@ -57,6 +60,7 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
         [setShowModal, showModal]
     );
 
+    //Requisicao curso
 
     function requisicaoCurso(event) {
         event.preventDefault();
@@ -65,8 +69,7 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
             idUsuario: parseJwt().jti,
             idCurso: curso.idCurso,
         }
-        console.log('curso.idCurso!')
-        console.log(curso.idCurso)
+
 
         api.post('/Registroscursos/Cadastrar', requisicao, {
             headers: {
@@ -76,13 +79,11 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
 
         )
             .then(function (response) {
-                console.log(response);
-                console.log('Requisição de curso feita!')
-                // notify_cadastro_sucess();
-                // setListaComentarioCurso(response.data)
+                notify_cadastro_sucess();
+                setInscricao(true)
             })
-            // .catch(resposta => notify_Logar_Failed())
-            .catch(erro => console.log(erro))
+            .catch(resposta => notify_Logar_Failed())
+        // .catch(erro => console.log(erro))
     }
 
 
@@ -94,26 +95,22 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
         [keyPress]
     );
 
+    //Cadastrar comentario
     function cadastrarComentario(event) {
         event.preventDefault();
-
         let comentarios = {
             idUsuario: parseJwt().jti,
             avaliacaoComentario: valorAvalicao,
             comentarioCurso1: comentarioCurso1,
             idCurso: curso.idCurso
         }
-        console.log('Comentario idDesconto')
-        // console.log(comentario)
-
         api.post('/ComentarioCursos', comentarios, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
         })
             .then(function (response) {
-                console.log(response);
-                // setListaComentarioCurso(listaComentarioCurso)
+                listarComentarioCurso()
             })
             .catch(erro => console.log(erro))
     }
@@ -126,7 +123,6 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
                     isOpen={showModal}
                     onRequestClose={closeModal}
                 >
-
                     <ToastContainer
                         position="top-right"
                         autoClose={5000}
@@ -248,7 +244,7 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
                                         <input type="radio" value={valorAvalicao} onChange={(e) => avaliacao2(e.target.value)} name="rating" id="rating-2_cadastro_beneficio_Favoritos" />
                                         <label for="rating-2_cadastro_beneficio_Favoritos"></label>
 
-                                        <input type="radio" value={valorAvalicao} onChange={(e) => setValorAvalicao(e.target.value)} name="rating" id="rating-1_cadastro_beneficio_Favoritos" />
+                                        <input type="radio" value={valorAvalicao} onChange={(e) => avaliacao1(e.target.value)} name="rating" id="rating-1_cadastro_beneficio_Favoritos" />
                                         <label for="rating-1_cadastro_beneficio_Favoritos"></label>
                                     </div>
 
@@ -271,10 +267,39 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios }) => 
                             </div>
 
                             <div className='btn_cadastrarComentario_beneficio_g2'>
-                                <img src={coracao} alt="" />
-                                <form onSubmit={requisicaoCurso} >
-                                    <button type="submit" className="botaoCadastroComentarioBeneficio_g2">Inscrever-se</button>
-                                </form>
+                                {
+                                    inscricao == true && (
+                                        <div> <p>Inscrito</p> </div>
+                                    )
+                                }
+                                {
+                                    inscricao == false && (
+                                        <div>
+                                            {
+                                                btnInscricao == true && (
+                                                    <div>
+                                                        <form onSubmit={requisicaoCurso} >
+                                                            <button type="submit" className="botaoCadastroComentarioBeneficio_g2">Inscrever-se</button>
+                                                        </form>
+                                                    </div>
+                                                )
+                                            }
+                                            {
+                                                btnInscricao == false && (
+                                                    <div>
+                                                        <form onSubmit={requisicaoCurso} >
+                                                            <button
+                                                                disabled
+                                                                type="submit"
+                                                            className="botaoCadastroComentarioBeneficio_desable_g2"
+                                                            >Inscrever-se</button>
+                                                        </form>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
