@@ -15,7 +15,7 @@ import axios from 'axios'
 import { parseJwt } from "../../services/auth";
 import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
-
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 
 export default function CursosRapidos() {
@@ -74,7 +74,8 @@ export default function CursosRapidos() {
             } while (k < tamanhoJsonRegistro);
 
 
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error)
         }
     }
@@ -360,7 +361,12 @@ export default function CursosRapidos() {
         <div className="geral_g2">
 
             <ModallCurso listarUsuario={listarUsuario} setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} curso={listaCursos.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
-            <HeaderFuncionario />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <div className='container'>
                 <div className='title_caixa_curso_g2'>
@@ -393,55 +399,55 @@ export default function CursosRapidos() {
                 <section className='container_curso_g2'>
 
                     <div className='wrap_curso_g2'>
-                        <ul className='container_wrap_curso_g2'>
+                        <div className='container_wrap_curso_g2'>
                             {
                                 searchInput.length > 0 ?
 
                                     filteredResults.map((curso) => {
                                         return (
                                             <div className='espacamento_curso_g2'>
-                                            <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
-                                                <div className='banner_img_curso_g2'>
-                                                    {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
-                                                </div>
-
-                                                <div className='dados_curso_gp2'>
-
-                                                    {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
-
-                                                    <div className='estrelas_cursos_g2'>
-                                                        <div >
-                                                            <ReactStars
-                                                                count={5}
-                                                                size={20}
-                                                                edit={false}
-                                                                value={curso.mediaAvaliacaoCurso}
-                                                                activeColor="#C20004"
-                                                            />
-                                                        </div>
+                                                <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
+                                                    <div className='banner_img_curso_g2'>
+                                                        {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
                                                     </div>
-                                                    <div>
-                                                        {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
-                                                        {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
-                                                    </div>
-                                                    <div className="box_baixo_section_curso_g2">
 
-                                                        <div className='circulo_moeda_curso_g2'>
-                                                            <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
-                                                        </div>
-                                                        <div className="media_beneficio_g2">
-                                                            <div className="favoritar_beneficio_g2">
-                                                                <Heart
-                                                                    isActive={listaFavoritosCursos.some(l => { if (l.idCurso == curso.idCurso) { return true } return false })}
-                                                                    onClick={() => { favoritar(!favorito, curso.idCurso) }}
+                                                    <div className='dados_curso_gp2'>
+
+                                                        {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
+
+                                                        <div className='estrelas_cursos_g2'>
+                                                            <div >
+                                                                <ReactStars
+                                                                    count={5}
+                                                                    size={20}
+                                                                    edit={false}
+                                                                    value={curso.mediaAvaliacaoCurso}
+                                                                    activeColor="#C20004"
                                                                 />
                                                             </div>
                                                         </div>
-                                                        {/* <div> <button onClick={ () => Excluir(curso.idCurso)} >Excluir</button></div> */}
+                                                        <div>
+                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
+                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
+                                                        </div>
+                                                        <div className="box_baixo_section_curso_g2">
+
+                                                            <div className='circulo_moeda_curso_g2'>
+                                                                <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
+                                                            </div>
+                                                            <div className="media_beneficio_g2">
+                                                                <div className="favoritar_beneficio_g2">
+                                                                    <Heart
+                                                                        isActive={listaFavoritosCursos.some(l => { if (l.idCurso == curso.idCurso) { return true } return false })}
+                                                                        onClick={() => { favoritar(!favorito, curso.idCurso) }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            {/* <div> <button onClick={ () => Excluir(curso.idCurso)} >Excluir</button></div> */}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </section>
-                                        </div>
+                                                </section>
+                                            </div>
                                         )
                                     })
                                     :
@@ -493,7 +499,7 @@ export default function CursosRapidos() {
                                         )
                                     })
                             }
-                        </ul>
+                        </div>
                     </div>
                 </section >
             </div>

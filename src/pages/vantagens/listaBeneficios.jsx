@@ -10,6 +10,7 @@ import axios from "axios";
 import { parseJwt } from "../../services/auth";
 import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 export default function ListaBeneficios() {
 
@@ -231,7 +232,12 @@ export default function ListaBeneficios() {
     return (
         <div className="geral_g2">
             <ModallBeneficio listarUsuario={listarUsuario} setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} idDescontoModal={idDescontoModal} comentario={listaComentarioBeneficio} beneficio={listaBeneficios.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModal} setShowModal={setShowModal} />
-            <HeaderFuncionario />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <div className="container">
                 <div className='title_caixa_beneficio_g2'>

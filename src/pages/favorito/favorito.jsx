@@ -12,6 +12,8 @@ import { ModallBeneficioFavoritos } from "../../components/modalListaBeneficiosF
 import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
 import axios from 'axios';
+import Navbar from '../../components/MenuHamburguer/Nav';
+    
 
 export default function MeusFavoritos() {
 
@@ -264,7 +266,12 @@ export default function MeusFavoritos() {
             {/* desconto */}
             <ModallBeneficioFavoritos listarUsuario={listarUsuario} setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
 
-            <HeaderFuncionario />
+            <div className='navbarF'>
+                    <Navbar />
+                </div>
+                <div className='headerF'>
+                    <HeaderFuncionario />
+                </div>
 
             <div className="container">
                 <div className='title_caixa_meusFavoritos_g2'>

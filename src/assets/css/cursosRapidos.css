@@ -85,26 +85,27 @@
         overflow-y: auto;
         direction: ltr;
         height: 66vh;
-        width: 75vw;
+        width: 65vw;
     }
 
-    .wrap_curso_g2::-webkit-scrollbar {
+    /* .wrap_curso_g2::-webkit-scrollbar {
         width: 4px;
-    }
+    } */
 
     .wrap_curso_g2::-webkit-scrollbar-thumb {
         background-color: #787878;
         border-radius: 20px;
-
+        
     }
-
+    
     .wrap_curso_g2 ::-webkit-scrollbar-track {
         border-radius: 20px;
         background-color: #D7D7D7;
     }
-
-
+    
+    
     .container_wrap_curso_g2 {
+        /* margin-left: 1rem; */
         display: flex;
         flex-wrap: wrap;
         background-color: #f2f2f2;
@@ -216,4 +217,55 @@
         height: 450px;
         display: flex;
         justify-content: flex-end;
+    }
+
+    .headerF{
+        display: block;
+    }
+    .navbarF{
+        display: none;
+    }
+
+    @media screen and (max-width: 480px) {
+        .headerF{
+            display: none;
+        }
+        .navbarF{
+            display: block;
+        }
+        .title_caixa_curso_g2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* width: 65%; */
+            height: 27vh !important;
+            flex-direction: column !important;
+            margin-bottom: 3vh !important;
+        }
+
+        .caixa_curso_g2 input{
+            width: 40vw !important;
+        }
+
+        .box_curso_g2{
+            width: 55vw !important;
+            /* margin-top: 0px; */
+
+        }
+
+        .container_wrap_curso_g2 {
+            
+            margin-top: auto;
+            height: 10vh !important;
+            
+        }
+
+        .circulo_moeda_curso_g2{
+            width: 16vw !important;
+        }
+
+        .espacamento_curso_g2{
+            margin-left: 9vw;
+        }
+    
     }

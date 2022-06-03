@@ -6,9 +6,16 @@
     height: 15vh;
 }
 
+.headerF{
+    display: block;
+}
+.navbarF{
+    display: none;
+}
+
 .h1_meusFavoritos_g2 {
     font-size: 3em;
-    /* margin-left:  99px; */
+    /* margin-left:  99px; /
     color: #000000;
     font-weight: bold;
 }
@@ -24,12 +31,12 @@
 }
 
 .caixa_meusFavoritos_g2 input {
-    /* border: none; */
+    / border: none; /
     width: 20vw;
     height: 5vh;
-    /* font-size: 2rem; */
+    / font-size: 2rem; /
     border: 2px solid #B3B3B3;
-    /* display: block; */
+    / display: block; */
     text-align: center;
     outline: none;
     border-radius: 15px;
@@ -46,4 +53,31 @@
 .caixa_meusFavoritos_g2::-webkit-calendar-picker-indicator {
     color: #000000;
 }
+ 
 
+
+@media screen and (max-width: 480px) {
+    .headerF{
+        display: none;
+    }
+    .navbarF{
+        display: block;
+    }
+
+    .title_caixa_meusFavoritos_g2{
+        width: 95% !important;
+        flex-direction: column;
+        height: 17vh !important;
+
+    }
+
+    .caixa_meusFavoritos_g2 input{
+        width: 40vw !important;
+    }
+
+    .wrap_curso_g2{
+        margin-top: 3vh;
+    }
+
+
+}
