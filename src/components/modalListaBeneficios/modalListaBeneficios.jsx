@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ReactStars from "react-rating-stars-component";
 
 
-export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario, listarComentarioBeneficio, cupom, setCupom, btnCompra, setBtnCompra }) => {
+export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario, listarComentarioBeneficio, cupom, setCupom, btnCompra, setBtnCompra, listarUsuario }) => {
 
     const notify_Logar_Failed = () => toast.error("Você esqueceu de algum campo, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Parabens, desconto resgatado com sucesso!")
@@ -65,14 +65,12 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
 
     function cadastrarComentario(event) {
         event.preventDefault();
-
         let comentarios = {
             idUsuario: parseJwt().jti,
             avaliacaoDesconto: valorAvalicao,
             comentarioDesconto1: comentarioDesconto1,
             idDesconto: beneficio.idDesconto
         }
-
         api.post('/ComentarioDescontos', comentarios, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -80,6 +78,7 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
         })
             .then(function (response) {
                 listarComentarioBeneficio()
+                limparInput()
             })
             .catch(erro => console.log(erro))
     }
@@ -96,9 +95,17 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
         api.post('/Registrodescontos/Cadastrar', requisitos)
             .then(function (response) {
                 setCupom(true)
-                notify_cadastro_sucess();
+                notify_cadastro_sucess();          
+                listarUsuario()      
             })
             .catch(resposta => notify_Logar_Failed())
+    }
+
+    //Limpar os states/inputs
+
+    function limparInput() {
+        setComentarioDesconto1('')
+        setValorAvalicao(0)
     }
 
     return (

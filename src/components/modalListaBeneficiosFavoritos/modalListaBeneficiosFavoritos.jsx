@@ -10,7 +10,7 @@ import coin from "../../assets/img/coin 1.png"
 import { ToastContainer, toast } from 'react-toastify';
 import ReactStars from "react-rating-stars-component";
 
-export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, comentario, listarComentarioBeneficio, cupom, setCupom, btnCompra, setBtnCompra }) => {
+export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, comentario, listarComentarioBeneficio, cupom, setCupom, btnCompra, setBtnCompra, listarUsuario }) => {
     const notify_Logar_Failed = () => toast.error("Algo deu errado, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Cadastro realizado com sucesso!")
     //Estrelas
@@ -72,6 +72,7 @@ export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, 
             .then(function (response) {
                 console.log(response);
                 listarComentarioBeneficio()
+                limparInput()
             })
             .catch(erro => console.log(erro))
     }
@@ -85,12 +86,19 @@ export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, 
 
         api.post('/Registrodescontos/Cadastrar', requisitos)
             .then(function (response) {
-                console.log(response);
-                console.log("Você adquiriu o beneficio" + beneficios.idDesconto)
+                // console.log(response);
+                // console.log("Você adquiriu o beneficio" + beneficios.idDesconto)
                 setCupom(true)
                 notify_cadastro_sucess('Cupom resgatado com sucesso!');
+                listarUsuario()
             })
             .catch(resposta => notify_Logar_Failed())
+    }
+    //Limpar os states/input
+
+    function limparInput() {
+        setComentarioDesconto1('')
+        setValorAvalicao(0)
     }
 
     return (

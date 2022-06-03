@@ -1,3 +1,10 @@
+.headerF{
+    display: none;
+}
+.navbarF{
+    display: block;
+}
+
 .container_lista_curso {
     max-width: 1440px;
     width: 100%;
@@ -12,6 +19,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 9rem;
+    align-items: center;
 }
 
 .box_img_cadastroCurso_g2 {
@@ -24,6 +32,7 @@
 
 .box_forms_cadastroCurso_g2 {
     height: 70vh;
+    margin-bottom: 6rem;
 }
 
 .box_forms_cadastroCurso_g2 input {
@@ -137,7 +146,7 @@
 }
 
 .box_forms_cadastroCurso_g2 label {
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1.2em;
 }
 
@@ -156,6 +165,7 @@
 .img_file_cadastro_curso_g2 {
     background-color: #636466;
     margin-right: 1rem;
+    margin-left: 0.5rem;
 }
 
 .label_arquivo_cadastroCurso_g2 {
@@ -183,8 +193,9 @@
     outline: 0;
     border: 1px #B3B3B3 solid;
     border-radius: 15px;
-    margin-bottom: 2em;
+    margin-bottom: 1.6em;
     font-size: 1.1em;
+    margin-top: 0.8em;
     color: #B3B3B3;
     font-weight: bold;
 }
@@ -193,7 +204,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 10vh;
 }
 
 .botaoCadastroCurso_g2 {
@@ -215,4 +226,103 @@
     color: #C20004;
     transition: 0.3s;
     font-family: 'Montserrat', sans-serif;
+}
+
+.img_cadastroCurso_g2{
+    margin-left: 4.5rem;
+}
+
+@media screen and (max-width: 1300px){
+    .img_cadastroCurso_g2{
+        width: 40vw;
+    }
+
+    .input_g2_cadastro input{
+        width: 18.5vw;
+    }
+
+    .inputCadastroCursoSelect_g2{
+        width: 18.5vw;
+    }
+
+    .box_forms_cadastroCurso_g2 label{
+        width: 18.5vw;
+    }
+    .botaoCadastroCurso_g2{
+        width: 17.5vw;
+    }
+}
+
+@media screen and (max-width: 1250px){
+    .img_cadastroCurso_g2{
+        width: 35vw;
+    }
+
+    .input_g2_cadastro input{
+        width: 19.5vw;
+    }
+
+    .inputCadastroCursoSelect_g2{
+        width: 19.5vw;
+    }
+
+    .box_forms_cadastroCurso_g2 label{
+        width: 19.5vw;
+    }
+    .botaoCadastroCurso_g2{
+        width: 18.5vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .img_cadastroCurso_g2{
+        width: 32vw;
+    }
+
+    .input_g2_cadastro input{
+        width: 20.5vw;
+    }
+
+    .inputCadastroCursoSelect_g2{
+        width: 20.5vw;
+    }
+
+    .box_forms_cadastroCurso_g2 label{
+        width: 20.5vw;
+    }
+    .botaoCadastroCurso_g2{
+        width: 19.5vw;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .img_cadastroCurso_g2{
+        display: none;
+    }
+
+    .container_forms_cadastroCursos_g2{
+        justify-content: center;
+    }
+
+    .input_g2_cadastro input{
+        width: 31.5vw;
+    }
+
+    .inputCadastroCursoSelect_g2{
+        width: 31.5vw;
+    }
+
+    .box_forms_cadastroCurso_g2 label{
+        width: 31.5vw;
+    }
+    .botaoCadastroCurso_g2{
+        width: 30.5vw;
+    }
+    .headerF{
+        display: none;
+    }
+    .navbarF{
+        display: block;
+    }
+
 }

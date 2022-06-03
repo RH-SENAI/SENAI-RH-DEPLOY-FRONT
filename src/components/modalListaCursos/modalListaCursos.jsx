@@ -17,7 +17,7 @@ import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 
 
-export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, listarComentarioCurso, inscricao, setInscricao, btnInscricao, setBtnInscricao }) => {
+export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, listarComentarioCurso, inscricao, setInscricao, btnInscricao, setBtnInscricao, listarUsuario }) => {
 
     const notify_Logar_Failed = () => toast.error("Você esqueceu de algum campo, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Parabens! Em breve você recebera mais informações em seu e-mail.")
@@ -81,6 +81,7 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, lista
             .then(function (response) {
                 notify_cadastro_sucess();
                 setInscricao(true)
+                listarUsuario()
             })
             .catch(resposta => notify_Logar_Failed())
         // .catch(erro => console.log(erro))
@@ -111,10 +112,18 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, lista
         })
             .then(function (response) {
                 listarComentarioCurso()
+                limparInput()
             })
             .catch(erro => console.log(erro))
     }
 
+
+     //Limpar os states/input
+
+     function limparInput() {
+        setComentarioCurso1('')
+        setValorAvalicao(0)
+    }
 
     return (
         <>

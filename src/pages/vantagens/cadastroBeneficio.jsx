@@ -1,32 +1,21 @@
-import HeaderAdm from "../../components/header/headerAdm";
-import cadastroCurso from '../../assets/img/cadastroCurso.svg'
 import telaCadastroVantagens from '../../assets/img/telaCadastroVantagens.svg'
 import iconeEnviarArquivo from '../../assets/img/iconeEnviarArquivo.png'
 import '../../assets/css/cadastroCursos.css'
 import '../../assets/css/cadastroBeneficio.css'
 import { useEffect, useState } from "react";
 import Footer from "../../components/footer";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import api from "../../services/api";
+import HeaderFuncionario from '../../components/header/headerFuncionario';
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 export default function CadastrarBeneficio() {
     const notify_Logar_Failed = () => toast.error("Você esqueceu de algum campo, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Cadastro realizado com sucesso!")
-    const [idEmpresa, setIdEmpresa] = useState(0)
-    const [nomeDesconto, setNomeDesconto] = useState('')
-    const [descricaoDesconto, setDescricaoDesconto] = useState('')
-    const [numeroCupom, setNumeroCupom] = useState('')
-    const [valorDesconto, setValorDesconto] = useState(0)
-    const [validadeDesconto, setValidadeDesconto] = useState(new Date())
-    const [fotoDesconto, setFotoDesconto] = useState([])
-    const [isLoading, setisLoading] = useState(false)
-    const [erroMensagem, setErroMensagem] = useState(false);
-    const [msgSucesso, setMsgSucesso] = useState(false);
-    const [caminhoImagemDesconto, setCaminhoImagemDesconto] = useState('');
+
+
+    //buscar empresas
     const [listaEmpresa, setListaEmpresa] = useState([])
-
-
 
 
 
@@ -48,16 +37,25 @@ export default function CadastrarBeneficio() {
     }
     useEffect(buscarEmpresas, [])
 
+
+    //Efetuar o cadastro
+    const [idEmpresa, setIdEmpresa] = useState(0)
+    const [nomeDesconto, setNomeDesconto] = useState('')
+    const [descricaoDesconto, setDescricaoDesconto] = useState('')
+    const [numeroCupom, setNumeroCupom] = useState('')
+    const [valorDesconto, setValorDesconto] = useState(0)
+    const [validadeDesconto, setValidadeDesconto] = useState(new Date())
+    const [fotoDesconto, setFotoDesconto] = useState([])
+    const [caminhoImagemDesconto, setCaminhoImagemDesconto] = useState('');
+
+
     const efetuarCadastroBeneficio = (event) => {
-
         event.preventDefault();
-
+        debugger;
         var formData = new FormData();
-
         const element = document.getElementById('fotoDesconto')
         const file = element.files[0]
         formData.append('fotoDesconto', file, file.name)
-
         formData.append('idEmpresa', idEmpresa);
         formData.append('nomeDesconto', nomeDesconto);
         formData.append('descricaoDesconto', descricaoDesconto);
@@ -65,7 +63,6 @@ export default function CadastrarBeneficio() {
         formData.append('validadeDesconto', validadeDesconto);
         formData.append('valorDesconto', valorDesconto);
         formData.append('numeroCupom', numeroCupom);
-
         api({
             method: "post",
             url: "/Descontos/Cadastrar",
@@ -74,16 +71,33 @@ export default function CadastrarBeneficio() {
         })
             .then(function (response) {
                 console.log(response);
-                setMsgSucesso(true);
                 setFotoDesconto();
                 notify_cadastro_sucess();
+                limparInput()
             })
             .catch(resposta => notify_Logar_Failed())
     }
 
+    function limparInput() {
+        setIdEmpresa(0)
+        setNomeDesconto('')
+        setDescricaoDesconto('')
+        setNumeroCupom('')
+        setValorDesconto(0)
+        setValidadeDesconto(new Date())
+        setFotoDesconto([])
+        setCaminhoImagemDesconto('')
+    }
+
     return (
         <div className="geral_g2">
-            <HeaderAdm />
+            {/* <HeaderAdm /> */}
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <ToastContainer
                 position="top-right"
@@ -99,7 +113,7 @@ export default function CadastrarBeneficio() {
 
             <div className=" container_cadastrarBeneficio container_forms_cadastroBeneficio_g2">
                 <div className="box_img_cadastroBeneficio_g2">
-                    <img src={telaCadastroVantagens} alt="imagemCadastroBeneficio" />
+                    <img className="img_cadastroBeneficio_g2" src={telaCadastroVantagens} alt="imagemCadastroBeneficio" />
                 </div>
                 <form onSubmit={efetuarCadastroBeneficio} action="">
                     <div className="box_forms_cadastroBeneficio_g2">

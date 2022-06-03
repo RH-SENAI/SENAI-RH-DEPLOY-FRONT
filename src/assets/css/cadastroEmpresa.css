@@ -1,3 +1,10 @@
+.headerF{
+    display: none;
+}
+.navbarF{
+    display: block;
+}
+
 .container_forms_cadastroEmpresa_g2 {
     display: flex;
     justify-content: space-between;
@@ -63,12 +70,13 @@
 .img_file_cadastro_empresa_g2{
     background-color: #636466;
     margin-right: 1rem;
+    margin-left: 0.5rem;
 }
 
 .label_arquivo_cadastroEmpresa_g2 {
     width: 13.5vw;
     height: 6vh;
-    margin-top: 1.3rem;
+    margin-top: 0.8rem;
     padding: 0 20px;
     box-sizing: border-box;
     color: white;
@@ -111,4 +119,115 @@
     color:  #C20004;
     transition: 0.3s;
     font-family: 'Montserrat', sans-serif;
+}
+
+.container_empresa_g2_form{
+    margin-bottom: 3rem;
+}
+
+.input_g2_cadastro_rua {
+    margin-top: 2.2em;
+}
+
+
+@media screen and (max-width: 1300px){
+    .img_cadastroEmpresa_g2{
+        width: 40vw;
+    }
+
+    .box_forms_cadastroEmpresa_g2 input{
+        width: 14.5vw;
+    }
+
+    .label_arquivo_cadastroEmpresa_g2{
+        width: 14.5vw;
+        margin-top: 0.6em;
+    }
+    
+
+    .botaoCadastroEmpresa_g2 {
+        width: 13.5vw;
+    }
+}
+
+
+
+
+@media screen and (max-width: 1250px){
+    .img_cadastroEmpresa_g2{
+        width: 35vw;
+    }
+    .box_forms_cadastroEmpresa_g2 input{
+        width: 15.5vw;
+    }
+
+    .label_arquivo_cadastroEmpresa_g2{
+        width: 15.5vw;
+    }
+
+    .botaoCadastroEmpresa_g2 {
+        width: 14.5vw;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .img_cadastroEmpresa_g2{
+        width: 32vw;
+    }
+
+    .box_forms_cadastroEmpresa_g2 input{
+        width: 16.5vw;
+    }
+
+    .label_arquivo_cadastroEmpresa_g2{
+        width: 16.5vw;
+    }
+
+    .botaoCadastroEmpresa_g2 {
+        width: 15.5vw;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .box_forms_cadastroEmpresa_g2 input {
+        width: 31.5vw;
+    }
+
+    .label_arquivo_cadastroEmpresa_g2 {
+        width: 31.5vw;
+    }
+
+    .img_cadastroEmpresa_g2 {
+        display: none;
+    }
+
+    .container_empresa_g2 {
+        width: 100%;
+    }
+
+    .box_forms_cadastroEmpresa_g2 label{
+        font-size: 0.7em
+    }
+
+    .title_cadastroEmpresa_g2 h1{
+        font-size: 2.1em;
+    }
+
+    .input_g2_cadastro {
+        padding-top: 4px;
+    }
+
+    .botaoCadastroEmpresa_g2{
+        width: 30.5vw;
+    }
+
+    .input_g2_cadastro_rua {
+        margin-top: 2.16em;
+    }
+    .headerF{
+        display: none;
+    }
+    .navbarF{
+        display: block;
+    }
 }

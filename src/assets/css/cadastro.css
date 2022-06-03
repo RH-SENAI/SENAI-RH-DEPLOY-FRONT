@@ -18,6 +18,7 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     background: url(../img/SetaSelectLight.png) no-repeat ;
+    background-position: right;
 }
 input[type="file"] {
 

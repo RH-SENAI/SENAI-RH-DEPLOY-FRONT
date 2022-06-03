@@ -10,7 +10,7 @@ import coracao from '../../assets/img/coracao.svg'
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 
-export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentarios, listarComentarioCurso, inscricao, setInscricao, btnInscricao, setBtnInscricao }) => {
+export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentarios, listarComentarioCurso, inscricao, setInscricao, btnInscricao, setBtnInscricao, listarUsuario }) => {
     const notify_Logar_Failed = () => toast.error("Algo deu errado, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Parabens! Em breve você recebera mais informações em seu e-mail.")
 
@@ -48,6 +48,7 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
         })
             .then(function (response) {
                 listarComentarioCurso()
+                limparInput()
             })
             .catch(erro => console.log(erro))
     }
@@ -67,6 +68,7 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
             .then(function (response) {
                 setInscricao(true)
                 notify_cadastro_sucess();
+                listarUsuario()
             })
             .catch(resposta => notify_Logar_Failed())
     }
@@ -94,6 +96,13 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
         },
         [keyPress]
     );
+
+    //Limpar os states/input
+
+    function limparInput() {
+        setComentarioCurso1('')
+        setValorAvalicao(0)
+    }
 
 
     return (

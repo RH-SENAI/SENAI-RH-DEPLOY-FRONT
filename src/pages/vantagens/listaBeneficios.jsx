@@ -230,7 +230,7 @@ export default function ListaBeneficios() {
 
     return (
         <div className="geral_g2">
-            <ModallBeneficio setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} idDescontoModal={idDescontoModal} comentario={listaComentarioBeneficio} beneficio={listaBeneficios.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModal} setShowModal={setShowModal} />
+            <ModallBeneficio listarUsuario={listarUsuario} setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} idDescontoModal={idDescontoModal} comentario={listaComentarioBeneficio} beneficio={listaBeneficios.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModal} setShowModal={setShowModal} />
             <HeaderFuncionario />
 
             <div className="container">
@@ -263,7 +263,7 @@ export default function ListaBeneficios() {
 
                                     filteredResults.map((beneficio) => {
                                         return (
-                                            <dv className='espacamento_beneficio_g2'>
+                                            <div className='espacamento_beneficio_g2'>
                                                 <section alt={beneficio.idDesconto} key={beneficio.idDesconto} id='imagem' className='box_beneficio_g2'>
                                                     <div className='banner_img_beneficio_g2'>
                                                         {<img onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className='beneficio_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + beneficio.caminhoImagemDesconto} alt="imagem do desconto" />}
@@ -272,7 +272,7 @@ export default function ListaBeneficios() {
                                                     <div className="dados_beneficio_gp2">
 
                                                         <div className="title_estrelas_g2">
-                                                            {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio() }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
+                                                            {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
 
                                                             <div>
                                                                 <ReactStars
@@ -293,7 +293,6 @@ export default function ListaBeneficios() {
                                                                 <img className='coin_beneficio_g2' src={coin} alt="coin" />  {beneficio.valorDesconto}
                                                             </div>}
                                                             <div>
-                                                                {/* <img src={coracao} alt="favorito" /> */}
                                                                 <div className="favoritar_beneficio_g2">
                                                                     <Heart isActive={listaFavoritosDescontos.some(l => { if (l.idDesconto == beneficio.idDesconto) { return true } return false })} onClick={() => { favoritar(!favorito, beneficio.idDesconto) }} />
                                                                 </div>
@@ -302,7 +301,7 @@ export default function ListaBeneficios() {
                                                         </div>
                                                     </div>
                                                 </section>
-                                            </dv>
+                                            </div>
                                         )
                                     })
 

@@ -359,7 +359,7 @@ export default function CursosRapidos() {
     return (
         <div className="geral_g2">
 
-            <ModallCurso setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} curso={listaCursos.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
+            <ModallCurso listarUsuario={listarUsuario} setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} curso={listaCursos.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
             <HeaderFuncionario />
 
             <div className='container'>
@@ -400,48 +400,48 @@ export default function CursosRapidos() {
                                     filteredResults.map((curso) => {
                                         return (
                                             <div className='espacamento_curso_g2'>
-                                                <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
-                                                    <div className='banner_img_curso_g2'>
-                                                        {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
+                                            <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
+                                                <div className='banner_img_curso_g2'>
+                                                    {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
+                                                </div>
+
+                                                <div className='dados_curso_gp2'>
+
+                                                    {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
+
+                                                    <div className='estrelas_cursos_g2'>
+                                                        <div >
+                                                            <ReactStars
+                                                                count={5}
+                                                                size={20}
+                                                                edit={false}
+                                                                value={curso.mediaAvaliacaoCurso}
+                                                                activeColor="#C20004"
+                                                            />
+                                                        </div>
                                                     </div>
+                                                    <div>
+                                                        {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
+                                                        {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
+                                                    </div>
+                                                    <div className="box_baixo_section_curso_g2">
 
-                                                    <div className='dados_curso_gp2'>
-
-                                                        {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
-
-                                                        <div className='estrelas_cursos_g2'>
-                                                            <div >
-                                                                <ReactStars
-                                                                    count={5}
-                                                                    size={20}
-                                                                    edit={false}
-                                                                    value={curso.mediaAvaliacaoCurso}
-                                                                    activeColor="#C20004"
+                                                        <div className='circulo_moeda_curso_g2'>
+                                                            <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
+                                                        </div>
+                                                        <div className="media_beneficio_g2">
+                                                            <div className="favoritar_beneficio_g2">
+                                                                <Heart
+                                                                    isActive={listaFavoritosCursos.some(l => { if (l.idCurso == curso.idCurso) { return true } return false })}
+                                                                    onClick={() => { favoritar(!favorito, curso.idCurso) }}
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
-                                                        </div>
-                                                        <div className="box_baixo_section_curso_g2">
-
-                                                            <div className='circulo_moeda_curso_g2'>
-                                                                <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
-                                                            </div>
-                                                            <div className="media_beneficio_g2">
-                                                                <div className="favoritar_beneficio_g2">
-                                                                    <Heart
-                                                                        isActive={listaFavoritosCursos.some(l => { if (l.idCurso == curso.idCurso) { return true } return false })}
-                                                                        onClick={() => { favoritar(!favorito, curso.idCurso) }}
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            {/* <div> <button onClick={ () => Excluir(curso.idCurso)} >Excluir</button></div> */}
-                                                        </div>
+                                                        {/* <div> <button onClick={ () => Excluir(curso.idCurso)} >Excluir</button></div> */}
                                                     </div>
-                                                </section>
-                                            </div>
+                                                </div>
+                                            </section>
+                                        </div>
                                         )
                                     })
                                     :

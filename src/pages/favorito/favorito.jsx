@@ -44,12 +44,16 @@ export default function MeusFavoritos() {
     //     console.log(searchValue)
     //     setSearchInput(searchValue)
     //     if (searchInput !== '') {
-    //         const filteredData = listaBeneficios.filter((item) => {
-    //             return Object.values(item.nomeDesconto).join('').toLowerCase().includes(searchInput.toLowerCase())
+    //         const filteredDataBeneficio = listaFavoritosDesconto.filter((item) => {
+    //             return Object.values(item.idDescontoNavigation.nomeDesconto).join('').toLowerCase().includes(searchInput.toLowerCase())
     //         })
-    //         setFilteredResults(filteredData)
+
+    //         const filteredDataCurso = listaFavoritosCurso.filter((item) => {
+    //             return Object.values(item.idCursoNavigation.nomeCurso).join('').toLowerCase().includes(searchInput.toLowerCase())
+    //         })
+    //         setFilteredResults(filteredDataBeneficio, filteredDataCurso)
     //     } else {
-    //         setFilteredResults(listaBeneficios)
+    //         setFilteredResults(listaFavoritosCurso, listaFavoritosDesconto)
     //     }
     // }
 
@@ -63,7 +67,10 @@ export default function MeusFavoritos() {
         api('/FavoritosDescontos/Favorito/' + parseJwt().jti)
             .then(resposta => {
                 if (resposta.status === 200) {
+                    console.log('desconto')
+                    console.log(resposta.data)
                     setListaFavoritosDesconto(resposta.data)
+
                 }
             })
             .catch(erro => console.log(erro))
@@ -253,9 +260,9 @@ export default function MeusFavoritos() {
 
         <div className="geral_g2">
             {/* curso */}
-            <ModallCursoFavorito setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} cursos={listaFavoritosCurso.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
+            <ModallCursoFavorito listarUsuario={listarUsuario} setBtnInscricao={setBtnInscricao} btnInscricao={btnInscricao} inscricao={inscricao} setInscricao={setInscricao} listarComentarioCurso={listarComentarioCurso} comentarios={listaComentarioCurso} cursos={listaFavoritosCurso.find(curso => curso.idCurso == idCursoModal)} showModal={showModal} setShowModal={setShowModal} />
             {/* desconto */}
-            <ModallBeneficioFavoritos setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
+            <ModallBeneficioFavoritos listarUsuario={listarUsuario} setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
 
             <HeaderFuncionario />
 

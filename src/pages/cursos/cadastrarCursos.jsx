@@ -7,6 +7,8 @@ import axios from "axios";
 import Footer from "../../components/footer";
 import api from "../../services/api";
 import { ToastContainer, toast } from 'react-toastify';
+import HeaderFuncionario from '../../components/header/headerFuncionario';
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 export default function CadastrarCursos() {
     const notify_Logar_Failed = () => toast.error("Você esqueceu de algum campo, por favor tente novamente!")
@@ -19,9 +21,6 @@ export default function CadastrarCursos() {
     const [modalidadeCurso, setModalidadeCurso] = useState(false)
     const [dataFinalizacao, setDataFinalizacao] = useState(new Date())
     const [fotoCurso, setFotoCurso] = useState([])
-    const [isLoading, setisLoading] = useState(false)
-    const [erroMensagem, setErroMensagem] = useState(false);
-    const [msgSucesso, setMsgSucesso] = useState(false);
     const [caminhoImagemCurso, setCaminhoImagemCurso] = useState('');
     const [valorCurso, setValorCurso] = useState('');
     const [listaEmpresa, setListaEmpresa] = useState([])
@@ -30,12 +29,10 @@ export default function CadastrarCursos() {
 
     function presencial() {
         setModalidadeCurso(true)
-        console.log('True')
     }
 
     function ead() {
         setModalidadeCurso(false)
-        console.log('False')
     }
 
     function buscarEmpresas() {
@@ -44,11 +41,9 @@ export default function CadastrarCursos() {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
         })
-
             .then(resposta => {
                 if (resposta.status === 200) {
                     setListaEmpresa(resposta.data)
-                    console.log('Aqui resposta')
                     console.log(resposta)
                 }
             })
@@ -57,11 +52,8 @@ export default function CadastrarCursos() {
     useEffect(buscarEmpresas, [])
 
     const efetuarCadastro = (event) => {
-
         event.preventDefault();
-
         var formData = new FormData();
-
         const element = document.getElementById('arquivo')
         const file = element.files[0]
         formData.append('fotoCurso', file, file.name)
@@ -83,16 +75,35 @@ export default function CadastrarCursos() {
         })
             .then(function (response) {
                 console.log(response);
-                setMsgSucesso(true);
                 setFotoCurso();
                 notify_cadastro_sucess();
+                limparInput();
             })
             .catch(resposta => notify_Logar_Failed())
     }
 
+    //Limpar os states/inputs
+    function limparInput() {
+        setIdEmpresa(0)
+        setNomeCurso('')
+        setDescricaoCurso('')
+        setSiteCurso('')
+        setModalidadeCurso(false)
+        setCargaHoraria(0)
+        setDataFinalizacao(new Date())
+        setCaminhoImagemCurso('')
+        setValorCurso(0)
+    }
+
     return (
         <div className="geral_g2">
-            <HeaderAdm />
+
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <ToastContainer
                 position="top-right"
@@ -109,7 +120,7 @@ export default function CadastrarCursos() {
             <div className="container_lista_curso container_forms_cadastroCursos_g2">
 
                 <div className="box_img_cadastroCurso_g2">
-                    <img src={cadastroCurso} alt="imagemCadastroCurso" />
+                    <img className="img_cadastroCurso_g2" src={cadastroCurso} alt="imagemCadastroCurso" />
                 </div>
 
 

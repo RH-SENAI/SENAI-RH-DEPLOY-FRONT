@@ -1,31 +1,21 @@
-import HeaderAdm from "../../components/header/headerAdm";
 import cadastroEmpresa from '../../assets/img/cadastroEmpresa.svg'
 import '../../assets/css/cadastroEmpresa.css'
 import iconeEnviarArquivo from '../../assets/img/iconeEnviarArquivo.png'
 import Footer from "../../components/footer";
 import { ToastContainer, toast } from 'react-toastify';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../../services/api";
-import axios from "axios";
-import PhoneInput from 'react-phone-number-input/input'
 import { useForm } from "react-hook-form";
-import { OpenInFull } from "@mui/icons-material";
+import HeaderFuncionario from '../../components/header/headerFuncionario';
+import Navbar from '../../components/MenuHamburguer/Nav';
 
 
 export default function CadastrarEmpresa() {
 
     const notify_Logar_Failed = () => toast.error("Algo deu errado, por favor tente novamente!")
     const notify_cadastro_sucess = () => toast.success("Empresa cadastrada com sucesso!")
-    const [idLocalizacao, setIdLocalizacao] = useState(0)
-    const [localizacao, setLocalizacao] = useState([])
-    const [estados, setEstados] = useState([])
-    const [idEstado, setIdEstado] = useState(0)
-    const [nomeEmpresa, setNomeEmpresa] = useState('')
-    const [emailEmpresa, setEmailEmpresa] = useState('')
-    const [caminhoImagemEmpresa, setCaminhoImagemEmpresa] = useState('');
-    const [telefoneEmpresa, setTelefoneEmpresa] = useState("")
-    const [rua, setRua] = useState('')
-    const { handleSubmit, setValue, setFocus, register } = useForm();
+
+    const { setValue, setFocus, register } = useForm();
 
     const checkCEP = (campo) => {
         const cep1 = campo.target.value.replace(/\D/g, '');
@@ -41,24 +31,21 @@ export default function CadastrarEmpresa() {
             });
     }
 
+
+    const [nomeEmpresa, setNomeEmpresa] = useState('')
+    const [emailEmpresa, setEmailEmpresa] = useState('')
+    const [caminhoImagemEmpresa, setCaminhoImagemEmpresa] = useState('');
+    const [telefoneEmpresa, setTelefoneEmpresa] = useState("")
     const [nomeBairro, setNomeBairro] = useState('')
     const [nomeLogradouro, setNomeLogradouro] = useState('')
     const [nomeCidade, setNomeCidade] = useState('')
     const [nomeEstado, setNomeEstado] = useState('')
     const [cep1, setCep1] = useState('')
     const [numero, setNumero] = useState(0)
-    
-    
-
 
     const efetuarCadastro = (event) => {
-        
         event.preventDefault();
-
-        console.log('chega aqui')
-
         var formData = new FormData();
-
         const element = document.getElementById('fotoEmpresa')
         const file = element.files[0]
         formData.append('fotoEmpresa', file, file.name)
@@ -67,11 +54,11 @@ export default function CadastrarEmpresa() {
         formData.append('telefoneEmpresa', telefoneEmpresa);
         formData.append('caminhoImagemEmpresa', caminhoImagemEmpresa);
         formData.append('cep', cep1);
-        formData.append('numero',document.getElementById('numero').value  );
-        formData.append('cidade',document.getElementById('nomeCidade').value  );
-        formData.append('logradouro',document.getElementById('logradouro').value  );
-        formData.append('estado',document.getElementById('nomeEstado').value  );
-        formData.append('bairro',document.getElementById('bairro').value  );
+        formData.append('numero', document.getElementById('numero').value);
+        formData.append('cidade', document.getElementById('nomeCidade').value);
+        formData.append('logradouro', document.getElementById('logradouro').value);
+        formData.append('estado', document.getElementById('nomeEstado').value);
+        formData.append('bairro', document.getElementById('bairro').value);
 
         api({
             method: "post",
@@ -82,14 +69,34 @@ export default function CadastrarEmpresa() {
             .then(function (response) {
                 console.log(response);
                 notify_cadastro_sucess();
+                limparInput();
             })
             .catch(resposta => notify_Logar_Failed())
     }
 
+    //Limpar os states/inputs
+    function limparInput() {
+        setNomeEmpresa('')
+        setEmailEmpresa('')
+        setTelefoneEmpresa('')
+        setCaminhoImagemEmpresa('')
+        setCep1('')
+        setNumero(0)
+        setNomeBairro('')
+        setNomeCidade('')
+        setNomeEstado('')
+        setNomeLogradouro('')        
+    }
     return (
-
         <div className="geral_g2">
-            <HeaderAdm />            
+            {/* <HeaderAdm />*/}
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
+
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -105,10 +112,10 @@ export default function CadastrarEmpresa() {
 
             <div className="container_empresa_g2 container_forms_cadastroEmpresa_g2">
                 <div className="box_img_cadastroEmpresa_g2">
-                    <img src={cadastroEmpresa} alt="imagemCadastroEmpresa" />
+                    <img className="img_cadastroEmpresa_g2" src={cadastroEmpresa} alt="imagemCadastroEmpresa" />
                 </div>
 
-                <form onSubmit={efetuarCadastro}>
+                <form className="container_empresa_g2_form" onSubmit={efetuarCadastro}>
                     <div className="box_forms_cadastroEmpresa_g2">
                         <div className="title_cadastroEmpresa_g2">
                             <h1>Cadastrar Empresa</h1>
@@ -127,7 +134,7 @@ export default function CadastrarEmpresa() {
                                             name="nomeEmpresa"
                                             placeholder="Nome da Empresa"
                                         />
-                                        <label htmlFor="nomeEmpresa">Nome da Empresa</label>
+                                        <label htmlFor="nomeEmpresa">Nome</label>
                                     </div>
 
                                     <div className="input_g2_cadastro">
@@ -222,7 +229,7 @@ export default function CadastrarEmpresa() {
                                 </div>
 
 
-                                <div className="input_g2_cadastro">
+                                <div className="input_g2_cadastro input_g2_cadastro_rua">
                                     <input
                                         id="logradouro"
                                         onChange={(campo) => setNomeLogradouro(campo.target.value)}
@@ -263,57 +270,6 @@ export default function CadastrarEmpresa() {
                                     />
                                     <label htmlFor="nomeEstado" >Estado</label>
                                 </div>
-
-
-
-
-                                {/* <div>
-                                    <label for="idLocalizacao" ></label>
-                                    <select
-                                        className="inputCadastroCursoSelect_g2"
-                                        id="idLocalizacao"
-                                        onChange={(campo) => setIdLocalizacao(campo.target.value)}
-                                        value={idLocalizacao}
-                                    >
-                                        <option value="0">Localizações</option>
-                                        {
-                                            localizacao.map((local) => {
-                                                return (
-                                                    <option key={local.idLocalizacao} value={local.idLocalizacao}>
-                                                        {local.idLocalizacao}
-                                                    </option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div> */}
-
-
-                                {/* <div>
-                                    <label for="idEmpresa" ></label>
-                                    <select
-                                        className="inputCadastroCursoSelect_g2"
-                                        id="idEstado"
-                                        onChange={(campo) => setIdEstado(campo.target.value)}
-                                        value={idEstado}
-                                    >
-                                        <option value="0">Estados</option>
-                                        {
-                                            estados.map((estado) => {
-                                                return (
-                                                    <option key={estado.idEstado} value={estado.idEstado}>
-                                                        {estado.nomeEstado}
-                                                    </option>
-                                                )
-                                            })
-                                        }
-                                    </select>
-                                </div> */}
-
-
-
-
-
                             </div>
                         </div>
                         <div className="btn_cadastroEmpresa_g2">

@@ -4,10 +4,14 @@ import HeaderAdm from "../../components/header/headerAdm";
 import carimbo from "../../assets/img/carimbo.svg";
 import api from "../../services/api";
 import '../../assets/css/requisicaoFuncionario.css'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function RequisicaoFuncionario() {
+    const notify_Logar_Failed = () => toast.error("Alguma coisa deu errado, por favor tente novamente!")
+    const notify_cadastro_sucess = () => toast.success("Alteração realizada com sucesso!")
 
-    const[listaFuncionariosPendentes, setListaFuncionariosPendentes] = useState([])
+    const [listaFuncionariosPendentes, setListaFuncionariosPendentes] = useState([])
 
     function listarFuncionariosPendentes() {
         api('/Registroscursos/RegistroCursos/2', {
@@ -28,24 +32,26 @@ export default function RequisicaoFuncionario() {
     useEffect(listarFuncionariosPendentes, [])
 
 
+    function requisicao(usuario, idRegistroCurso) {
+        enviarEmail(usuario)
+        alterarSituacao(idRegistroCurso)
+    }
+
 
     function enviarEmail(usuario) {
-        // usuario.preventDefault();
-
-        
+        // usuario.preventDefault();        
         console.log('curso.idCurso!')
         // console.log(cursos.idCurso)
-
         api.post('/Registroscursos/EnviaEmailDescricao/' + usuario, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
         }
-
         )
             .then(function (response) {
                 console.log(response);
                 console.log('Enviado!')
+                listarFuncionariosPendentes()
                 // notify_cadastro_sucess();
 
                 // setListaComentarioCurso(response.data)
@@ -55,13 +61,13 @@ export default function RequisicaoFuncionario() {
     }
 
     function alterarSituacao(idRegistroCursos) {
-        // idRegistroCursos.preventDefault();
+        // event.preventDefault();
 
-        
+
         // console.log('curso.idCurso!')
         // console.log(cursos.idCurso)
 
-        api.put('/Registroscursos/' + idRegistroCursos,  {
+        api.put('/Registroscursos/' + idRegistroCursos, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -71,18 +77,30 @@ export default function RequisicaoFuncionario() {
             .then(function (response) {
                 console.log(response);
                 console.log('Concluido!')
-                // notify_cadastro_sucess();
-
+                notify_cadastro_sucess();
+                listarFuncionariosPendentes()
                 // setListaComentarioCurso(response.data)
             })
-            // .catch(resposta => notify_Logar_Failed())
-            .catch(erro => console.log(erro))
+            .catch(resposta => notify_Logar_Failed())
+        // .catch(erro => console.log(erro))
     }
 
 
 
     return (
         <div className="geral_g2">
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
 
             <HeaderAdm />
 
@@ -93,42 +111,42 @@ export default function RequisicaoFuncionario() {
             </div>
 
             <div className="container">
-            <section className="container_table_g2" >
-                        <table className="table_funcionariosPendentes_g2">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Cargo</th>
-                                    <th>E-mail</th>
-                                    <th>Curso</th>
-                                    <th>Site do curso</th>
-                                </tr>
-                            </thead>
-                            <tbody >
-                                {
-                                   listaFuncionariosPendentes.map((fp) => {
-                                        return (
-                                            <tr key={fp.idRegistroCurso} >
-                                                <td>{fp.idUsuarioNavigation.nome}</td>
-                                                <td>{fp.idUsuarioNavigation.cpf}</td>
-                                                <td>{fp.idUsuarioNavigation.idCargoNavigation.nomeCargo}</td>
-                                                <td>{fp.idUsuarioNavigation.email}</td>                                                
-                                                <td>{fp.idCursoNavigation.nomeCurso}</td>
-                                                <td>{fp.idCursoNavigation.siteCurso}</td>
-                                                <td  className="img_carimbo_g2">
-                                                    <img onClick={() => { alterarSituacao(fp.idRegistroCurso);enviarEmail(fp.idUsuarioNavigation.email)}}  src={carimbo} alt="validar" />                                                    
-                                                </td>
+                <section className="container_table_g2" >
+                    <table className="table_funcionariosPendentes_g2">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Cargo</th>
+                                <th>E-mail</th>
+                                <th>Curso</th>
+                                <th>Site do curso</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {
+                                listaFuncionariosPendentes.map((fp) => {
+                                    return (
+                                        <tr key={fp.idRegistroCurso} >
+                                            <td>{fp.idUsuarioNavigation.nome}</td>
+                                            <td>{fp.idUsuarioNavigation.cpf}</td>
+                                            <td>{fp.idUsuarioNavigation.idCargoNavigation.nomeCargo}</td>
+                                            <td>{fp.idUsuarioNavigation.email}</td>
+                                            <td>{fp.idCursoNavigation.nomeCurso}</td>
+                                            <td>{fp.idCursoNavigation.siteCurso}</td>
+                                            <td className="img_carimbo_g2">
+                                                <img onClick={() => { requisicao(fp.idUsuarioNavigation.email, fp.idRegistroCurso) }} src={carimbo} alt="validar" />
+                                            </td>
 
-                                            </tr>
+                                        </tr>
 
 
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </section>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </section>
             </div>
 
 
