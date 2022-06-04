@@ -64,6 +64,7 @@
     font-weight: 600;
     margin-top: 20%;
     transition: 0.3s;
+    cursor: pointer;
     font-family: 'Montserrat', sans-serif;
 }
 

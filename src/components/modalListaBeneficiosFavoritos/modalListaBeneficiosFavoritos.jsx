@@ -160,12 +160,16 @@ export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, 
 
                                 </div>
 
+
                                 <div className='container_registro_beneficio_g2'>
                                     <div className='box_dados_registro_beneficio_g2'>
-                                        <span> Adicionado: </span> <p>{beneficios.idDescontoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
+                                        <span> Empresa: </span> <p>{beneficios.idDescontoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
                                     </div>
                                     <div className='box_dados_registro_beneficio_g2'>
-                                        <span>Empresa:</span> <p>{beneficios.idDescontoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
+                                        <span>E-mail:</span> <p>{beneficios.idDescontoNavigation.idEmpresaNavigation.emailEmpresa}</p>
+                                    </div>
+                                    <div className='box_dados_registro_beneficio_g2'>
+                                        <span>Telefone:</span> <p>{beneficios.idDescontoNavigation.idEmpresaNavigation.telefoneEmpresa}</p>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +253,7 @@ export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, 
                                         cupom == true && (
                                             <div>
 
-                                                <p> Seu cupom é:{beneficios.idDescontoNavigation.numeroCupom}</p>
+                                                <button className='botaoCadastroComentarioBeneficio_g2'> <p>{beneficios.idDescontoNavigation.numeroCupom}</p></button>
                                             </div>
                                         )
                                     }
@@ -265,7 +269,6 @@ export const ModallBeneficioFavoritos = ({ showModal, setShowModal, beneficios, 
                                                                 className="botaoCadastroComentarioBeneficio_g2"
                                                                 onClick={() => { requisicaoDesconto() }}
                                                             >Pegue </button>
-
                                                         </div>
                                                     )
                                                 }

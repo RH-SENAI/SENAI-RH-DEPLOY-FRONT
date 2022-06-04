@@ -172,7 +172,7 @@ export default function CadastrarEmpresa() {
                                         <input
                                             id="numero"
                                             onChange={(campo) => setNumero(campo.target.value)}
-                                            // value={numero}
+                                            value={numero}
                                             {...register('addressNumber')}
                                             type="text"
                                             name="numero"
@@ -186,7 +186,7 @@ export default function CadastrarEmpresa() {
                                         <input
                                             id="nomeCidade"
                                             onChange={(campo) => setNomeCidade(campo.target.value)}
-                                            // value={nomeCidade}
+                                            value={nomeCidade}
                                             type="text"
                                             name="nomeCidade"
                                             placeholder="CEP"

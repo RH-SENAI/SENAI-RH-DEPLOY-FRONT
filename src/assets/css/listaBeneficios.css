@@ -113,6 +113,10 @@
     /* margin-bottom: 30px; */
 }
 
+.title_beneficios_g2{
+    margin-left: 1rem !important;
+}
+
 .box_beneficio_g2 p {
     margin-top: 15px;
     margin-right: 20px;
@@ -216,19 +220,13 @@
 
 /* Favoritar */
 
-.favoritar_beneficio_g2 svg{
+.favoritar_beneficio_g2 svg {
     width: 2vw;
     height: 10vh;
+    margin-top: 1rem !important;
 }
 
-
-
-
 /* estrela */
-
-
-
-
 .rating_g2 {
     display: flex;
     width: 35%;
@@ -264,71 +262,88 @@
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fcd93a' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
 }
 
-.headerF{
+.headerF {
     display: block;
 }
-.navbarF{
+
+.navbarF {
     display: none;
+}
+
+@media screen and (max-width: 1600px) {
+    .box_beneficio_g2 span {
+        font-size: 1em;
+    }
+
+    div.estrelas_beneficio_g2 {
+        width: 100% !important;
+        margin-left: 1rem !important;
+        margin-top: 0.1rem !important;
+        height: 5vh;
+    }
+
+    .estrelas_beneficio_g2 span {
+        font-size: 20px !important;
+    }
+
 }
 
 
 @media screen and (max-width: 980px) {
-    .title_caixa_beneficio_g2{
+    .title_caixa_beneficio_g2 {
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        /* width: 100vw; */
         height: 20vw;
-        /* margin-top: 10rem; */
     }
 
-    .title_modal_beneficio_g2{
+    .title_modal_beneficio_g2 {
         font-size: 1.1em !important;
     }
-    .circulo_icone_coin_beneficio_g2{
+
+    .circulo_icone_coin_beneficio_g2 {
         margin-top: 1rem !important;
     }
 
-    .container_lista_comentario_beneficio_g2 h2{
+    .container_lista_comentario_beneficio_g2 h2 {
         font-size: 1.7em !important;
     }
 
-    .container_descricao_beneficio_g2 h2{
-    font-size: 1.7em !important;
+    .container_descricao_beneficio_g2 h2 {
+        font-size: 1.7em !important;
     }
 
-    .moeda_cima_g2{
+    .moeda_cima_g2 {
         width: 25vw;
-        /* height: 40vh !important; */
         margin-top: 1.5rem;
         margin-left: 1.5rem;
 
     }
-    
-    .container_beneficio_g2{
+
+    .container_beneficio_g2 {
         display: flex;
         justify-content: center;
         width: auto;
         margin-left: 3rem;
     }
 
-    .caixa_beneficio_g2 input{
+    .caixa_beneficio_g2 input {
         margin-top: 1.5rem;
     }
 
-    .box_beneficio_g2{
+    .box_beneficio_g2 {
         display: flex;
         justify-content: center;
         width: 30vw;
         height: 35vh;
     }
 
-    .box_beneficio_g2 span{
+    .box_beneficio_g2 span {
         font-size: 1rem !important;
     }
-    
-    .circulo_moeda_beneficio_g2{
+
+    .circulo_moeda_beneficio_g2 {
         width: 10vw;
         margin-bottom: 1rem;
     }
@@ -343,32 +358,34 @@
         margin-top: 4rem;
     }
 
-    .container_lista_comentario_beneficio_g2{
+    .container_lista_comentario_beneficio_g2 {
         width: 38vw !important;
     }
 
-    .dados_modal_beneficio_g2{
+    .dados_modal_beneficio_g2 {
         width: 39vw !important;
     }
-    .box_img_modal_beneficio_g2 img{
+
+    .box_img_modal_beneficio_g2 img {
         width: 70vw !important;
     }
-    
-    .container_modal_beneficio_g2{
+
+    .container_modal_beneficio_g2 {
         width: 99% !important;
     }
-    .modal_baixo_beneficio_g2{
+
+    .modal_baixo_beneficio_g2 {
         width: 94% !important;
     }
 
-    .circulo_icone_coin_beneficio_g2{
+    .circulo_icone_coin_beneficio_g2 {
         width: 6vw !important;
     }
 
-    .lista_descricao_beneficio_g2{
+    .lista_descricao_beneficio_g2 {
         font-size: 1rem !important;
     }
-    
+
 
 
 }
@@ -389,18 +406,20 @@
 }
 
 @media screen and (max-width: 780px) {
-    .moeda_cima_g2{
+    .moeda_cima_g2 {
         width: 33vw !important;
-        
+
     }
-    .container_wrap_beneficio_g2{
+
+    .container_wrap_beneficio_g2 {
         width: 66vw !important;
     }
 
-    .title_modal_beneficio_g2{
+    .title_modal_beneficio_g2 {
         font-size: 0.9em !important;
     }
-    .box_img_modal_beneficio_g2 img{
+
+    .box_img_modal_beneficio_g2 img {
         width: 135% !important;
         height: 92% !important;
     }
@@ -412,7 +431,8 @@
     .container_lista_comentario_beneficio_g2 h2 {
         font-size: 1.5em !important;
     }
-    .container_descricao_beneficio_g2 h2{
+
+    .container_descricao_beneficio_g2 h2 {
         font-size: 1.5em !important;
     }
 
@@ -420,7 +440,7 @@
         width: 48vw !important;
     }
 
-    .rating_g2{
+    .rating_g2 {
         width: 29% !important;
     }
 
@@ -429,49 +449,50 @@
         height: 5vh !important;
     }
 
-    
+
 
     .input_modal_comentario_beneficio_g2 input {
-       
+
         width: 15.5vw !important;
         height: 5vh !important;
     }
 
 }
 
-@media screen and (max-width: 720px){
-    
+@media screen and (max-width: 720px) {
+
 
     .title_modal_beneficio_g2 {
         font-size: 0.7em !important;
     }
 }
 
-@media screen and (max-width: 480px){
-    
+@media screen and (max-width: 480px) {
 
-    .headerF{
+
+    .headerF {
         display: none;
     }
-    .navbarF{
+
+    .navbarF {
         display: block;
     }
 
 
-    .box_beneficio_g2{
+    .box_beneficio_g2 {
         width: 55vw;
-        
+
 
     }
 
-    .favoritar_beneficio_g2 path{
+    .favoritar_beneficio_g2 path {
         width: 10vw;
-        height: 10vw;
+        height: 10vw;        
     }
 
     .circulo_moeda_beneficio_g2 {
         width: 19vw;
-        
+
     }
 
     .box_beneficio_g2 span {
@@ -480,10 +501,10 @@
 
     .moeda_cima_g2 {
         width: 53vw !important;
-        
+
     }
 
-    .container{
+    .container {
         margin-top: 7vh !important;
         margin-bottom: 2vh !important;
     }
@@ -493,20 +514,21 @@
     }
 
     .container_modal_beneficio_g2 {
-        
+
         flex-direction: column;
     }
 
     .box_img_modal_beneficio_g2 img {
         width: 105vw !important;
-        
+
     }
+
     .title_modal_beneficio_g2 {
         font-size: 0.9em !important;
     }
 
     .icone_center_modal_beneficio_g2 p {
-        
+
         width: 23vw;
     }
 
@@ -516,11 +538,11 @@
     }
 
     .container_registro_beneficio_g2 {
-        
+
         width: 90% !important;
     }
 
-    .circulo_icone_coin_beneficio_g2{
+    .circulo_icone_coin_beneficio_g2 {
         margin-top: 2em !important;
         margin-left: 1em !important;
     }
@@ -536,18 +558,19 @@
     .modal_baixo_beneficio_g2 {
         flex-direction: column-reverse !important;
     }
+
     .container_descricao_beneficio_g2 {
-        
+
         padding-left: 1rem !important;
     }
 
     .lista_descricao_beneficio_g2 {
-        
+
         width: 85vw !important;
     }
 
     .btn_cadastrarComentario_beneficio_g2 {
-       
+
         margin-bottom: 3em !important;
 
         width: 40vw !important;
@@ -562,7 +585,7 @@
     .icone_modal_coin_g2 {
         width: 4vw !important;
         height: 2vh !important;
-        
+
     }
 
     .container_lista_comentario_beneficio_g2 {
@@ -581,12 +604,12 @@
         height: 5vh !important;
     }
 
-    .favoritar_beneficio_g2 path{
+    .favoritar_beneficio_g2 path {
         width: 10vw !important;
         height: 10vw !important;
     }
 
-    .favoritar_beneficio_g2 svg{
+    .favoritar_beneficio_g2 svg {
         width: 5vw !important;
         height: 10vh !important;
     }
@@ -594,4 +617,4 @@
     .container_wrap_beneficio_g2 {
         width: 60vw !important;
     }
-}   
+}

@@ -13,7 +13,7 @@ import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
 import axios from 'axios';
 import Navbar from '../../components/MenuHamburguer/Nav';
-    
+
 
 export default function MeusFavoritos() {
 
@@ -109,7 +109,6 @@ export default function MeusFavoritos() {
 
     async function verifySituacaoDesconto(cupom, id) {
         try {
-            debugger;
             const respostaBuscar = await api(`/Registrodescontos/RegistroDescontos/IdUsuario/${parseJwt().jti}`);
             var tamanhoJsonRegistro = Object.keys(respostaBuscar.data).length;
             let stringRegistros = JSON.stringify(respostaBuscar.data);
@@ -148,7 +147,7 @@ export default function MeusFavoritos() {
     }
 
     //Modal desconto
-    const OpenModalDesconto = () => {        
+    const OpenModalDesconto = () => {
         setShowModalDesconto(prev => !prev);
         verifySaldoDesconto(idDescontoModal)
         verifySituacaoDesconto(idDescontoModal)
@@ -233,6 +232,8 @@ export default function MeusFavoritos() {
         api('/FavoritosCursos/Favorito/' + parseJwt().jti)
             .then(resposta => {
                 if (resposta.status === 200) {
+                    console.log('resposta')
+                    console.log(resposta.data)
                     setListaFavoritosCurso(resposta.data)
                 }
             })
@@ -267,11 +268,11 @@ export default function MeusFavoritos() {
             <ModallBeneficioFavoritos listarUsuario={listarUsuario} setBtnCompra={setBtnCompra} btnCompra={btnCompra} listarComentarioBeneficio={listarComentarioBeneficio} setCupom={setCupom} cupom={cupom} comentario={listaComentarioBeneficio} beneficios={listaFavoritosDesconto.find(beneficio => beneficio.idDesconto == idDescontoModal)} showModal={showModalDesconto} setShowModal={setShowModalDesconto} />
 
             <div className='navbarF'>
-                    <Navbar />
-                </div>
-                <div className='headerF'>
-                    <HeaderFuncionario />
-                </div>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
 
             <div className="container">
                 <div className='title_caixa_meusFavoritos_g2'>
@@ -310,25 +311,39 @@ export default function MeusFavoritos() {
 
                                             <div className='dados_curso_gp2'>
 
-                                                {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.idCursoNavigation.nomeCurso}</span>}
+                                                <div className='title_estrelas_g2'>
+
+                                                    {<span className='title_cursos_g2' onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.idCursoNavigation.nomeCurso}</span>}
 
 
-                                                <div className='estrelas_cursos_g2'>
-                                                    <div>
-                                                        <ReactStars
-                                                            count={5}
-                                                            // onChange={ratingChanged}
-                                                            size={20}
-                                                            edit={false}
-                                                            value={curso.idCursoNavigation.mediaAvaliacaoCurso}
-                                                            activeColor="#C20004"
-                                                        />
+                                                    <div className='estrelas_cursos_g2'>
+                                                        <div>
+                                                            <ReactStars
+                                                                count={5}
+                                                                // onChange={ratingChanged}
+                                                                size={20}
+                                                                edit={false}
+                                                                value={curso.idCursoNavigation.mediaAvaliacaoCurso}
+                                                                activeColor="#C20004"
+                                                            />
+                                                        </div>
                                                     </div>
+
+                                                    <div className='dados_local_carga_curso_g2'>
+
+                                                        <div className='cargaHoraria_curso_g2'>
+                                                            <p>  <img className='box_dados_curso_g2' src={relogio} alt="duracao" />  {curso.idCursoNavigation.cargaHoraria}  Horas </p>
+                                                        </div>
+
+                                                        <div className='local_curso_g2'>
+                                                            <p> <img className='box_dados_curso_g2' src={local} alt="duracao" />   {curso.idCursoNavigation.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro} </p>
+                                                        </div>
+
+                                                    </div>
+
                                                 </div>
 
 
-                                                {<p><img className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.idCursoNavigation.cargaHoraria} Horas </p>}
-                                                {<p><img className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idCursoNavigation.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
                                                 <div className="box_baixo_section_curso_g2">
 
                                                     {<div className='circulo_moeda_curso_g2'>
@@ -354,7 +369,7 @@ export default function MeusFavoritos() {
 
                         {
                             listaFavoritosDesconto.map((beneficio) => {
-                                return (    
+                                return (
                                     <div key={beneficio.idDesconto} className='espacamento_beneficio_g2'>
                                         <section alt={beneficio.idDescontoFavorito} key={beneficio.idDescontoFavorito} id='imagem' className='box_beneficio_g2'>
                                             <div className='banner_img_beneficio_g2'>
@@ -365,13 +380,15 @@ export default function MeusFavoritos() {
                                                 <div className='title_estrelas_g2'>
                                                     {<span onClick={() => { verifySituacaoDesconto(cupom, beneficio.idDesconto); OpenModalDesconto(); listarComentarioBeneficio(); verifySaldoDesconto(listaUsuario.saldoMoeda, beneficio.idDescontoNavigation.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className="title_beneficios_g2" > {beneficio.idDescontoNavigation.nomeDesconto}</span>}
 
-                                                    <ReactStars
-                                                        count={5}
-                                                        size={30}
-                                                        edit={false}
-                                                        value={beneficio.idDescontoNavigation.mediaAvaliacaoDesconto}
-                                                        activeColor="#C20004"
-                                                    />
+                                                    <div className="estrelas_beneficio_g2">
+                                                        <ReactStars
+                                                            count={5}
+                                                            size={30}
+                                                            edit={false}
+                                                            value={beneficio.idDescontoNavigation.mediaAvaliacaoDesconto}
+                                                            activeColor="#C20004"
+                                                        />
+                                                    </div>
                                                 </div>
 
 

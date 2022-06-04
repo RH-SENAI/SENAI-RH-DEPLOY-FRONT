@@ -160,6 +160,14 @@ top: 0;
     color: white;
 }
 
+.G1_form_Login button:hover{
+    background-color: transparent;
+    border: #C20004 1px solid;
+    border-radius: 15px;
+    color:  #C20004;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .G1_form_Login button:disabled{
     background-color: #000;
     cursor: not-allowed;
