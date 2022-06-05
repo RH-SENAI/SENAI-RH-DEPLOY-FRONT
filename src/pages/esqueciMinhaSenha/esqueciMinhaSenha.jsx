@@ -24,7 +24,7 @@ export default function EsqueciSenha() {
         event.preventDefault();
         
         
-        axios.post('http://localhost:5000/api/Usuarios/RecuperarSenhaEnviar/' + email,{
+        axios.post('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/RecuperarSenhaEnviar/' + email,{
         },{
             headers:{
                 'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function EsqueciSenha() {
     const AlteraSenha = (event) =>{
         event.preventDefault();
         
-        axios.post('http://localhost:5000/api/Usuarios/RecuperarSenhaVerifica/' + codigo,{},{
+        axios.post('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/RecuperarSenhaVerifica/' + codigo,{},{
             headers:{
                 'Content-Type': 'application/json',
                 
