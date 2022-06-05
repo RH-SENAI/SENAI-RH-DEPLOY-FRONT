@@ -58,10 +58,10 @@ export default function HeaderFuncionario() {
                     <p class='input_header_g2'>Motivações<img src={setaBaixo} /> </p>
                     <input type='hidden' name='some_name_to_form' />
                     <div class='hidden_header_g2'>
-                        <Link to='/TodasAtividades' className="text_link_header_g2" ><span>Todas Atividades</span> </Link>
-                        <Link to='/ValidarAtividades' className="text_link_header_g2" ><span>Validar Atividades</span> </Link>
-                        <Link to='/RankingUsuarios' className="text_link_header_g2" ><span>Ranking</span> </Link>
-                        <Link to='/CadastrarAtividades' className="text_link_header_g2" ><span>Cadastrar Atividades</span> </Link>
+                        <Link to='/TodasAtividades' className="text_link_header_g1" ><span>Todas Atividades</span> </Link>
+                        <Link to='/ValidarAtividades' className="text_link_header_g1" ><span>Validar Atividades</span> </Link>
+                        <Link to='/RankingUsuarios' className="text_link_header_g1" ><span>Ranking</span> </Link>
+                        <Link to='/CadastrarAtividades' className="text_link_header_g1" ><span>Cadastrar Atividades</span> </Link>
                         <div class='select'>
                         </div>
                     </div>

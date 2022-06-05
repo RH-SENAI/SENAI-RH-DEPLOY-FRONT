@@ -104,10 +104,10 @@ const routing = (
         <Logado path="/decisao" component={decisao} />
         <Logado path="/rankingAcompanhar" component={rankingAcompanhar} />
 
-        <PermissaoAdm path="/CadastrarAtividades" component={CadastrarAtividades} />
-        <PermissaoAdm path="/ValidarAtividades" component={ValidarAtividades} />
-        <PermissaoAdm path="/TodasAtividades" component={Atividades} />
-        <PermissaoAdm path="/RankingUsuarios" component={Ranking} />
+        <PermissaoGestor path="/CadastrarAtividades" component={CadastrarAtividades} />
+        <PermissaoGestor path="/ValidarAtividades" component={ValidarAtividades} />
+        <PermissaoGestor path="/TodasAtividades" component={Atividades} />
+        <PermissaoGestor path="/RankingUsuarios" component={Ranking} />
         <Route path="/AlterarSenhaRec" component={AlterarSenhaRec} />
         <Route path="/EsqueciMinhaSenha" component={esqueciMinhaSenha} />
         <Logado path="/Redirecionamento" component={redirecionar} />
