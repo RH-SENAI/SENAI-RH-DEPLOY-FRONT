@@ -241,7 +241,7 @@ export default function ListaBeneficios() {
 
             <div className="container">
                 <div className='title_caixa_beneficio_g2'>
-                    <h1 className='h1_beneficio_g2'>Vantagens</h1>
+                    <h1 className='h1_beneficio_g2'>Descontos</h1>
                     <div className='caixa_beneficio_g2'>
                         <label ></label>
                         <input
@@ -280,10 +280,9 @@ export default function ListaBeneficios() {
                                                         <div className="title_estrelas_g2">
                                                             {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
 
-                                                            <div>
+                                                            <div className="estrelas_beneficio_g2">
                                                                 <ReactStars
                                                                     count={5}
-                                                                    // onChange={ratingChanged}
                                                                     size={30}
                                                                     edit={false}
                                                                     value={beneficio.mediaAvaliacaoDesconto}
@@ -306,6 +305,8 @@ export default function ListaBeneficios() {
                                                             {/* <div> <button onClick={(b) => Excluir(beneficio.idDesconto)} >Excluir</button></div> */}
                                                         </div>
                                                     </div>
+
+
                                                 </section>
                                             </div>
                                         )
@@ -326,10 +327,9 @@ export default function ListaBeneficios() {
                                                         <div className="title_estrelas_g2">
                                                             {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
 
-                                                            <div>
+                                                            <div className="estrelas_beneficio_g2">
                                                                 <ReactStars
                                                                     count={5}
-                                                                    // onChange={ratingChanged}
                                                                     size={30}
                                                                     edit={false}
                                                                     value={beneficio.mediaAvaliacaoDesconto}

@@ -251,3 +251,11 @@
         padding: 0;
     }
 }
+
+@media screen and (max-width: 1600px) {
+    .ReactModal__Content{
+        margin-left: 0;
+        padding: 0;
+        margin-left: 18rem;
+    }
+}

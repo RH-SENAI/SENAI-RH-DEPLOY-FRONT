@@ -50,10 +50,10 @@ const RightNav = ({ open }) => {
                     <p class='input_header_g2'>Vantagens <img src={setaBaixo} /></p>
                     <input type='hidden' name='some_name_tosetaBaixosetaBaixo_form' />
                     <div class='hidden_header_g2 hidden_header_g2_responsivo'>
-                        <Link className="text_link_header_g2" to='/Beneficios'> <span>Vantagens</span></Link>
+                        <Link className="text_link_header_g2" to='/Beneficios'> <span>Descontos</span></Link>
                         <Link className="text_link_header_g2" to='/CursosRapidos'> <span> Cursos</span></Link>
                         <Link className="text_link_header_g2" to='/meusFavoritos'> <span> Meus Favoritos</span></Link>
-                        <Link className="text_link_header_g2" to='/BeneficiosCadastrar' >  <span> Cadastrar Vantagem </span> </Link>
+                        <Link className="text_link_header_g2" to='/BeneficiosCadastrar' >  <span> Cadastrar Desconto </span> </Link>
                         <Link className="text_link_header_g2" to='/CadastrarCursos' > <span> Cadastrar Cursos </span>  </Link>
                         <Link className="text_link_header_g2" to='/cadastrarEmpresa' > <span> Cadastrar Empresa </span>  </Link>
                         <Link className="text_link_header_g2" to='/requisicaoFuncionario' > <span> Requisições de Funcionarios  </span>  </Link>

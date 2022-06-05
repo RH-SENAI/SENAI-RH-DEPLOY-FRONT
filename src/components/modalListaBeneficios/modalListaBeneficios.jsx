@@ -170,10 +170,13 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
 
                                 <div className='container_registro_beneficio_g2'>
                                     <div className='box_dados_registro_beneficio_g2'>
-                                        <span> Adicionado: </span> <p>{beneficio.idEmpresaNavigation.nomeEmpresa}</p>
+                                        <span> Empresa: </span> <p>{beneficio.idEmpresaNavigation.nomeEmpresa}</p>
                                     </div>
                                     <div className='box_dados_registro_beneficio_g2'>
-                                        <span>Empresa:</span> <p>{beneficio.idEmpresaNavigation.nomeEmpresa}</p>
+                                        <span>E-mail:</span> <p>{beneficio.idEmpresaNavigation.emailEmpresa}</p>
+                                    </div>
+                                    <div className='box_dados_registro_beneficio_g2'>
+                                        <span>Telefone:</span> <p>{beneficio.idEmpresaNavigation.telefoneEmpresa}</p>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +261,7 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
                                         cupom == true && (
                                             <div>
 
-                                                <p> Seu cupom é:{beneficio.numeroCupom}</p>
+                                                <button className='botaoCadastroComentarioBeneficio_g2'> <p>{beneficio.numeroCupom}</p></button>
                                             </div>
                                         )
                                     }{
@@ -273,7 +276,6 @@ export const ModallBeneficio = ({ showModal, setShowModal, beneficio, comentario
                                                                 className="botaoCadastroComentarioBeneficio_g2"
                                                                 onClick={() => { requisicaoDesconto() }}
                                                             >Pegue </button>
-
                                                         </div>
                                                     )
                                                 }

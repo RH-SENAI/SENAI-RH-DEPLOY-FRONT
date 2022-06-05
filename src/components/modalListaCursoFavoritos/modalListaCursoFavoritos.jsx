@@ -6,7 +6,8 @@ import api from '../../services/api';
 import coin from "../../assets/img/coin 1.png"
 import calendar from '../../assets/img/calendar.svg'
 import map from '../../assets/img/map.svg'
-import coracao from '../../assets/img/coracao.svg'
+import local from '../../assets/img/local.png'
+import relogio from '../../assets/img/relogio.png'
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -149,28 +150,68 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
                             <div className='dados_modal_beneficio_g2'>
 
                                 <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={relogio} alt="calendário" />
+                                    <p>
+                                        {cursos.idCursoNavigation.cargaHoraria} Horas
+                                    </p>
+                                </div>
+
+                                <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={map} alt="mapa" /> <p> 
+                                        {cursos.idCursoNavigation.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro} 
+                                        {/* {Intl.DateTimeFormat("pt-BR", {
+                                            year: 'numeric', month: 'numeric', day: 'numeric',
+                                        }).format(new Date(cursos.idCursoNavigation.dataFinalizacao))} */}
+                                        </p>
+                                </div>
+
+                            </div>
+
+                            <div className='dados_modal_beneficio_g2'>
+
+                                <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={local} alt="mapa" />
+                                    {
+                                        cursos.idCursoNavigation.modalidadeCurso == true ? (
+                                            <div>
+                                                <p>Presencial</p>
+                                            </div>
+                                        )
+                                            :
+                                            (
+                                                <div>
+                                                    <p>EAD</p>
+                                                </div>
+                                            )
+                                    }
+
+                                    {/* <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={local} alt="mapa" /> <p> {cursos.idCursoNavigation.modalidadeCurso == true && (
+                                        <p>Presencial</p>
+                                    )} </p> */}
+                                </div>
+
+
+                                <div className='icone_center_modal_beneficio_g2'>
                                     <img src={calendar} alt="calendário" />
                                     <p>
                                         {Intl.DateTimeFormat("pt-BR", {
                                             year: 'numeric', month: 'numeric', day: 'numeric',
                                         }).format(new Date(cursos.idCursoNavigation.dataFinalizacao))}
                                     </p>
-
-
-                                </div>
-
-                                <div className='icone_center_modal_beneficio_g2'>
-                                    <img src={map} alt="mapa" /> <p> {cursos.idCursoNavigation.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro} </p>
                                 </div>
 
                             </div>
 
                             <div className='container_registro_beneficio_g2'>
                                 <div className='box_dados_registro_beneficio_g2'>
-                                    <span> Adicionado por: </span> <p>{cursos.idCursoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
+                                    <span> Empresa: </span> <p>{cursos.idCursoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
                                 </div>
                                 <div className='box_dados_registro_beneficio_g2'>
-                                    <span>Empresa:</span> <p>{cursos.idCursoNavigation.idEmpresaNavigation.nomeEmpresa}</p>
+                                    <span>Email:</span> <p>{cursos.idCursoNavigation.idEmpresaNavigation.emailEmpresa}</p>
+                                </div>
+                                <div className='box_dados_registro_beneficio_g2'>
+                                    <span>Telefone:</span> <p>{cursos.idCursoNavigation.idEmpresaNavigation.telefoneEmpresa}</p>
                                 </div>
                             </div>
                         </div>
@@ -254,7 +295,10 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
                             <div className='btn_cadastrarComentario_beneficio_g2'>
                                 {
                                     inscricao == true && (
-                                        <div> <p>Inscrito</p> </div>
+                                        <div>
+
+                                            <button className='botaoCadastroComentarioBeneficio_g2'> <p>Inscrito</p></button>
+                                        </div>
                                     )
                                 }
                                 {
@@ -273,10 +317,10 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
                                                 btnInscricao == false && (
                                                     <div>
                                                         <form onSubmit={requisicaoCurso} >
-                                                            <button 
-                                                            disabled 
-                                                            type="submit" 
-                                                            className="botaoCadastroComentarioBeneficio_desable_g2"
+                                                            <button
+                                                                disabled
+                                                                type="submit"
+                                                                className="botaoCadastroComentarioBeneficio_desable_g2"
                                                             >Inscrever-se</button>
                                                         </form>
                                                     </div>

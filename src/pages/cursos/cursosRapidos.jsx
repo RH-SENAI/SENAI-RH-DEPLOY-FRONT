@@ -187,12 +187,11 @@ export default function CursosRapidos() {
     const time = async () => {
         await delay(3000);
     }
-
     const OpenModal = () => {
         setShowModal(prev => !prev);
     }
 
-    function listarCursos() {
+    async function listarCursos() {
         // debugger;
         var longitude;
         var latitude
@@ -202,99 +201,74 @@ export default function CursosRapidos() {
             longitude = position.coords.longitude;
             latitude = position.coords.latitude;
         });
-        time();
+        // time();
         var distanceBase = 150000;
         if (userDistance != 0) {
             distanceBase = userDistance * 1000
         }
-        api('/Cursos')
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    setListaCursos(resposta.data)
-                }
-            })
-            // .then(resposta => {
-            //     console.log("entrei no ponto dem")
-            //     if (resposta.status === 200) {
-            //         console.log("entrei no if")
-            //         const dadosCurso = resposta.data;
-            //         console.log(dadosCurso)
-            //         var tamanhoJson = Object.keys(dadosCurso).length;
-            //         console.warn(tamanhoJson);
+        const resposta = await api('/Cursos')
 
-            //         var i = 0
+        console.log('cursos')
+        console.log(resposta)
+               
+        
+            const dadosCurso = resposta.data;
+            var tamanhoJson = Object.keys(dadosCurso).length;
+            var i = 0
+            do {
+                let stringLocalCurso = JSON.stringify(dadosCurso);
+                let objLocalCurso = JSON.parse(stringLocalCurso);
+                var localCurso = objLocalCurso[i]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
+                console.log('objLocalCurso')
+                console.log(objLocalCurso)
 
-            //         do {
-            //             console.log("entrei no DO")
-            //             let stringLocalCurso = JSON.stringify(dadosCurso);
-            //             let objLocalCurso = JSON.parse(stringLocalCurso);
-            //             // console.warn(objLocalCurso);
-            //             var localCurso = objLocalCurso[i]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
-            //             console.log('localCurso')
-            //             console.log(localCurso)
+                // ----> Localização 
 
-            //             // ----> Localização 
+                var stringProblematica = `/json?origins=09172110&destinations=${localCurso}&units=km&key=AIzaSyB7gPGvYozarJEWUaqmqLiV5rRYU37_TT0`                
 
-            //             var stringProblematica = `/json?origins=${latitude},${longitude}&destinations=${localCurso}&units=km&key=AIzaSyB7gPGvYozarJEWUaqmqLiV5rRYU37_TT0`
-            //             console.log(stringProblematica)
+                var respostaLocal = await apiMaps(stringProblematica)
 
-            //             const respostaLocal = axios('https://maps.googleapis.com/maps/api/distancematrix' + stringProblematica);
-            //             console.log('respostaLocal')
-            //             console.log(respostaLocal)
-            //             let string = JSON.stringify(respostaLocal.data);
-            //             let obj = JSON.parse(string);
-            //             // console.warn(obj)
 
-            //             let distance = obj['rows'][0]['elements'][0]['distance'].value
-            //             // console.log(distance)
-            //             if (respostaLocal.status == 200) {
-            //                 console.log("entrei no DO e no IF")
-            //                 // console.warn('Localização encontrada!');
-            //                 if (distance <= distanceBase) {
-            //                     console.log('distance');
-            //                     console.log(distance);
-            //                     //this.setState({ localizacaoCurso: dadosLocalizacao })
-            //                     // console.warn(distance);
-            //                     // console.warn('Localização está no alcance');
-            //                     // console.warn(this.state.listaCurso);
+                if (respostaLocal.status === 200) {
+                    let string = JSON.stringify(respostaLocal.data);
+                    let obj = JSON.parse(string);
+                    let distance = obj['rows'][0]['elements'][0]['distance'].value
+                    if (distance <= distanceBase) {
+                        let stringCurso = JSON.stringify(dadosCurso);
+                        var objCurso = JSON.parse(stringCurso);
+                        var curso = objCurso[i]
+                        console.log('i')
+                        console.log(i)
+                        listaCursos.push(curso);
 
-            //                     let stringCurso = JSON.stringify(dadosCurso);
-            //                     var objCurso = JSON.parse(stringCurso);
-            //                     //var lugarCurso = objCurso[u]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
-
-            //                     var curso = objCurso[i]
-            //                     // console.warn(curso)
-            //                     listaCursos.push(curso);
-
-            //                 }
-            //                 else if (distance > distanceBase) {
-            //                     console.log(distance);
-            //                     console.log('Localização fora do alcance');
-            //                 }
-            //             }
-            //             // console.warn('Curso encontrado');
-
-            //             i++
-            //         } while (i < tamanhoJson);
-
-            //         if (listaCursos == '') {
-            //             setSwitchAtive(true)
-            //         }
-            //         else {
-            //             setSwitchAtive(false)
-            //         }
-
-            //         // this.setState({ contadorCurso: i })
-            //         // console.warn(this.state.contadorCurso)
-            //         // console.log('Lista')
-            //         // console.log(resposta)
-            //         setListaCursos(resposta.data)
-            //     }
-            // })
-            .catch(erro => console.log(erro))
+                    }
+                    else if (distance > distanceBase) {                       
+                    }
+                }                
+                // console.log('Curso encontrado');
+                i++
+                
+            } while (i <= tamanhoJson)
+            if (listaCursos == '') {
+                setSwitchAtive(true)
+            }
+            else {
+                setSwitchAtive(false)
+            }
+            // this.setState({ contadorCurso: i })
+            // console.warn(this.state.contadorCurso)
+            // console.log('Lista')
+            // console.log(resposta)
+            // setListaCursos(resposta.data)          
     }
 
-    useEffect(listarCursos, []);
+
+    useEffect(() => {
+        listarCursos()
+        return (
+          setListaCursos([])
+        )
+      }, []);
 
     function Excluir(idCurso) {
 
@@ -402,7 +376,6 @@ export default function CursosRapidos() {
                         <div className='container_wrap_curso_g2'>
                             {
                                 searchInput.length > 0 ?
-
                                     filteredResults.map((curso) => {
                                         return (
                                             <div className='espacamento_curso_g2'>
