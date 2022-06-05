@@ -7,7 +7,7 @@ import estrela from "../../assets/img/star.png"
 import iconPerfil from "../../assets/img/telaPerfil.png"
 import axios from "axios";
 import {
-    VictoryBar, VictoryPie, VictoryChart, VictoryLabel, VictoryLine,
+    VictoryBar, VictoryPie, VictoryChart, VictoryLabel,
     VictoryTheme
 } from 'victory';
 import ImgDashboard from '../../assets/img/telaDeAcessoLight.svg'
@@ -15,38 +15,29 @@ import {
     parseJwt
     // usuarioAutenticado
 } from '../../services/auth';
-import Navbar from "../../components/MenuHamburguer/Nav";
-import HeaderFuncionario from "../../components/header/headerFuncionario";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+import Chart from "react-apexcharts";
+
 
 export default function Dashboard() {
-    const [idUsuario, setIdUsuario] = useState(0);
+
+    // States
     const [medSatisfacaoGeral, setMedSatisfacaoGeral] = useState(0);
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [listaAtividades, setListaAtividades] = useState([]);
-    const [usuario, setUsuario] = useState([])
+    const [usuario, setUsuario] = useState([]);
     const [notaProdutividade, setNotaProdutividade] = useState(0);
-    const [sampleData, setSampleData] = useState([])
+    const [sampleData, setSampleData] = useState([]);
+    const [listaHistorico, setListaHistorico] = useState([]);
+    const [listaUsuarioLot, setListaUsuariosLot] = useState([]);
+    const [idUsuarioLot, setIdUsuarioLot] = useState(0);
 
-    // const data = {
-    //     labels: ['Positivo'],
-    //     datasets: [
-    //       {
-    //         label: '# of Votes',
-    //         // data: [listaUsuarios[0].medSatisfacaoGeral * 100],
-    //         backgroundColor: [
-    //           '#07bc0c'
-    //         ],
-    //         borderColor: [
-    //             '#07bc0c'
-    //         ],
-    //         borderWidth: 2,
-    //       },
-    //     ],
-    //   };
+    // Variaveis
+    const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+    const dataAtual = new Date().getMonth();
+
+
+
 
     function ListarUsuario() {
 
@@ -64,7 +55,6 @@ export default function Dashboard() {
                 if (resposta.status === 200) {
                     setListaUsuarios([resposta.data])
 
-                    console.log(resposta)
 
                 }
 
@@ -73,9 +63,10 @@ export default function Dashboard() {
             .catch(erro => console.log(erro))
 
     }
-    function ListarMinhasAtividades() {
 
-        axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${parseJwt().jti}`, {
+    function BuscarHistorico() {
+
+        axios.get(`https://apigrupo3.azurewebsites.net/api/HistoricoA/Listar/${parseJwt().jti}`, {
 
             headers: {
 
@@ -87,97 +78,169 @@ export default function Dashboard() {
             .then((resposta) => {
 
                 if (resposta.status === 200) {
-                    setListaAtividades(resposta.data)
+                    setListaHistorico(resposta.data)
 
-                    console.log(resposta)
-
-                    const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
-                        .map((p) => {
-
-                            return parseInt(p.dataConclusao.split('-')[2]);
-                        });
-
-                    const d1_5 = dataFinalizacao.filter(d => d <= 5).length
-                    // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
-                    // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
-                    // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
-                    // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
-                    // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
-                    setSampleData(
-                        [
-                            { x: 1, y: d1_5 },
-                            { x: 2, y: 2 },
-                            { x: 3, y: 4 },
-                            { x: 4, y: 5 },
-                            { x: 5, y: 10 },
-                            { x: 6, y: 11 }
-                        ])
-
+                    console.log(resposta.data)
 
                 }
+
             })
 
             .catch(erro => console.log(erro))
 
     }
-    // function ListarMinhasAtividadesExtra() {
 
-    //     axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividadeExtra/${idUsuario}`, {
+    const Cores = (nota) => {
+        console.log()
+        if (nota >= 0 && nota <= 0.33)
+            return '#ff4500';
 
-    //         headers: {
+        else if (nota > 0.33 && nota <= 0.66)
+            //return "#162fba";
+            return '#1e90ff';
 
-    //             Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
-    //         }
+        else return 'limegreen'
+    }
 
-    //     })
+    function generateData(mes) {
 
-    //         .then((resposta) => {
+        let historicos = []
 
-    //             if (resposta.status === 200) {
-    //                 setListaAtividades([resposta.data])
+        for (let x = 0; x < 30; x++) {
 
-    //                 console.log(resposta)
+            historicos.push({
+                x: `${x + 1}`,
+                y: 0
+            })
+        }
 
-    //             }
+        listaHistorico.map((historico) => {
 
-    //         })
+            let dia = historico.atualizadoEm.substring(8, 10)
+            let index = historicos.findIndex(h => h.x == parseInt(`${dia}`))
 
-    //         .catch(erro => console.log(erro))
+            if (historicos[index] !== undefined && historico.atualizadoEm.substring(6, 7) == mes) {
+                historicos[index].y = historico.qtdDeTotalAtividade
+            }
+        })
 
-    // }
+        return historicos;
+    }
 
-    useEffect(() => {
-        ListarUsuario()
-        return (
-            setListaUsuarios([])
-        )
-    }, []);
-    // useEffect(ListarMinhasAtividades, [])
-    // useEffect(ListarMinhasAtividadesExtra, [])
+    function ListarMesesAnteriores(mes) {
+        let mesAtual = mes
+        let listaMeses = []
+        let contador = 5
 
-    // const sampleData = [
-    //     { x: 'satisfacao', y: nivelSatisfacao },
-    //     { x: 'satisfacao', y: nivelSatisfacao },
+        while (contador != 0) {
+
+            listaMeses.push({
+                name: meses[mesAtual],
+                data: generateData(mesAtual + 1)
+            })
+
+            if (mesAtual == 0) {
+                mesAtual = 12
+            }
+
+            contador--;
+            mesAtual--;
+        }
+
+        console.log(listaMeses)
+        return listaMeses
+    }
 
 
+    function BuscarListaDeUsuariosLot() {
+        axios.get(`https://apigrupo3.azurewebsites.net/api/Usuarios/Listar/Lotacao/${parseJwt().jti}`, {
 
-    // ];
+            headers: {
 
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+
+        })
+
+            .then((resposta) => {
+
+                if (resposta.status === 200) {
+
+                    setListaUsuariosLot(resposta.data)
+
+                }
+
+            })
+
+            .catch(erro => console.log(erro))
+    }
+
+    function BuscarHistoricoUsuarioLot(idUsuarioLot) {
+
+        axios.get(`https://apigrupo3.azurewebsites.net/api/HistoricoA/Listar/${idUsuarioLot}`, {
+
+            headers: {
+
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+
+        })
+
+            .then((resposta) => {
+
+                if (resposta.status === 200) {
+                    setListaHistorico(resposta.data)
+
+                    console.log(resposta.data)
+
+                }
+
+            })
+
+            .catch(erro => console.log(erro))
+
+    }
+
+
+    function MudarDashBoard(idUsuarioLot)
+    {
+
+        setListaUsuarios([listaUsuarioLot.find((usuario) =>  { if(usuario.idUsuario == idUsuarioLot) return usuario})])
+        
+        BuscarHistoricoUsuarioLot(idUsuarioLot)
+    }
+
+
+    useEffect(ListarUsuario, []);
+    useEffect(BuscarHistorico, []);
+    useEffect(BuscarListaDeUsuariosLot, []);
 
 
     return (
         <div>
-            <div className='navbarF'>
-                <Navbar />
-            </div>
-            <div className='headerF'>
-                <HeaderFuncionario />
-            </div>
+            <Header />
             <main>
                 <div className="container">
                     <div className="g3_boxTituloDashboard">
                         <span className="g3_tituloDashboard">DASHBOARD</span>
+
+
+                        <select
+                            name="idUsuarioLot"
+                            value={idUsuarioLot}
+                            onChange={(event) => { setIdUsuarioLot(event.target.value); MudarDashBoard(event.target.value)}}
+                        >
+                            {listaUsuarioLot.map((usuario) => {
+                                return (<option key={usuario.idUsuario} value={usuario.idUsuario}>{usuario.nome}</option>)
+                            })}
+                        </select>
+
+                        <select>
+                            
+                        </select>
                     </div>
+
+
                     <div className="g3_containerGraficos">
                         {
                             listaUsuarios.map((usuario) => {
@@ -185,8 +248,8 @@ export default function Dashboard() {
                                     <div className='g3_organizadorDashboard'>
                                         <div className="g3_boxGraficosLeft">
                                             <div className='g3_containerProdutividade'>
-                                                <div className="g3_graficoProdutividade">
-                                                    {/* {
+                                                {/* <div className="g3_graficoProdutividade"> */}
+                                                {/* {
                                                     listaAtividades.map((atividade) => {
                                                         return (
                                                             <VictoryChart
@@ -212,7 +275,7 @@ export default function Dashboard() {
                                                             </VictoryChart>
                                                         )
                                                     })} */}
-                                                    <VictoryChart
+                                                {/* <VictoryChart
                                                         domainPadding={{ x: 30 }}
 
                                                     >
@@ -225,11 +288,11 @@ export default function Dashboard() {
                                                             }}
                                                             labelComponent={<VictoryLabel dy={20} />}
                                                         />
-                                                    </VictoryChart>
-                                                    <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
-                                                </div>
-                                                {/* Grafico produtividade unidade */}
-                                                {/* <div className='g3_graficoProdutividadeUni'>
+                                                    </VictoryChart> */}
+                                                {/* <span className='g3_spanGraficoP'>Tarefas Pessoais</span> */}
+                                            </div>
+                                            {/* Grafico produtividade unidade */}
+                                            {/* <div className='g3_graficoProdutividadeUni'>
                                                     <VictoryChart
                                                         domainPadding={{ x: 30 }}
                                                     >
@@ -246,96 +309,137 @@ export default function Dashboard() {
                                                     <span className='g3_spanGraficoP'>Tarefas Pessoais</span>
                                                 </div> */}
 
-                                            </div>
+                                            {/* </div> */}
                                             <div className="g3_boxGraficosBaixo">
                                                 <div className="g3_containerGraficoLeft">
                                                     <div className="g3_graficoSatisfacaoPessoal">
-                                                        <VictoryPie
-                                                            events={[{
-                                                                target: "data",
-                                                                eventHandlers: {
-                                                                    onClick: () => {
-                                                                        return [
-                                                                            {
-                                                                                target: "data",
-                                                                                mutation: ({ style }) => {
-                                                                                    return style.fill === "#000000" ? null : { style: { fill: "#000000" } };
-                                                                                }
-                                                                            }, {
-                                                                                target: "labels",
-                                                                            }
-                                                                        ];
-                                                                    }
-                                                                }
-                                                            }]}
-                                                            innerRadius={100}
-                                                            colorScale={["#c20004", "#b3b3b3"]}
-                                                            data={[
-                                                                { x: usuario.medSatisfacaoGeral * 100 + '%', y: usuario.medSatisfacaoGeral * 100 },
-                                                                { x: 100 - usuario.medSatisfacaoGeral * 100 + '%', y: 100 - usuario.medSatisfacaoGeral * 100 },
 
+                                                        <Chart
+                                                            type="radialBar"
 
-                                                            ]}
-
-
-                                                        />
-
-                                                        {/* GRAFICO SATISFACAO NOVO */}
-
-                                                        {/* <Doughnut data={{
-                                                            labels: ['Positivo'],
-                                                            datasets: [
-                                                                {
-                                                                    data: [usuario.medSatisfacaoGeral * 100, 100 - usuario.medSatisfacaoGeral  * 100],
-                                                                    backgroundColor: [
-                                                                        '#07bc0c',
-                                                                        '#f2f2f2'
-                                                                    ],
-                                                                    borderColor: [
-                                                                        '#07bc0c',
-                                                                        '#f2f2f2'
-                                                                    ],
-                                                                    borderWidth: 2,
-
+                                                            series={[usuario.medSatisfacaoGeral * 100]}
+                                                            options={{
+                                                                chart: {
+                                                                    height: 350,
+                                                                    type: 'radialBar'
                                                                 },
-                                                            ]
-                                                        }} /> */}
+                                                                plotOptions: {
+                                                                    radialBar: {
+
+                                                                        startAngle: -135,
+                                                                        endAngle: 225,
+                                                                        hollow: {
+                                                                            margin: 0,
+                                                                            size: '70%',
+                                                                            background: '#fff',
+                                                                            image: undefined,
+                                                                            imageOffsetX: 0,
+                                                                            imageOffsetY: 0,
+                                                                            position: 'front',
+                                                                            dropShadow: {
+                                                                                enabled: true,
+                                                                                top: 3,
+                                                                                left: 0,
+                                                                                blur: 4,
+                                                                                opacity: 0.24
+                                                                            }
+                                                                        },
+
+
+                                                                        track: {
+                                                                            background: '#fff',
+                                                                            strokeWidth: '67%',
+                                                                            margin: 0, // margin is in pixels
+                                                                            dropShadow: {
+                                                                                enabled: true,
+                                                                                top: -3,
+                                                                                left: 0,
+                                                                                blur: 4,
+                                                                                opacity: 0.35
+                                                                            }
+                                                                        },
+
+                                                                        dataLabels: {
+                                                                            show: true,
+                                                                            name: {
+                                                                                offsetY: -10,
+                                                                                show: true,
+                                                                                color: '#888',
+                                                                                fontSize: '17px'
+                                                                            },
+                                                                            value: {
+                                                                                fontFamily: 'Montserrat',
+                                                                                formatter: function (val) {
+                                                                                    return parseInt(val);
+                                                                                },
+                                                                                color: '#111',
+                                                                                fontSize: '36px',
+                                                                                show: true,
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                fill: {
+                                                                    type: 'gradient',
+                                                                    gradient: {
+                                                                        shade: 'dark',
+                                                                        type: 'horizontal',
+                                                                        shadeIntensity: 0.5,
+                                                                        colorStops: [{
+                                                                            offset: 10,
+                                                                            color: Cores(usuario.medSatisfacaoGeral),
+                                                                            opacity: 1
+                                                                        },
+
+                                                                        ],
+
+                                                                        opacityFrom: 1,
+                                                                        opacityTo: 1,
+                                                                        stops: [0, 100]
+                                                                    }
+                                                                },
+
+                                                                stroke: {
+                                                                    lineCap: 'round'
+                                                                },
+
+                                                                labels: ['Satisfação Geral']
+
+                                                            }
+                                                            }
+
+                                                            width={370}
+                                                        />
                                                     </div>
-                                                    <span>Satisfação Pessoal</span>
                                                 </div>
                                                 <div className="g3_containerGraficoRight">
-                                                    <div className="g3_graficoSatisfacaoPessoal">
-                                                        <VictoryPie
-                                                            events={[{
-                                                                target: "data",
-                                                                eventHandlers: {
-                                                                    onClick: () => {
-                                                                        return [
-                                                                            {
-                                                                                target: "data",
-                                                                                mutation: ({ style }) => {
-                                                                                    return style.fill === "#000000" ? null : { style: { fill: "#000000" } };
-                                                                                }
-                                                                            }, {
-                                                                                target: "labels",
-                                                                            }
-                                                                        ];
-                                                                    }
-                                                                }
-                                                            }]}
-                                                            innerRadius={100}
-                                                            colorScale={["#c20004", "#b3b3b3"]}
-                                                            data={[
-                                                                { x: usuario.mediaAvaliacao, y: usuario.mediaAvaliacao * 10 },
-                                                                { x: 10 - usuario.mediaAvaliacao, y: 100 - usuario.mediaAvaliacao * 10 },
 
+                                                    < Chart
+                                                        type="heatmap"
+                                                        series={
+                                                            ListarMesesAnteriores(dataAtual)
+                                                        }
+                                                        options={{
+                                                            chart: {
+                                                                height: 350,
+                                                                type: 'heatmap',
+                                                            },
+                                                            dataLabels: {
+                                                                enabled: false
+                                                            },
+                                                            colors: ["#008FFB"],
+                                                            title: {
+                                                                text: 'HeatMap Chart (Single color)'
+                                                            },
+                                                            title: {
+                                                                text: 'HeatMap Chart with Color Range'
+                                                            },
+                                                        }}
 
-                                                            ]}
+                                                        height={350}
+                                                        width={500}
 
-
-                                                        />
-                                                    </div>
-                                                    <span>Avaliação Pessoal</span>
+                                                    />
                                                 </div>
                                                 {/* Grafico quantidade Funcionarios unidade */}
                                                 {/* <div className='containerGraficoPizza'>
@@ -393,9 +497,9 @@ export default function Dashboard() {
                                             </div>
 
                                         </div> */}
-                                        <div className="g3_boxImg">
+                                        {/* <div className="g3_boxImg">
                                             <img src={ImgDashboard} className='g3_imgDashboard' />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 )
                             }
