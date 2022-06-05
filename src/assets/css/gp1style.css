@@ -333,6 +333,7 @@
     font-size: 1.463rem;
     align-items: center;
     font-weight: 600;
+    width: 65%;
 }
 
 .G1_recompensa_box {
@@ -775,7 +776,7 @@
 
 .descricao_atividade_modal {
     /* width: 100%; */
-    margin: 20px 0;
+    margin: 17px 0;
     font-size: 30px;
 }
 
