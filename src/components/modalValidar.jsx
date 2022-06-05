@@ -7,6 +7,7 @@ import '../assets/css/gp1style.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { listarAtividadesValidar } from '../pages/cadastrarAtividades/cadastrarAtividades'
+import moment from 'moment';
 
 export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade, macete }) => {
 
@@ -120,6 +121,12 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
                             <div className="text_modal_validar">
                                 <label className='label_modal'>Descrição</label>
                                 <p className="descricao_atividade_modal">{atividade.descricaoAtividade}</p>
+                            </div>
+                            <div className="text_modal_validar">
+                                <label className='label_modal'>Nome Funcionário</label>
+                                <p className="descricao_atividade_modal">{atividade.nomeFuncionario}</p>
+                                <label className='label_modal'>Data de Conclusão</label>
+                                <p className="descricao_atividade_modal">{moment(atividade.dataConclusao, "YYYYDDMM").format('L')}</p>
                             </div>
                             {/* <img className="anexo_validar" src={"https://armazenamentogrupo3.blob.core.windows.net/amazenamento-simples-grp1/" + atividade.anotacoes} alt="" /> */}
                             <a className="anexo_validar" href={"https://armazenamentogrupo3.blob.core.windows.net/amazenamento-simples-grp1/" + atividade.anotacoes}>Clique aqui para baixar o arquivo &#8681;</a>
