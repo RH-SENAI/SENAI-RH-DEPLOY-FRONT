@@ -98,7 +98,7 @@ export default function CursosRapidos() {
             .then(function (response) {
                 console.log(response);
                 console.log("Favoritou o curso" + idCurso)
-                listarCursos();
+                // listarCursos();
             })
             .catch(erro => console.log(erro))
     }
@@ -144,7 +144,7 @@ export default function CursosRapidos() {
                             if (respostaExcluir.status == 204) {
                                 setActive(!active);
                                 listarFavoritosCursos();
-                                listarCursos();
+                                // listarCursos();
                             }
                         }
                         p++
@@ -157,12 +157,12 @@ export default function CursosRapidos() {
                     if (cursoId != id) {
                         favoritarCurso(id)
                         listarFavoritosCursos();
-                        listarCursos();
+                        // listarCursos();
                     }
                 }
             }
             listarFavoritosCursos();
-            listarCursos();
+            // listarCursos();
         } catch (error) {
             console.log(error);
         }
@@ -191,6 +191,12 @@ export default function CursosRapidos() {
         setShowModal(prev => !prev);
     }
 
+    // function distanciaDoInput(){
+    //     userDistance + value
+    // }
+
+    const [distanceBase, setDistanceBase]=useState(150000)
+
     async function listarCursos() {
         // debugger;
         var longitude;
@@ -202,82 +208,72 @@ export default function CursosRapidos() {
             latitude = position.coords.latitude;
         });
         // time();
-        var distanceBase = 150000;
+        // var distanceBase = 150000;
         if (userDistance != 0) {
-            distanceBase = userDistance * 1000
+            setDistanceBase(userDistance * 1000)
         }
         const resposta = await api('/Cursos')
+        const dadosCurso = resposta.data;
+        var tamanhoJson = Object.keys(dadosCurso).length;
+        var i = 0
 
-        console.log('cursos')
-        console.log(resposta)
-               
-        
-            const dadosCurso = resposta.data;
-            var tamanhoJson = Object.keys(dadosCurso).length;
-            var i = 0
-            do {
-                let stringLocalCurso = JSON.stringify(dadosCurso);
-                let objLocalCurso = JSON.parse(stringLocalCurso);
-                var localCurso = objLocalCurso[i]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
-                console.log('objLocalCurso')
-                console.log(objLocalCurso)
+        do {
+            let stringLocalCurso = JSON.stringify(dadosCurso);
+            let objLocalCurso = JSON.parse(stringLocalCurso);
+            var localCurso = objLocalCurso[i]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
+            console.log('objLocalCurso')
+            console.log(objLocalCurso)
 
-                // ----> Localização 
+            // ----> Localização 
 
-                var stringProblematica = `/json?origins=09172110&destinations=${localCurso}&units=km&key=AIzaSyB7gPGvYozarJEWUaqmqLiV5rRYU37_TT0`                
+            var stringProblematica = `/json?origins=${latitude},${longitude}&destinations=${localCurso}&units=km&key=AIzaSyB7gPGvYozarJEWUaqmqLiV5rRYU37_TT0`
+            var respostaLocal = await apiMaps(stringProblematica)
+            if (respostaLocal.status === 200) {
+                let string = JSON.stringify(respostaLocal.data);
+                let obj = JSON.parse(string);
+                let distance = obj['rows'][0]['elements'][0]['distance'].value
+                if (distance <= distanceBase) {
+                    let stringCurso = JSON.stringify(dadosCurso);
+                    var objCurso = JSON.parse(stringCurso);
+                    var curso = objCurso[i]
+                    console.log('i')
+                    console.log(distance)
+                    listaCursos.push(curso);
 
-                var respostaLocal = await apiMaps(stringProblematica)
+                    //  var listaDeCursosEncontrados = curso
 
-
-                if (respostaLocal.status === 200) {
-                    let string = JSON.stringify(respostaLocal.data);
-                    let obj = JSON.parse(string);
-                    let distance = obj['rows'][0]['elements'][0]['distance'].value
-                    if (distance <= distanceBase) {
-                        let stringCurso = JSON.stringify(dadosCurso);
-                        var objCurso = JSON.parse(stringCurso);
-                        var curso = objCurso[i]
-                        console.log('i')
-                        console.log(i)
-                        listaCursos.push(curso);
-
-                    }
-                    else if (distance > distanceBase) {                       
-                    }
-                }                
-                // console.log('Curso encontrado');
-                i++
-                
-            } while (i <= tamanhoJson)
-            if (listaCursos == '') {
-                setSwitchAtive(true)
+                }
+                else if (distance > distanceBase) {
+                }
             }
-            else {
-                setSwitchAtive(false)
-            }
-            // this.setState({ contadorCurso: i })
-            // console.warn(this.state.contadorCurso)
-            // console.log('Lista')
-            // console.log(resposta)
-            // setListaCursos(resposta.data)          
+            // console.log('Curso encontrado');
+            i++
+        } while (i < tamanhoJson | objCurso)
+        if (listaCursos == '') {
+            setSwitchAtive(true)
+        }
+        else {
+            setSwitchAtive(false)
+        }
+        setCount(i)
+
+        // this.setState({ contadorCurso: i })
+        // console.warn(this.state.contadorCurso)
+        console.log('Lista')
+        console.log(listaCursos)
     }
 
+    const [count, setCount] = useState(0)
 
     useEffect(() => {
         listarCursos()
-        return (
-          setListaCursos([])
-        )
-      }, []);
+    }, [])
 
     function Excluir(idCurso) {
-
         api.delete('/Cursos/Deletar/' + idCurso)
-
             .then(resposta => {
                 if (resposta.status === 204) {
                     listarCursos()
-
                 }
             })
             .catch(erro => {
@@ -360,12 +356,14 @@ export default function CursosRapidos() {
                         <p>Minhas moedas:</p> <img className='coin_beneficio_cima_g2' src={coin} alt="coin" /> <p>{listaUsuario.saldoMoeda}</p>
                     </div>
 
+
                     <input
                         id='5'
                         type="number"
                         placeholder='150 km'
                         value={userDistance}
-                        name="distancia"
+                        name ="distancia"
+                        // onBlur={  }
                         onChange={(evt) => setUserDistance(evt.target.value)}
                     />
                 </div>
@@ -426,8 +424,8 @@ export default function CursosRapidos() {
                                     :
                                     listaCursos.map((curso) => {
                                         return (
-                                            <div className='espacamento_curso_g2'>
-                                                <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
+                                            <div key={curso.idCurso} className='espacamento_curso_g2'>
+                                                <section id='imagem' className='box_curso_g2'>
                                                     <div className='banner_img_curso_g2'>
                                                         {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
                                                     </div>
