@@ -11,6 +11,7 @@ import moedas from '../../assets/img/moedinha.svg'
 import Footer from "../../components/footer"
 import Navbar from '../../components/MenuHamburguer/Nav';
 import HeaderFuncionario from '../../components/header/headerFuncionario';
+import { parseJwt } from '../../services/auth';
 
 export default function TodasAtividades() {
     const [listaAtividades, setListaAtividades] = useState([]);
@@ -25,7 +26,7 @@ export default function TodasAtividades() {
     }
 
     function listarAtividades() {
-        axios.get("http://apirhsenaigp1.azurewebsites.net/api/Atividades"
+        axios.get("http://localhost:5000/api/Atividades"
             , {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -33,7 +34,10 @@ export default function TodasAtividades() {
             })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    setListaAtividades(resposta.data)
+                    let lista = resposta.data
+
+                    let listaAtualizada = lista.filter(a => a.idGestorCadastro == parseJwt().jti)
+                    setListaAtividades(listaAtualizada)
                     console.log(resposta.data)
                 }
             })

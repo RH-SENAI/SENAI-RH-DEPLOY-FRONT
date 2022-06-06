@@ -5,6 +5,7 @@ import Perfil from '../../assets/img/perfil.png'
 import { useHistory } from "react-router-dom";
 import logout from '../../assets/img/logout.png'
 import setaBaixo from '../../assets/img/seta-para-baixo.png'
+import { parseJwt } from '../../services/auth';
 
 
 export default function HeaderFuncionario() {
@@ -68,7 +69,10 @@ export default function HeaderFuncionario() {
                 </div>
 
                 <div className="img_perfil_g2" >
-                    <Link to="/perfil"> <img src={Perfil} alt="Meu Perfil" /> </Link>
+                    {parseJwt().foto == 'imagem-padrao.png' ? 
+                    <Link to="/perfil"> <img src={Perfil}  alt="Meu Perfil" /> </Link> 
+                    : 
+                    <Link to="/perfil"> <img className='foto_header' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + parseJwt().foto} alt="Meu Perfil" /> </Link>}
                 </div>
 
 

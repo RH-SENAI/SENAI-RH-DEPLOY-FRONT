@@ -13,6 +13,7 @@ import moedas from '../../assets/img/moedinha.svg'
 import Footer from "../../components/footer"
 import Navbar from '../../components/MenuHamburguer/Nav';
 import HeaderFuncionario from '../../components/header/headerFuncionario';
+import { parseJwt } from '../../services/auth';
 
 
 export default function TodasAtividades() {
@@ -29,7 +30,8 @@ export default function TodasAtividades() {
     }
 
     function listarUsuariosRank() {
-        axios.get("http://apirhsenaigp1.azurewebsites.net/api/Usuarios/Ranking"
+        let idGestor = parseJwt().jti
+        axios.get("http://localhost:5000/api/Usuarios/Ranking/" + idGestor
             , {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -66,7 +68,7 @@ export default function TodasAtividades() {
                                 <div key={usuario.idUsuario}>
                                     <div className="G1_usuario_card">
                                         <p className="G1_posicao G1_container_card">{index++}</p>
-                                        <img className="G1_container_card" src={FotoRank} alt="Foto do Usuario" />
+                                        <img className="G1_container_card G1_foto_ranking" src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + usuario.caminhoFotoPerfil} alt="Foto do Usuario" />
                                         <p className="G1_nome_usuario G1_container_card">{usuario.nome}</p>
                                         <div className="G1_organizar_trofeus">
                                             {/* <Icons></Icons> */}

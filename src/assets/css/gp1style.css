@@ -272,6 +272,10 @@
     /* background-color: #08b810;     */
 }
 
+.G1_foto_ranking{
+    width: 4%;
+    object-fit: contain;
+}
 .G1_container_ranking{
     height: 100%;
 }
@@ -522,6 +526,7 @@
 
 .G1_container_card{
     margin: 0 10% 0 10%;
+    padding: 6px;
 }
 
 .G1_posicao{
@@ -751,7 +756,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 29vh;
+    height: 43vh;
 }
 
 .organizar_sessao_modalUser{
