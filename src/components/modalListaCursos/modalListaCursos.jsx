@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Modal from 'react-modal';
 import { parseJwt } from "../../services/auth";
 import relogio from '../../assets/img/relogio.svg'
-import local from '../../assets/img/local.svg'
+import local from '../../assets/img/local.png'
 import data from '../../assets/img/data.svg'
 import estrelaSozinha from '../../assets/img/estrelaSozinha.svg'
 import modelo from '../../assets/img/modelo.svg'
@@ -117,10 +117,8 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, lista
             .catch(erro => console.log(erro))
     }
 
-
-     //Limpar os states/input
-
-     function limparInput() {
+    //Limpar os states/input
+    function limparInput() {
         setComentarioCurso1('')
         setValorAvalicao(0)
     }
@@ -189,12 +187,46 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, lista
 
                             </div>
 
+                            <dv className='dados_modal_beneficio_g2'>
+
+                                <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={local} alt="mapa" />
+                                    {
+                                        curso.modalidadeCurso == true ? (
+                                            <div>
+                                                <p>Presencial</p>
+                                            </div>
+                                        )
+                                            :
+                                            (
+                                                <div>
+                                                    <p>EAD</p>
+                                                </div>
+                                            )
+                                    }
+                                </div>
+
+
+                                <div className='icone_center_modal_beneficio_g2'>
+                                    <img src={calendar} alt="calendário" />
+                                    <p>
+                                        {Intl.DateTimeFormat("pt-BR", {
+                                            year: 'numeric', month: 'numeric', day: 'numeric',
+                                        }).format(new Date(curso.dataFinalizacao))}
+                                    </p>
+                                </div>
+
+                            </dv>
+
                             <div className='container_registro_beneficio_g2'>
                                 <div className='box_dados_registro_beneficio_g2'>
-                                    <span> Adicionado por: </span> <p>{curso.idEmpresaNavigation.nomeEmpresa}</p>
+                                    <span> Empresa: </span> <p>{curso.idEmpresaNavigation.nomeEmpresa}</p>
                                 </div>
                                 <div className='box_dados_registro_beneficio_g2'>
-                                    <span>Empresa:</span> <p>{curso.idEmpresaNavigation.nomeEmpresa}</p>
+                                    <span>Email:</span> <p>{curso.idEmpresaNavigation.emailEmpresa}</p>
+                                </div>
+                                <div className='box_dados_registro_beneficio_g2'>
+                                    <span>Telefone:</span> <p>{curso.idEmpresaNavigation.telefoneEmpresa}</p>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +332,7 @@ export const ModallCurso = ({ showModal, setShowModal, curso, comentarios, lista
                                                             <button
                                                                 disabled
                                                                 type="submit"
-                                                            className="botaoCadastroComentarioBeneficio_desable_g2"
+                                                                className="botaoCadastroComentarioBeneficio_desable_g2"
                                                             >Inscrever-se</button>
                                                         </form>
                                                     </div>

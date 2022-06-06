@@ -11,6 +11,7 @@ import { parseJwt } from "../../services/auth";
 import ReactStars from "react-rating-stars-component";
 import Heart from "react-heart"
 import Navbar from '../../components/MenuHamburguer/Nav';
+import apiMaps from "../../services/apiMaps";
 
 export default function ListaBeneficios() {
 
@@ -52,7 +53,7 @@ export default function ListaBeneficios() {
                             if (respostaExcluir.status == 204) {
                                 setActive(!active);;
                                 listarFavoritosDescontos();
-                                listarBeneficios();
+                                // listarBeneficios();
                             }
                         }
                         p++
@@ -65,12 +66,12 @@ export default function ListaBeneficios() {
                     if (descontoId != id) {
                         favoritarDesconto(id)
                         listarFavoritosDescontos();
-                        listarBeneficios();
+                        // listarBeneficios();
                     }
                 }
             }
             listarFavoritosDescontos();
-            listarBeneficios();
+            // listarBeneficios();
         } catch (error) {
             console.log(error);
         }
@@ -84,7 +85,8 @@ export default function ListaBeneficios() {
 
         api.post('/FavoritosDescontos', favo)
             .then(function (response) {
-                listarBeneficios()
+                console.log(response);
+                // listarBeneficios()
             })
             .catch(erro => console.log(erro))
     }
@@ -163,19 +165,102 @@ export default function ListaBeneficios() {
 
     //Listar todos os beneficios
     const [listaBeneficios, setListaBeneficios] = useState([]);
+    const [userDistance, setUserDistance] = useState('');
+    const [distanceBase, setDistanceBase] = useState(150000)
+    const [switchAtive, setSwitchAtive] = useState(false);
+    const [distancias, setDistancias] = useState([])
 
 
-    function listarBeneficios() {
-        api('/Descontos')
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    setListaBeneficios(resposta.data)
+
+
+
+    async function listarBeneficios() {
+        // debugger;
+        var longitude;
+        var latitude
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log("Latitude é :", position.coords.latitude);
+            console.log("Longitude é :", position.coords.longitude);
+            longitude = position.coords.longitude;
+            latitude = position.coords.latitude;
+        });
+        // time();
+        // var distanceBase = 150000;
+        if (userDistance != 0) {
+            setDistanceBase(userDistance * 1000)
+        }
+        const resposta = await api('/Descontos')
+
+        const dadosCurso = resposta.data;
+        var tamanhoJson = Object.keys(dadosCurso).length;
+        var i = 0
+
+        do {
+            let stringLocalCurso = JSON.stringify(dadosCurso);
+            let objLocalCurso = JSON.parse(stringLocalCurso);
+            var localCurso = objLocalCurso[i]['idEmpresaNavigation']['idLocalizacaoNavigation']['idCepNavigation'].cep1
+            console.log('objLocalCurso')
+            console.log(objLocalCurso)
+
+            // ----> Localização 
+
+            var stringProblematica = `/json?origins=${latitude},${longitude}&destinations=${localCurso}&units=km&key=AIzaSyB7gPGvYozarJEWUaqmqLiV5rRYU37_TT0`
+            var respostaLocal = await apiMaps(stringProblematica)
+            if (respostaLocal.status === 200) {
+                let string = JSON.stringify(respostaLocal.data);
+                let obj = JSON.parse(string);
+                let distance = obj['rows'][0]['elements'][0]['distance'].value
+
+                distancias.push({
+                    id: objLocalCurso[i].idDesconto,
+                    distancia: distance
+                })
+
+
+                if (distance <= distanceBase) {
+                    let stringCurso = JSON.stringify(dadosCurso);
+                    var objCurso = JSON.parse(stringCurso);
+                    var curso = objCurso[i]
+                    console.log('i')
+                    console.log(distance)
+                    listaBeneficios.push(curso);
+
+                    //  var listaDeCursosEncontrados = curso
+
                 }
-            })
-            .catch(erro => console.log(erro))
+                else if (distance > distanceBase) {
+                }
+            }
+            // console.log('Curso encontrado');
+            i++
+        } while (i < tamanhoJson | objCurso)
+        if (listaBeneficios == '') {
+            setSwitchAtive(true)
+        }
+        else {
+            setSwitchAtive(false)
+        }
+        setCount(i)
+
+        // this.setState({ contadorCurso: i })
+        // console.warn(this.state.contadorCurso)
+        console.log('Lista')
+        console.log(listaBeneficios)
+
+
+        // .then(resposta => {
+        //     if (resposta.status === 200) {
+        //         setListaBeneficios(resposta.data)
+        //     }
+        // })
+        // .catch(erro => console.log(erro))
     }
 
-    useEffect(listarBeneficios, []);
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        listarBeneficios()
+    }, [])
 
 
 
@@ -274,11 +359,10 @@ export default function ListaBeneficios() {
                                                     <div className='banner_img_beneficio_g2'>
                                                         {<img onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className='beneficio_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + beneficio.caminhoImagemDesconto} alt="imagem do desconto" />}
                                                     </div>
-
                                                     <div className="dados_beneficio_gp2">
 
                                                         <div className="title_estrelas_g2">
-                                                            {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
+                                                            <span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>
 
                                                             <div className="estrelas_beneficio_g2">
                                                                 <ReactStars
@@ -290,13 +374,23 @@ export default function ListaBeneficios() {
                                                                 />
                                                             </div>
                                                         </div>
-
-
-
+                                                        <div className="box_distancia_g2">
+                                                            {
+                                                                distancias.map((dis) => {
+                                                                    if (dis.id == beneficio.idDesconto) {
+                                                                        return (
+                                                                            <div className='container_distancia_g2'>
+                                                                                {dis.distancia} km
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                })
+                                                            }
+                                                        </div>
                                                         <div className="box_baixo_section_beneficio_g2">
-                                                            {<div className='circulo_moeda_beneficio_g2'>
+                                                            <div className='circulo_moeda_beneficio_g2'>
                                                                 <img className='coin_beneficio_g2' src={coin} alt="coin" />  {beneficio.valorDesconto}
-                                                            </div>}
+                                                            </div>
                                                             <div>
                                                                 <div className="favoritar_beneficio_g2">
                                                                     <Heart isActive={listaFavoritosDescontos.some(l => { if (l.idDesconto == beneficio.idDesconto) { return true } return false })} onClick={() => { favoritar(!favorito, beneficio.idDesconto) }} />
@@ -305,8 +399,6 @@ export default function ListaBeneficios() {
                                                             {/* <div> <button onClick={(b) => Excluir(beneficio.idDesconto)} >Excluir</button></div> */}
                                                         </div>
                                                     </div>
-
-
                                                 </section>
                                             </div>
                                         )
@@ -321,11 +413,10 @@ export default function ListaBeneficios() {
                                                     <div className='banner_img_beneficio_g2'>
                                                         {<img onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)} className='beneficio_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + beneficio.caminhoImagemDesconto} alt="imagem do desconto" />}
                                                     </div>
-
                                                     <div className="dados_beneficio_gp2">
 
                                                         <div className="title_estrelas_g2">
-                                                            {<span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>}
+                                                            <span className="title_beneficios_g2" onClick={() => { verifySituacao(cupom, idDescontoModal); OpenModal(); listarComentarioBeneficio(); verifySaldo(listaUsuario.saldoMoeda, beneficio.valorDesconto) }} onClickCapture={() => setIdDescontoModal(beneficio.idDesconto)}> {beneficio.nomeDesconto}</span>
 
                                                             <div className="estrelas_beneficio_g2">
                                                                 <ReactStars
@@ -337,13 +428,23 @@ export default function ListaBeneficios() {
                                                                 />
                                                             </div>
                                                         </div>
-
-
-
+                                                        <div className="box_distancia_g2">
+                                                            {
+                                                                distancias.map((dis) => {
+                                                                    if (dis.id == beneficio.idDesconto) {
+                                                                        return (
+                                                                            <div className='container_distancia_g2'>
+                                                                                {dis.distancia} km
+                                                                            </div>
+                                                                        )
+                                                                    }
+                                                                })
+                                                            }
+                                                        </div>
                                                         <div className="box_baixo_section_beneficio_g2">
-                                                            {<div className='circulo_moeda_beneficio_g2'>
+                                                            <div className='circulo_moeda_beneficio_g2'>
                                                                 <img className='coin_beneficio_g2' src={coin} alt="coin" />  {beneficio.valorDesconto}
-                                                            </div>}
+                                                            </div>
                                                             <div>
                                                                 <div className="favoritar_beneficio_g2">
                                                                     <Heart isActive={listaFavoritosDescontos.some(l => { if (l.idDesconto == beneficio.idDesconto) { return true } return false })} onClick={() => { favoritar(!favorito, beneficio.idDesconto) }} />
@@ -352,8 +453,6 @@ export default function ListaBeneficios() {
                                                             {/* <div> <button onClick={(b) => Excluir(beneficio.idDesconto)} >Excluir</button></div> */}
                                                         </div>
                                                     </div>
-
-
                                                 </section>
                                             </div>
                                         )

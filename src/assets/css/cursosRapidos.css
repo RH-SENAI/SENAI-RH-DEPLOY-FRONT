@@ -77,8 +77,9 @@ div.estrelas_cursos_g2 {
     margin-right: 50px;
     overflow-y: auto;
     direction: ltr;
-    height: 66vh;
-    width: 65vw;
+    height: 59vh;
+    width: 75vw;
+    margin-bottom: 3rem;
 }
 
 .wrap_curso_g2::-webkit-scrollbar {
@@ -131,7 +132,7 @@ div.estrelas_cursos_g2 {
     justify-content: start;
     cursor: pointer;
     /* height: 15px; */
-    margin-top: 1rem;
+    margin-top: 0.6rem;
     font-size: 1.4rem;
     margin-bottom: 30px;
 }
