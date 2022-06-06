@@ -101,8 +101,6 @@ export default function CadastrarAtividades() {
     // }
 
     async function CadastrarAtividade(evento) {
-        console.log("chegastes")
-        debugger;
         setIsLoading(true);
         evento.preventDefault()
 

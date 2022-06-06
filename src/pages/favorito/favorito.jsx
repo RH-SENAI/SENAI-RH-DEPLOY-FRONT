@@ -275,9 +275,9 @@ export default function MeusFavoritos() {
             </div>
 
             <div className="container">
-                <div className='title_caixa_meusFavoritos_g2'>
-                    <h1 className='h1_meusFavoritos_g2'>Meus Favoritos</h1>
-                    <div className='caixa_meusFavoritos_g2'>
+                <div className='title_caixa_curso_g2'>
+                    <h1 className='h1_curso_g2'>Meus Favoritos</h1>
+                    <div className='caixa_curso_g2'>
                         <label ></label>
                         <input
                             type="search"
@@ -303,8 +303,8 @@ export default function MeusFavoritos() {
                             listaFavoritosCurso.map((curso) => {
                                 return (
 
-                                    <div className='espacamento_curso_g2'>
-                                        <section alt={curso.idCurso} key={curso.idCurso} id='imagem' className='box_curso_g2'>
+                                    <dv  key={curso.idCurso} className='espacamento_curso_g2'>
+                                        <section alt={curso.idCurso} id='imagem' className='box_curso_g2'>
                                             <div className='banner_img_curso_g2'>
                                                 {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.idCursoNavigation.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.idCursoNavigation.caminhoImagemCurso} alt="imagem do curso" />}
                                             </div>
@@ -358,7 +358,7 @@ export default function MeusFavoritos() {
                                                 </div>
                                             </div>
                                         </section>
-                                    </div>
+                                    </dv>
                                 )
                             })
                         }

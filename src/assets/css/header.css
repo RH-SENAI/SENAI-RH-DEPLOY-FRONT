@@ -32,7 +32,11 @@
     margin-right: 30vw;
 }
 
-
+.foto_header{
+    border-radius: 280px;
+    width: 3vw;
+    height: 6vh !important;
+}
 
 .header_g2 p {
     margin: 0;
@@ -138,10 +142,11 @@ div.select_header_g2 p:hover, div.select_header_g2:hover {
 
 .img_perfil_g2 {
     background-color: transparent;
+    margin: 0 15px;
 }
 
 .img_perfil_g2 img{
-    width: 3vw;
+    width: 65px;
     object-fit: contain;
     height: 3vh;
 }

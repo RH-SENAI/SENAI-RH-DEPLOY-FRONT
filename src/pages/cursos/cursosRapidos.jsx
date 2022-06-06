@@ -195,7 +195,11 @@ export default function CursosRapidos() {
     //     userDistance + value
     // }
 
-    const [distanceBase, setDistanceBase]=useState(150000)
+    // const [distanceBase, setDistanceBase] = useState(150000)
+
+    const [distancias, setDistancias] = useState([])
+
+
 
     async function listarCursos() {
         // debugger;
@@ -208,9 +212,11 @@ export default function CursosRapidos() {
             latitude = position.coords.latitude;
         });
         // time();
-        // var distanceBase = 150000;
+        var distanceBase = 150000;
+        console.log('userDistance')
         if (userDistance != 0) {
-            setDistanceBase(userDistance * 1000)
+            distanceBase = userDistance * 1000
+            console.log(distanceBase)
         }
         const resposta = await api('/Cursos')
         const dadosCurso = resposta.data;
@@ -232,6 +238,12 @@ export default function CursosRapidos() {
                 let string = JSON.stringify(respostaLocal.data);
                 let obj = JSON.parse(string);
                 let distance = obj['rows'][0]['elements'][0]['distance'].value
+
+                distancias.push({
+                    id: objLocalCurso[i].idCurso,
+                    distancia: distance
+                })
+
                 if (distance <= distanceBase) {
                     let stringCurso = JSON.stringify(dadosCurso);
                     var objCurso = JSON.parse(stringCurso);
@@ -261,6 +273,8 @@ export default function CursosRapidos() {
         // console.warn(this.state.contadorCurso)
         console.log('Lista')
         console.log(listaCursos)
+        console.log('distancias')
+        console.log(distancias)
     }
 
     const [count, setCount] = useState(0)
@@ -320,12 +334,14 @@ export default function CursosRapidos() {
         if (value.length <= 3) {
             return;
         }
-
         input.value = input.value.substr(0, 3);
     }
 
-
-
+    function esvaziarLista() {
+        setDistancias([])
+        setListaCursos([])
+        listarCursos()
+    }
 
     return (
         <div className="geral_g2">
@@ -342,7 +358,7 @@ export default function CursosRapidos() {
                 <div className='title_caixa_curso_g2'>
                     <h1 className='h1_curso_g2'>Cursos</h1>
                     <div className='caixa_curso_g2'>
-                        <label ></label>
+                        <label></label>
                         <input
                             type="search"
                             placeholder='Pesquisar'
@@ -361,11 +377,10 @@ export default function CursosRapidos() {
                         id='5'
                         type="number"
                         placeholder='150 km'
-                        value={userDistance}
-                        name ="distancia"
-                        // onBlur={  }
-                        onChange={(evt) => setUserDistance(evt.target.value)}
+                        name="distancia"
+                        onChange={(ev) => setUserDistance(ev.target.value)}
                     />
+                    <button onClick={() => {esvaziarLista()}}>Filtrar</button>
                 </div>
 
                 <section className='container_curso_g2'>
@@ -376,33 +391,50 @@ export default function CursosRapidos() {
                                 searchInput.length > 0 ?
                                     filteredResults.map((curso) => {
                                         return (
-                                            <div className='espacamento_curso_g2'>
-                                                <section key={curso.idCurso} id='imagem' className='box_curso_g2'>
+                                            <div key={curso.idCurso} className='espacamento_curso_g2'>
+                                                <section alt={curso.idCurso} id='imagem' className='box_curso_g2'>
                                                     <div className='banner_img_curso_g2'>
                                                         {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
                                                     </div>
-
                                                     <div className='dados_curso_gp2'>
-
-                                                        {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
-
-                                                        <div className='estrelas_cursos_g2'>
-                                                            <div >
-                                                                <ReactStars
-                                                                    count={5}
-                                                                    size={20}
-                                                                    edit={false}
-                                                                    value={curso.mediaAvaliacaoCurso}
-                                                                    activeColor="#C20004"
-                                                                />
+                                                        <div className='title_estrelas_g2'>
+                                                            <span className='title_cursos_g2' onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.nomeCurso}</span>
+                                                            <div className='estrelas_cursos_g2'>
+                                                                <div>
+                                                                    <ReactStars
+                                                                        count={5}
+                                                                        // onChange={ratingChanged}
+                                                                        size={20}
+                                                                        edit={false}
+                                                                        value={curso.mediaAvaliacaoCurso}
+                                                                        activeColor="#C20004"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className='dados_local_carga_curso_g2'>
+                                                                <div className='cargaHoraria_curso_g2'>
+                                                                    <p>  <img className='box_dados_curso_g2' src={relogio} alt="duracao" />  {curso.cargaHoraria}  Horas </p>
+                                                                </div>
+                                                                <div className='local_curso_g2'>
+                                                                    <p> <img className='box_dados_curso_g2' src={local} alt="duracao" />   {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro} </p>
+                                                                </div>
+                                                                <div className='box_distancia_g2' >
+                                                                    {
+                                                                        distancias.map((dis) => {
+                                                                            if (dis.id == curso.idCurso) {
+                                                                                return (
+                                                                                    <div className='container_distancia_g2'>
+                                                                                        {dis.distancia} km
+                                                                                    </div>
+                                                                                )
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
-                                                        </div>
-                                                        <div className="box_baixo_section_curso_g2">
 
+                                                        <div className="box_baixo_section_curso_g2">
                                                             <div className='circulo_moeda_curso_g2'>
                                                                 <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
                                                             </div>
@@ -425,32 +457,49 @@ export default function CursosRapidos() {
                                     listaCursos.map((curso) => {
                                         return (
                                             <div key={curso.idCurso} className='espacamento_curso_g2'>
-                                                <section id='imagem' className='box_curso_g2'>
+                                                <section alt={curso.idCurso} id='imagem' className='box_curso_g2'>
                                                     <div className='banner_img_curso_g2'>
                                                         {<img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='curso_banner_g2' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples-grp2/' + curso.caminhoImagemCurso} alt="imagem do curso" />}
                                                     </div>
-
                                                     <div className='dados_curso_gp2'>
-
-                                                        {<span onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)}> {curso.nomeCurso}</span>}
-
-                                                        <div className='estrelas_cursos_g2'>
-                                                            <div >
-                                                                <ReactStars
-                                                                    count={5}
-                                                                    size={20}
-                                                                    edit={false}
-                                                                    value={curso.mediaAvaliacaoCurso}
-                                                                    activeColor="#C20004"
-                                                                />
+                                                        <div className='title_estrelas_g2'>
+                                                            <span className='title_cursos_g2' onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso() }} onClickCapture={() => setIdCursoModal(curso.idCurso)}  > {curso.nomeCurso}</span>
+                                                            <div className='estrelas_cursos_g2'>
+                                                                <div>
+                                                                    <ReactStars
+                                                                        count={5}
+                                                                        // onChange={ratingChanged}
+                                                                        size={20}
+                                                                        edit={false}
+                                                                        value={curso.mediaAvaliacaoCurso}
+                                                                        activeColor="#C20004"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className='dados_local_carga_curso_g2'>
+                                                                <div className='cargaHoraria_curso_g2'>
+                                                                    <p>  <img className='box_dados_curso_g2' src={relogio} alt="duracao" />  {curso.cargaHoraria}  Horas </p>
+                                                                </div>
+                                                                <div className='local_curso_g2'>
+                                                                    <p> <img className='box_dados_curso_g2' src={local} alt="duracao" />   {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro} </p>
+                                                                </div>
+                                                                <div className='box_distancia_g2' >
+                                                                    {
+                                                                        distancias.map((dis) => {
+                                                                            if (dis.id == curso.idCurso) {
+                                                                                return (
+                                                                                    <div className='container_distancia_g2'>
+                                                                                        {dis.distancia} km
+                                                                                    </div>
+                                                                                )
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={relogio} alt="duracao" /> {curso.cargaHoraria} Horas </p>}
-                                                            {<p><img onClick={() => { verifySituacao(idCursoModal); OpenModal(); listarComentarioCurso(); verifySaldoCurso(listaUsuario.saldoMoeda, curso.valorCurso) }} onClickCapture={() => setIdCursoModal(curso.idCurso)} className='box_dados_curso_g2' src={local} alt="duracao" /> {curso.idEmpresaNavigation.idLocalizacaoNavigation.idLogradouroNavigation.nomeLogradouro}   </p>}
-                                                        </div>
-                                                        <div className="box_baixo_section_curso_g2">
 
+                                                        <div className="box_baixo_section_curso_g2">
                                                             <div className='circulo_moeda_curso_g2'>
                                                                 <img className='coin_curso_g2' src={coin} alt="favorito" /> {curso.valorCurso}
                                                             </div>

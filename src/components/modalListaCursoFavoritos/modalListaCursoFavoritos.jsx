@@ -167,7 +167,7 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
 
                             </div>
 
-                            <div className='dados_modal_beneficio_g2'>
+                            <dv className='dados_modal_beneficio_g2'>
 
                                 <div className='icone_center_modal_beneficio_g2'>
                                     <img src={local} alt="mapa" />
@@ -184,11 +184,6 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
                                                 </div>
                                             )
                                     }
-
-                                    {/* <div className='icone_center_modal_beneficio_g2'>
-                                    <img src={local} alt="mapa" /> <p> {cursos.idCursoNavigation.modalidadeCurso == true && (
-                                        <p>Presencial</p>
-                                    )} </p> */}
                                 </div>
 
 
@@ -201,7 +196,7 @@ export const ModallCursoFavorito = ({ showModal, setShowModal, cursos, comentari
                                     </p>
                                 </div>
 
-                            </div>
+                            </dv>
 
                             <div className='container_registro_beneficio_g2'>
                                 <div className='box_dados_registro_beneficio_g2'>

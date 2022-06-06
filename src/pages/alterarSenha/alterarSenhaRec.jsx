@@ -20,13 +20,16 @@ export default function AlterarSenha(props) {
     const history = useHistory();
     
 
-    const AlteraSenha = () =>{
+    const  AlteraSenha = (event) =>{
+
+        event.preventDefault();
         if (senhaNova !== senhaConfirmacao) {
             notify_Logar_Failed_unmatched()
         }
-
+        console.log(localStorage.getItem('email'))
         
-            axios.patch('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/AlteraSenhaRec/' + email,{},{
+        
+            axios.patch('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/AlteraSenhaRec/' + localStorage.getItem('email'),{},{
                 headers:{
                     'Content-Type': 'application/json',
                     'senhaNova' : senhaNova,
@@ -35,7 +38,9 @@ export default function AlterarSenha(props) {
             })
             .then(response => {
                 
-                history.push('/')
+                history.push({
+                    pathname: '/Login/'                    
+                })
                 console.log(response)
                 console.log('senha alterada')
             })
