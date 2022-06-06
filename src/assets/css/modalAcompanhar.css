@@ -202,7 +202,7 @@ input[type='range']::-webkit-slider-runnable-track {
     font-size: 1.3rem;
     cursor: pointer;
 }
-.btn_fechar_modal {
+.g3_btn_fechar_modal {
     background-color: #2a2e32;
     color: #ffffff;
     width: 10vw;
@@ -260,6 +260,7 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 .g3_graficosModal{
     display: flex;
+    justify-content: space-between;
 }
 .g3_graficoSatisfacaoModal{
     width: 35%;
@@ -271,6 +272,8 @@ input[type='range']::-webkit-slider-runnable-track {
     display: flex;
     justify-content: space-between;
     margin-bottom: 4rem;
+    margin-top: 4rem;
+    width: 100%;
 }
 .g3_spanGraficos{
     font-family: 'Quicksand', sans-serif;

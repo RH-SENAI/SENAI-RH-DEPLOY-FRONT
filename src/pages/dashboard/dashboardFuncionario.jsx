@@ -269,53 +269,7 @@ export default function Dashboard() {
 
 
 
-    function ListarMinhasAtividades() {
-
-        axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${parseJwt().jti}`, {
-
-            headers: {
-
-                Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-
-        })
-
-            .then((resposta) => {
-
-                if (resposta.status === 200) {
-                    setListaAtividades(resposta.data)
-
-                    //console.log(resposta)
-
-                    const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
-                        .map((p) => {
-
-                            return parseInt(p.dataConclusao.split('-')[2]);
-                        });
-
-                    const d1_5 = dataFinalizacao.filter(d => d <= 5).length
-                    // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
-                    // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
-                    // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
-                    // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
-                    // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
-                    setSampleData(
-                        [
-                            { x: 1, y: d1_5 },
-                            { x: 2, y: 2 },
-                            { x: 3, y: 4 },
-                            { x: 4, y: 5 },
-                            { x: 5, y: 10 },
-                            { x: 6, y: 11 }
-                        ])
-
-
-                }
-            })
-
-            .catch(erro => console.log(erro))
-
-    }
+    
 
     useEffect(() => {
         ListarUsuario()
@@ -397,9 +351,6 @@ export default function Dashboard() {
                                                         plotOptions: {
                                                             radialBar: {
                                                                 dataLabels: {
-                                                                    hollow: {
-                                                                        size: '50%',
-                                                                    },
                                                                     name: {
                                                                         fontSize: '22px',
                                                                     },

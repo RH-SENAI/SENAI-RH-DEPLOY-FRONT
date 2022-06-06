@@ -9,7 +9,7 @@ import "../../assets/css/decisao.css";
 import Footer from '../../components/footer';
 import FotoPerfil from '../../assets/img/perfilVazio.svg'
 import imgPadrao from '../../assets/img/imgPadrao.png'
-import Header from '../../components/header/headerFuncionario'
+import HeaderFuncionario from '../../components/header/headerFuncionario'
 import ImgDemocratizacaoAdm from '../../assets/img/imgDecisao.svg'
 import Navbar from '../../components/MenuHamburguer/Nav'
 
@@ -47,7 +47,12 @@ export default function Decisao() {
 
     return (
         <body>
-            <Navbar />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main>
                 <div className='container g3_containerOrganizadorDecisao'>
                     <div className='g3_containerDecisao'>
@@ -60,9 +65,9 @@ export default function Decisao() {
                                         listaDecisao.map((decisao) => {
                                             return (
                                                 <div className='g3_feedback'>
-                                                    <div className='g3_fotoPerfilFeedback'>
-                                                        <img className='g3_imgFotoFeedback' src={imgPadrao} />
-                                                    </div>
+                                                    {/* <div className='g3_fotoPerfilFeedback'>
+                                                        <img className='g3_imgFotoFeedback' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + decisao.caminhoFotoPerfil} />
+                                                    </div> */}
                                                     <Link to={`democratizacao/${decisao.idDecisao}`} className='g3_btnRedirectDecisao'>
                                                         <div className='g3_boxDecisaoLista'>
                                                             <span className='g3_tituloDecisao'>O gerente tomou a seguinte decisão:</span>

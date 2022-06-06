@@ -4,7 +4,7 @@ import { useState } from 'react';
 import "../../assets/css/democratizacao.css";
 import Footer from '../../components/footer';
 import FotoPerfil from '../../assets/img/perfilVazio.svg'
-import Header from '../../components/header/headerFuncionario'
+import HeaderFuncionario from '../../components/header/headerFuncionario'
 import ImgDemocratizacao from '../../assets/img/ImgDemocratizacao.svg'
 import imgPadrao from '../../assets/img/imgPadrao.png'
 import moment from 'moment';
@@ -20,7 +20,7 @@ export default function Democratizacao(props) {
     const idDecisao = props.location.pathname.split('/')[2]
     
     //States
-    const [idUsuario, setIdUsuario] = useState(1);
+    const [idUsuario, setIdUsuario] = useState(parseJwt().jti);
     const [idFeedback, setIdFeedback] = useState(0);
     const [listaFeedbacks, setListaFeedbacks] = useState([]);
     const [listaDecisao, setListaDecisao] = useState([]);
@@ -124,7 +124,12 @@ export default function Democratizacao(props) {
                 draggable
                 pauseOnHover
             />
-            <Navbar />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main>
                 <div className='container g3_containerOrganizador'>
                     <div className='g3_containerDecisao'>
@@ -168,9 +173,9 @@ export default function Democratizacao(props) {
                                 if (feedback.idDecisao == idDecisao) {
                                     return (
                                         <div key={feedback.idFeedBack} className='g3_feedback'>
-                                            <div className='g3_fotoPerfilFeedback'>
-                                                <img className='g3_imgFotoFeedback' src={imgPadrao} />
-                                            </div>
+                                            {/* <div className='g3_fotoPerfilFeedback'>
+                                                <img className='g3_imgFotoFeedback' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + feedback.caminhoFotoPerfil} />
+                                            </div> */}
                                             <div className='g3_boxFeedback'>
                                                 <span className='g3_tituloDecisao'>{feedback.idUsuarioNavigation.nome} comentou:</span>
                                                 <p className='g3_paragrafoDecisao'>{feedback.comentarioFeedBack}</p>

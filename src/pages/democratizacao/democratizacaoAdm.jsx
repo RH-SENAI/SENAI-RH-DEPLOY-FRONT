@@ -6,18 +6,19 @@ import "../../assets/css/democratizacao.css";
 import "../../assets/css/democratizacaoAdm.css";
 import Footer from '../../components/footer';
 import FotoPerfil from '../../assets/img/perfilVazio.svg'
-import Header from '../../components/header/headerFuncionario'
+import HeaderFuncionario from '../../components/header/headerFuncionario'
 import imgPadrao from '../../assets/img/imgPadrao.png'
 import ImgDemocratizacaoAdm from '../../assets/img/ImgDemocratizacao.svg'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../../components/MenuHamburguer/Nav'
+import { parseJwt } from '../../services/auth';
 
 export default function Democratizacao() {
 
     //States 
     const [idDecisao, setIdDecisao] = useState(0);
-    const [idUsuario, setIdUsuario] = useState(0);
+    const [idUsuario, setIdUsuario] = useState(parseJwt().jti);
     const [resultadoDecisao, setResultadodecisao] = useState(0);
     const [descricaoDecisao, setDescricaoDecisao] = useState('');
     const [listaDecisao, setListaDecisao] = useState([]);
@@ -58,7 +59,6 @@ export default function Democratizacao() {
             descricaoDecisao: descricaoDecisao,
             dataDecisao: dataCadastroDecisao,
             prazoDeAvaliacao: dataValidade,
-            resultadoDecisao: resultadoDecisao
         }
         console.log(idUsuario)
         console.log(dataCadastroDecisao)
@@ -81,7 +81,7 @@ export default function Democratizacao() {
                     notify_decisao();
                 }
             })
-            .catch(erro => console.log(erro), notify_erroDecisao())
+            .catch(erro => {notify_erroDecisao(); console.log(erro) })
 
     }
     useEffect(ListarDecisao, [])
@@ -100,7 +100,12 @@ export default function Democratizacao() {
                 draggable
                 pauseOnHover
             />
-            <Navbar />
+            <div className='navbarF'>
+                <Navbar />
+            </div>
+            <div className='headerF'>
+                <HeaderFuncionario />
+            </div>
             <main>
                 <div className='container g3_containerOrganizador'>
                     <div className='g3_containerDecisao'>
@@ -127,9 +132,9 @@ export default function Democratizacao() {
                             listaDecisao.map((decisao) => {
                                 return (
                                     <div className='g3_feedback'>
-                                        <div className='g3_fotoPerfilFeedback'>
-                                            <img className='g3_imgFotoFeedback' src={imgPadrao} />
-                                        </div>
+                                        {/* <div className='g3_fotoPerfilFeedback'>
+                                            <img className='g3_imgFotoFeedback' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + decisao.caminhoFotoPerfil} />
+                                        </div> */}
                                         <div className='g3_boxFeedback'>
                                             <span className='g3_tituloDecisao'>Você tomou a seguinte decisão:</span>
                                             <p className='g3_paragrafoDecisao'>{decisao.descricaoDecisao}</p>

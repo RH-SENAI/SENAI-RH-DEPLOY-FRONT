@@ -93,6 +93,8 @@ export default function Carometro() {
                     setListaFuncionarios(resposta.data)
                     console.log(resposta)
                     console.log(idCargo)
+                    // console.log(mediaAvaliacao)
+                    // console.log(medSatisfacaoGeral)
 
 
 
@@ -173,61 +175,68 @@ export default function Carometro() {
     //     }
     // }
 
-    function ListarMinhasAtividades() {
-        console.log(idUsuarioModal)
-        let idUsuarioAvaliado = idUsuarioModal
-        axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${idUsuarioAvaliado}`, {
+    // function ListarMinhasAtividades() {
+    //     console.log(idUsuarioModal)
+    //     let idUsuarioAvaliado = idUsuarioModal
+    //     axios.get(`http://apirhsenaigp1.azurewebsites.net/api/Atividades/MinhasAtividade/${idUsuarioAvaliado}`, {
 
-            headers: {
+    //         headers: {
 
-                Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
-            }
+    //             Authorization: 'Bearer ' + localStorage.getItem('usuario-login')
+    //         }
 
-        })
+    //     })
 
-            .then((resposta) => {
+    //         .then((resposta) => {
 
-                if (resposta.status === 200) {
-                    setListaAtividades(resposta.data)
+    //             if (resposta.status === 200) {
+    //                 setListaAtividades(resposta.data)
 
-                    console.log(resposta)
+    //                 console.log(resposta)
 
-                    const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
-                        .map((p) => {
+    //                 const dataFinalizacao = resposta.data.filter(atividades => atividades.idSituacaoAtividade === 3)
+    //                     .map((p) => {
 
-                            return parseInt(p.dataConclusao.split('-')[2]);
-                        });
+    //                         return parseInt(p.dataConclusao.split('-')[2]);
+    //                     });
 
-                    const d1_5 = dataFinalizacao.filter(d => d <= 5).length
-                    // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
-                    // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
-                    // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
-                    // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
-                    // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
-                    setSampleData(
-                        [
-                            { x: 1, y: d1_5 },
-                            { x: 2, y: 2 },
-                            { x: 3, y: 4 },
-                            { x: 4, y: 5 },
-                            { x: 5, y: 10 },
-                            { x: 6, y: 11 }
-                        ])
+    //                 const d1_5 = dataFinalizacao.filter(d => d <= 5).length
+    //                 // const d6_10 = dataFinalizacao.filter(d => d > 5 && d <= 10).length
+    //                 // const d11_15 = dataFinalizacao.filter(d => d > 10 && d <= 15).length
+    //                 // const d16_20 = dataFinalizacao.filter(d => d > 15 && d <= 20).length
+    //                 // const d21_25 = dataFinalizacao.filter(d => d > 20 && d <= 25).length
+    //                 // const d26_31 = dataFinalizacao.filter(d => d > 25 && d <= 31).length
+    //                 setSampleData(
+    //                     [
+    //                         { x: 1, y: d1_5 },
+    //                         { x: 2, y: 2 },
+    //                         { x: 3, y: 4 },
+    //                         { x: 4, y: 5 },
+    //                         { x: 5, y: 10 },
+    //                         { x: 6, y: 11 }
+    //                     ])
 
 
-                }
-            })
+    //             }
+    //         })
 
-            .catch(erro => console.log(erro))
+    //         .catch(erro => console.log(erro))
 
-    }
+    // }
     // useEffect(ListarMinhasAtividades, [])
 
 
 
+// function teste(){
+//     console.log(listaFuncionarios)
+// }
+// function teste2(){
+//     var usuariossss= listaFuncionarios.find(usuario => usuario.idUsuario == idUsuarioModal)
 
+//     console.log(usuariossss)
+// }
 
-
+    // useEffect(teste2(), [])
     useEffect(BuscarFuncionario, [])
     // useEffect(console.log(parseJwt.jti), [])
     // useEffect(BuscarCargos, [])
@@ -236,7 +245,7 @@ export default function Carometro() {
         <body>
             {/* <Modall atividade={listaAtividades.find(atividade => atividade.idAtividade == idAtividadeModal)} showModal={showModal} setShowModal={setShowModal} /> */}
             {/* <ModalAcompanhar usuario={listaFuncionarios.find(usuario => usuario.idUsuario == idFuncionarioModal)} showModal={showModal} setShowModal={setShowModal} />  */}
-            <ModalAcompanhar listaAtividades={listaAtividades} sampleData={sampleData} idUsuarioAvaliador={id} usuario={listaFuncionarios.find(usuario => usuario.idUsuario == idUsuarioModal)} showModal={showModal} setShowModal={setShowModal} />
+            <ModalAcompanhar idUsuarioAvaliador={id} usuario={listaFuncionarios.find(usuario => usuario.idUsuario == idUsuarioModal)} showModal={showModal} setShowModal={setShowModal} />
             {/* <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -309,7 +318,7 @@ export default function Carometro() {
                                         filteredResults.map((usuario) => {
                                             // if(usuario.idGrupo == idGrupo.idGrupo) {
                                             return (
-                                                <button className='g3_abrirModal' onClick={() => { OpenModal(); ListarMinhasAtividades(); }} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
+                                                <button className='g3_abrirModal' onClick={() => { OpenModal();}} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
                                                     <div className='g3_cardUsuario'>
                                                         <img className='g3_fotoCarometro' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + usuario.caminhoFotoPerfil} alt="fotoPerfilCarometro" />
                                                         <span className="g3_spanCarometro">{usuario.nome}</span>
@@ -324,7 +333,7 @@ export default function Carometro() {
                                         listaFuncionarios.map((usuario) => {
                                             // if(usuario.idGrupo == idGrupo.idGrupo) {
                                             return (
-                                                <button className='g3_abrirModal' onClick={() => { OpenModal(); ListarMinhasAtividades(); }} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
+                                                <button className='g3_abrirModal' onClick={() => { OpenModal(); }} onClickCapture={() => setIdUsuarioModal(usuario.idUsuario)} type="button">
                                                     <div className='g3_cardUsuario'>
                                                         <img className='g3_fotoCarometro' src={'https://armazenamentogrupo3.blob.core.windows.net/armazenamento-simples/' + usuario.caminhoFotoPerfil} alt="fotoPerfilCarometro" />
                                                         <span className="g3_spanCarometro">{usuario.nome}</span>

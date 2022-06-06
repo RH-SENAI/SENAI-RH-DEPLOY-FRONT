@@ -36,7 +36,7 @@ export default function Redirect() {
                             <div className='G1_ArticleText'>
                                 <h3> Acompanhamento </h3>
                                 <p>Acesse aqui para acompanhar seus funcionários, vizualizando seus respectivos níveis de satifação e muito mais!</p>
-                                <Link to='/carometro'><button className='G1_btn_Cadastrar' type="button"> Entrar </button></Link>
+                                <Link to='/dashboard'><button className='G1_btn_Cadastrar' type="button"> Entrar </button></Link>
                             </div>
                         </article>
                         <article className="G1_box_Article">
