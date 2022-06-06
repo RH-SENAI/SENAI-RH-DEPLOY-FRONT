@@ -33,6 +33,7 @@ export default function EsqueciSenha() {
         })      
         .then(response => {
             if(response.status === 200){
+                localStorage.setItem('email', email)
                 setIsActiveCodigo(true)
                 console.log(isActiveCodigo)
             }

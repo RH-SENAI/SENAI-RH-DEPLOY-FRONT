@@ -15,6 +15,7 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
 
     const modalRef = useRef();
     const notify_validar = () => toast.success("Atividade Validada!");
+    const notify_recusar = () => toast.success("Atividade Recusada!");
 
     console.log(atividade)
 
@@ -39,7 +40,6 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
     );
 
     function listarAtividadesValidar() {
-        debugger;
         axios("http://apirhsenaigp1.azurewebsites.net/api/Atividades/ListaValidar"
             , {
                 headers: {
@@ -57,7 +57,6 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
     };
 
     async function validarAtividades(atividade) {
-        console.log("validarAtividades chamouuuuu")
         let idAtividade = atividade.idAtividade;
         let idUsuario = atividade.idUsuario;
         await axios.patch("http://apirhsenaigp1.azurewebsites.net/api/Atividades/ValidarAtividade/" + atividade.idAtividade + "/" + atividade.idUsuario, {
@@ -77,7 +76,6 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
     };
 
     async function recusarAtividades(atividade) {
-        console.log("recusarAtividades chamouuuuu")
         let idMyAtividade = atividade.idMinhasAtividades;
         await axios.patch("http://apirhsenaigp1.azurewebsites.net/api/Atividades/RecusarAtividade/" + idMyAtividade, {
         }
@@ -88,7 +86,7 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
             })
             .catch(erro => console.log(erro))
 
-        notify_validar()
+        notify_recusar()
 
         listarAtividadesValidar()
     };

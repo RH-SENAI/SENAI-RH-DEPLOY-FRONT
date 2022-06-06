@@ -71,7 +71,7 @@ export default function AlterarSenha(props) {
             })
             .then(response => {
                 localStorage.removeItem('usuario-login')
-                history.push('/')
+                history.push('/login')
                 console.log(response)
                 console.log('senha alterada')
             })
