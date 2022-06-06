@@ -31,7 +31,7 @@ export default function TodasAtividades() {
 
     function listarUsuariosRank() {
         let idGestor = parseJwt().jti
-        axios.get("http://localhost:5000/api/Usuarios/Ranking/" + idGestor
+        axios.get("http://apirhsenaigp1.azurewebsites.net/api/Usuarios/Ranking/" + idGestor
             , {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')

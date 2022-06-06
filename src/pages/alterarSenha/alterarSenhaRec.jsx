@@ -29,7 +29,7 @@ export default function AlterarSenha(props) {
         console.log(localStorage.getItem('email'))
         
         
-            axios.patch('http://localhost:5000/api/Usuarios/AlteraSenhaRec/' + localStorage.getItem('email'),{},{
+            axios.patch('http://apirhsenaigp1.azurewebsites.net/api/Usuarios/AlteraSenhaRec/' + localStorage.getItem('email'),{},{
                 headers:{
                     'Content-Type': 'application/json',
                     'senhaNova' : senhaNova,
