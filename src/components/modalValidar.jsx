@@ -115,7 +115,7 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
                             <div className="G1_header_atividade"></div>
                             <h2 className="titulo_atividade_modal">{atividade.nomeAtividade}</h2>
                         </div>
-                        <div className='organizar_sessao_modal'>
+                        <div className='organizar_sessao_modal_validar'>
                             <div className="text_modal_validar">
                                 <label className='label_modal'>Descrição</label>
                                 <p className="descricao_atividade_modal">{atividade.descricaoAtividade}</p>
@@ -123,6 +123,8 @@ export const ModallValidar = ({ showModalValidar, setShowModalValidar, atividade
                             <div className="text_modal_validar">
                                 <label className='label_modal'>Nome Funcionário</label>
                                 <p className="descricao_atividade_modal">{atividade.nomeFuncionario}</p>
+                            </div>
+                            <div className="text_modal_validar">
                                 <label className='label_modal'>Data de Conclusão</label>
                                 <p className="descricao_atividade_modal">{moment(atividade.dataConclusao, "YYYYDDMM").format('L')}</p>
                             </div>
