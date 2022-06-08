@@ -340,7 +340,7 @@ export default function Dashboard() {
                                                         },
                                                         colors: ['#c20004'],
                                                         labels: ['Satisfação'],
-                                                    }} series={[usuario.medSatisfacaoGeral * 100]} type="radialBar" height={200} width={200}
+                                                    }} series={[Math.round(usuario.medSatisfacaoGeral * 100)]} type="radialBar" height={200} width={200}
                                                     />
                                                     <img src={SetaProx} className='g3_imgSetaProx'/>
                                                     <ApexCharts options={{

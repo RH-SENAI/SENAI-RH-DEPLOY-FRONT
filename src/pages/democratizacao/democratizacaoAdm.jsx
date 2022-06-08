@@ -77,6 +77,7 @@ export default function Democratizacao() {
             .then(response => {
                 if (response.status === 201) {
 
+                    ListarDecisao();
                     console.log('decisao cadastrada')
                     notify_decisao();
                 }

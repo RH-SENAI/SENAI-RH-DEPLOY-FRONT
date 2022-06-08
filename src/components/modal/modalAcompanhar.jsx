@@ -175,7 +175,7 @@ export const ModalAcompanhar = ({ showModal, setShowModal, usuario, idUsuarioAva
                       },
                       colors: ['#c20004'],
                       labels: ['Satisfação'],
-                    }} series={[usuario.medSatisfacaoGeral * 100]} type="radialBar" height={200} width={200}
+                    }} series={[Math.round(usuario.medSatisfacaoGeral * 100)]} type="radialBar" height={200} width={200}
                     />
                     
                   </div>
